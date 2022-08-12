@@ -107,7 +107,7 @@ function Help() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            A: Read more in <a href="https://docs.google.com/presentation/d/1H-LzoqsSk9vMl3m1fxmCqVXjY4k1E_7nsb68xoCAiqU/edit?usp=sharing" target="_blank" rel="noopener">this slides deck here</a>. If you have any further questions, please submit them to <a href="https://forms.gle/t9R29o6ZJXDM7NE37" target="_blank" rel="noopener">the feedback form</a>!
+            A: Read more in <a href="https://docs.google.com/presentation/d/1H-LzoqsSk9vMl3m1fxmCqVXjY4k1E_7nsb68xoCAiqU/edit?usp=sharing" target="_blank" rel="noreferrer">this slides deck here</a>. If you have any further questions, please submit them to <a href="https://forms.gle/t9R29o6ZJXDM7NE37" target="_blank" rel="noreferrer">the feedback form</a>!
           </Typography>
         </AccordionDetails>
       </Accordion>
