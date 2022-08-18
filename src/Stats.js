@@ -27,11 +27,11 @@ function Stats() {
 
   const updateStats = () => {
     try {
-      fetch("https://wings-971b6-default-rtdb.firebaseio.com/letters.json")
+      fetch("https://jt-carrier-default-rtdb.firebaseio.com/letters.json")
         .then((response) => response.json())
         .then((data) => setLetters(data));
 
-      fetch("https://wings-971b6-default-rtdb.firebaseio.com/top.json")
+      fetch("https://jt-carrier-default-rtdb.firebaseio.com/top.json")
         .then((response) => response.json())
         .then((data) => setTop(data));
 
