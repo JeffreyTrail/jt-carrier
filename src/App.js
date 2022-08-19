@@ -93,7 +93,7 @@ function App() {
   const [tab, setTab] = React.useState((localTab !== null) ? parseInt(localTab) : 0);
   const [dark, setDark] = React.useState((localDarkSetting !== null) ? localDarkSetting==="true" : browserDarkSetting);
 
-  ReactGA.initialize("G-65F1XKCTRN");
+  ReactGA.initialize("G-EVN3SKCV1C");
   ReactGA.send("pageview");
 
   const [mobile, setMobile] = React.useState((typeof window !== "undefined" ? window.innerWidth : 0) < 750 );
