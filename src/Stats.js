@@ -24,6 +24,7 @@ function Stats() {
   const [beg, setBeg] = React.useState("---");
   const [end, setEnd] = React.useState("---");
   const [prize, setPrize] = React.useState("---");
+  const [total, setTotal] = React.useState("---");
 
   const updateStats = () => {
     try {
@@ -51,6 +52,12 @@ function Stats() {
       setBeg(data.beg);
       setEnd(data.end);
       setPrize(data.prize);
+    });
+    
+    fetch("https://wings-carrier.herokuapp.com/stats/total")
+    .then((response) => response.json())
+    .then((data) => {
+      setTotal(data.total);
     });
   }, []);
 
@@ -126,6 +133,10 @@ function Stats() {
 
       <Typography variant="h6" sx={rowStyle}>
         This trimester's cutoff for TOP 25%: {top} tickets
+      </Typography>
+
+      <Typography variant="h6" sx={rowStyle}>
+        So far this year, we've validated {total} tickets
       </Typography>
 
       {/*

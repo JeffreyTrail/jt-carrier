@@ -30,8 +30,9 @@ function Help() {
           <Typography>
             A: There are 3 different ways for you to win:
             <ol>
-            <li>Each week, there is a drawing for each homeroom. The prize is distributed by ASB each week in homeroom.</li>
-            <li>Each week, we hold a drawing for each of the WINGS letters for all tickets submitted in the whole school. Pay close attention during morning announcements. </li>
+            <li>Each Tuesday, there is a drawing for each homeroom. The prize is distributed by ASB each week in homeroom.</li>
+            <li>Each Friday, we hold a drawing for each of the WINGS letters for all tickets submitted in the whole school. Pay close attention during morning announcements. </li>
+            <li>Twice each trimester, the top 25% by count (i.e. number of tickets you submitted) gets invited to special lunch time activities! </li>
             {/*<li>This last one is not a drawing. Some WINGS tickets are just special - they're golden tickets, which will reward you immediately after you redeem them.</li>*/}
             </ol>
           </Typography>
