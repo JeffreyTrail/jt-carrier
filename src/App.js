@@ -18,7 +18,7 @@ import {
   Input,
   DarkMode,
   LightMode,
-  Assignment,
+  BugReport,
 } from "@mui/icons-material";
 import Ticketing from "./Ticketing";
 import Stats from "./Stats";
@@ -176,8 +176,8 @@ function App() {
             rel="noreferrer"
             variant="variant"
             color="secondary"
-            startIcon={<Assignment />}>
-            {mobile ? "":"feedback"}
+            startIcon={<BugReport />}>
+            {mobile ? "":"report"}
           </Button>
 
           <IconButton color="inherit" onClick={handleDark}>

@@ -53,7 +53,7 @@ function Stats() {
       setEnd(data.end);
       setPrize(data.prize);
     });
-    
+
     fetch("https://wings-carrier.herokuapp.com/stats/total")
     .then((response) => response.json())
     .then((data) => {
@@ -132,7 +132,7 @@ function Stats() {
       <Typography variant="h6">This week's homeroom drawing prize is: {prize}</Typography>
 
       <Typography variant="h6" sx={rowStyle}>
-        This trimester's cutoff for TOP 25%: {top} tickets
+        Cutoff for TOP 25%: {top} tickets
       </Typography>
 
       <Typography variant="h6" sx={rowStyle}>
