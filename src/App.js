@@ -11,7 +11,8 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Badge,
-  Popover
+  Popover,
+  Tooltip,
 } from "@mui/material";
 import * as React from "react";
 import {
@@ -202,25 +203,29 @@ function App() {
               <BugReportOutlined />
             </IconButton>
             :
-            <Button
-              href="https://forms.gle/t9R29o6ZJXDM7NE37"
-              target="_blank"
-              rel="noreferrer"
-              color="inherit"
-            >
-              <BugReportOutlined />
-              report
-            </Button>
+            <Tooltip title="Report Bugs & Feedback">
+              <Button
+                href="https://forms.gle/t9R29o6ZJXDM7NE37"
+                target="_blank"
+                rel="noreferrer"
+                color="inherit"
+              >
+                <BugReportOutlined />
+                report
+              </Button>
+            </Tooltip>
           }
 
 
 
 
-          <IconButton color="inherit" onClick={handleNews}>
-            <Badge color="secondary" variant="dot" invisible={news === CURRENT}>
-              <NotificationsOutlined />
-            </Badge>
-          </IconButton>
+          <Tooltip title="News & Updates">
+            <IconButton color="inherit" onClick={handleNews}>
+              <Badge color="secondary" variant="dot" invisible={news === CURRENT}>
+                <NotificationsOutlined />
+              </Badge>
+            </IconButton>
+          </Tooltip>
           <Popover
             id={id}
             open={open}
@@ -251,9 +256,12 @@ function App() {
             </Paper>
           </Popover>
 
-          <IconButton color="inherit" onClick={handleDark}>
-            {dark ? <LightModeOutlined /> : <DarkModeOutlined />}
-          </IconButton>
+          <Tooltip title={dark ? "Switch to Light Mode": "Switch to Dark Mode"}>
+            <IconButton color="inherit" onClick={handleDark}>
+              {dark ? <DarkModeOutlined /> : <LightModeOutlined />}
+            </IconButton>
+          </Tooltip>
+
           </Toolbar>
         </AppBar>
 
