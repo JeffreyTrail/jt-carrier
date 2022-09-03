@@ -21,7 +21,7 @@ import {
   Input,
   DarkModeOutlined,
   LightModeOutlined,
-  BugReportOutlined,
+  FeedbackOutlined,
   NotificationsOutlined,
 } from "@mui/icons-material";
 import Ticketing from "./Ticketing";
@@ -200,7 +200,7 @@ function App() {
               rel="noreferrer"
               color="inherit"
             >
-              <BugReportOutlined />
+              <FeedbackOutlined />
             </IconButton>
             :
             <Tooltip title="Report Bugs & Feedback">
@@ -210,7 +210,7 @@ function App() {
                 rel="noreferrer"
                 color="inherit"
               >
-                <BugReportOutlined />
+                <FeedbackOutlined />
                 report
               </Button>
             </Tooltip>
