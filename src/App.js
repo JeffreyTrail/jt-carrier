@@ -9,16 +9,19 @@ import {
   IconButton,
   Button,
   BottomNavigation,
-  BottomNavigationAction
+  BottomNavigationAction,
+  Badge,
+  Popover
 } from "@mui/material";
 import * as React from "react";
 import {
   BarChart,
-  LiveHelp,
+  InfoOutlined,
   Input,
-  DarkMode,
-  LightMode,
-  BugReport,
+  DarkModeOutlined,
+  LightModeOutlined,
+  BugReportOutlined,
+  NotificationsOutlined,
 } from "@mui/icons-material";
 import Ticketing from "./Ticketing";
 import Stats from "./Stats";
@@ -77,21 +80,33 @@ const lightTheme = createTheme({
   },
 });
 
+const CURRENT = "09.03.22"
+
 function App() {
 
   let localDarkSetting = null;
   let localTab = null;
+  let localNews = null;
 
   if (typeof(Storage) !== "undefined") {
     // Getting user settings
     localDarkSetting = localStorage.getItem("dark")
     localTab = localStorage.getItem("tab")
+    localNews = localStorage.getItem("news")
   }
 
   const browserDarkSetting = useMediaQuery('(prefers-color-scheme: dark)');
 
   const [tab, setTab] = React.useState((localTab !== null) ? parseInt(localTab) : 0);
   const [dark, setDark] = React.useState((localDarkSetting !== null) ? localDarkSetting==="true" : browserDarkSetting);
+
+  // News & News Popover
+  const [news, setNews] = React.useState((localNews !== null) ? localNews : "08.18.22");
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'news-popover' : undefined;
+  // ********************************************************
 
   ReactGA.initialize("G-EVN3SKCV1C");
   ReactGA.send("pageview");
@@ -113,6 +128,13 @@ function App() {
     if (typeof(Storage) !== "undefined")
         localStorage.setItem("tab", newMode);
   }
+
+  const handleNews = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setNews(CURRENT);
+    if (typeof(Storage) !== "undefined")
+        localStorage.setItem("news", CURRENT);
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleDark = (e) => {
     const newMode = !dark;
@@ -163,25 +185,74 @@ function App() {
                 label="Stats"
               />
               <Tab
-                icon={<LiveHelp />}
+                icon={<InfoOutlined />}
                 iconPosition="start"
                 label="Help"
               />
             </Tabs>
           }
 
-          <Button
-            href="https://forms.gle/t9R29o6ZJXDM7NE37"
-            target="_blank"
-            rel="noreferrer"
-            variant="variant"
-            color="secondary"
-            startIcon={<BugReport />}>
-            {mobile ? "":"report"}
-          </Button>
+          {mobile ?
+            <IconButton
+              href="https://forms.gle/t9R29o6ZJXDM7NE37"
+              target="_blank"
+              rel="noreferrer"
+              color="inherit"
+            >
+              <BugReportOutlined />
+            </IconButton>
+            :
+            <Button
+              href="https://forms.gle/t9R29o6ZJXDM7NE37"
+              target="_blank"
+              rel="noreferrer"
+              color="inherit"
+            >
+              <BugReportOutlined />
+              report
+            </Button>
+          }
+
+
+
+
+          <IconButton color="inherit" onClick={handleNews}>
+            <Badge color="secondary" variant="dot" invisible={news === CURRENT}>
+              <NotificationsOutlined />
+            </Badge>
+          </IconButton>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            PaperProps={{
+              sx: { width: mobile ? "75%" : "25%" },
+            }}
+          >
+            <Paper sx={{
+              padding: 3,
+            }}>
+              <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
+              <hr />
+              <Typography variant="body1">
+                This textbox! It describes updates &
+                features recently added to JT Carrier
+              </Typography>
+              <br />
+              <Typography variant="body1">
+                Under the Stats tab, find a running total
+                of all WINGS tickets submitted this year
+              </Typography>
+            </Paper>
+          </Popover>
 
           <IconButton color="inherit" onClick={handleDark}>
-            {dark ? <LightMode /> : <DarkMode />}
+            {dark ? <LightModeOutlined /> : <DarkModeOutlined />}
           </IconButton>
           </Toolbar>
         </AppBar>
@@ -205,7 +276,7 @@ function App() {
             >
               <BottomNavigationAction label="Submit" icon={<Input />} />
               <BottomNavigationAction label="Stats" icon={<BarChart />} />
-              <BottomNavigationAction label="Help" icon={<LiveHelp />} />
+              <BottomNavigationAction label="Help" icon={<InfoOutlined />} />
             </BottomNavigation>
           </Paper>
           :
