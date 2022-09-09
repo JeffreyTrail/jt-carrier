@@ -1,7 +1,7 @@
 import {
   Box,
-  Tabs,
-  Tab,
+  // Tabs,
+  // Tab,
   AppBar,
   Toolbar,
   Typography,
@@ -13,6 +13,12 @@ import {
   Badge,
   Popover,
   Tooltip,
+  List,
+  ListItemIcon,
+  ListItemText,
+  ListItemButton,
+  Divider,
+  Drawer,
 } from "@mui/material";
 import * as React from "react";
 import {
@@ -23,10 +29,12 @@ import {
   LightModeOutlined,
   FeedbackOutlined,
   NotificationsOutlined,
+  InterestsOutlined,
 } from "@mui/icons-material";
 import Ticketing from "./Ticketing";
 import Stats from "./Stats";
 import Help from "./Help";
+import Adv from "./Adv";
 import ReactGA from "react-ga4";
 
 
@@ -44,7 +52,7 @@ const darkTheme =  createTheme({
     //   main: '#1452ee',
     // },
     primary: {
-      main: '#eeb114',
+      main: '#d69f12',
     },
     secondary: {
       main: '#1452ee',
@@ -81,7 +89,7 @@ const lightTheme = createTheme({
   },
 });
 
-const CURRENT = "09.03.22"
+const CURRENT = "09.08.22"
 
 function App() {
 
@@ -153,7 +161,7 @@ function App() {
             bgcolor: "background.paper",
           }}
         >
-        <AppBar position="sticky" >
+        <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar variant="dense">
           <img src={dark ? carrierDark : carrierLight} alt="jt-carrier-logo"/>
 
@@ -164,34 +172,6 @@ function App() {
           }}>
             {mobile ? "" : "JT Carrier"}
           </Typography>
-
-          {mobile ?
-            <React.Fragment />
-            :
-            <Tabs
-              value={tab}
-              onChange={handleTabChange}
-              textColor="secondary"
-              indicatorColor="secondary"
-              sx={{flexGrow: 1}}
-            >
-              <Tab
-                icon={<Input />}
-                iconPosition="start"
-                label="Submit"
-              />
-              <Tab
-                icon={<BarChart />}
-                iconPosition="start"
-                label="Stats"
-              />
-              <Tab
-                icon={<InfoOutlined />}
-                iconPosition="start"
-                label="Help"
-              />
-            </Tabs>
-          }
 
           {mobile ?
             <IconButton
@@ -215,9 +195,6 @@ function App() {
               </Button>
             </Tooltip>
           }
-
-
-
 
           <Tooltip title="News & Updates">
             <IconButton color="inherit" onClick={handleNews}>
@@ -245,6 +222,11 @@ function App() {
               <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
               <hr />
               <Typography variant="body1">
+                Check out the Advantage Itinerary! Nav menu has been moved
+                to accommodate the additional tab.
+              </Typography>
+              <br />
+              <Typography variant="body1">
                 This textbox! It describes updates &
                 features recently added to JT Carrier
               </Typography>
@@ -265,18 +247,124 @@ function App() {
           </Toolbar>
         </AppBar>
 
+        {mobile ?
+          <React.Fragment />
+          :
+          <Drawer
+            variant="permanent"
+            sx={{
+              width: 200,
+              flexShrink: 0,
+              [`& .MuiDrawer-paper`]: { width: 180, boxSizing: 'border-box' },
+            }}
+          >
+            <Toolbar />
+            <Box sx={{ overflow: 'auto' }}>
+              <List>
+                <ListItemButton
+                  selected={tab === 0}
+                  onClick={() => setTab(0)}
+                >
+                  <ListItemIcon>
+                    <Input />
+                  </ListItemIcon>
+                  <ListItemText primary="Submit" />
+                </ListItemButton>
+
+                <ListItemButton
+                  selected={tab === 1}
+                  onClick={() => setTab(1)}
+                >
+                  <ListItemIcon>
+                    <BarChart />
+                  </ListItemIcon>
+                  <ListItemText primary="Statistics" />
+                </ListItemButton>
+
+                <ListItemButton
+                  selected={tab === 2}
+                  onClick={() => setTab(2)}
+                >
+                  <ListItemIcon>
+                    <InfoOutlined />
+                  </ListItemIcon>
+                  <ListItemText primary="FAQ" />
+                </ListItemButton>
+
+                <Divider />
+
+                <ListItemButton
+                  selected={tab === 3}
+                  onClick={() => setTab(3)}
+                >
+                  <ListItemIcon>
+                    <InterestsOutlined />
+                  </ListItemIcon>
+                  <ListItemText primary="Advantage" />
+                </ListItemButton>
+
+              </List>
+            </Box>
+          </Drawer>
+          }
+
+          {/*<Toolbar variant="dense" sx={{width: "100%"}}>
+            <Paper elevation={3} sx={{width: "100%"}}>
+              <Tabs
+                value={tab}
+                onChange={handleTabChange}
+                textColor="secondary"
+                indicatorColor="secondary"
+                sx={{flexGrow: 1}}
+              >
+                <Tab
+                  icon={<Input />}
+                  iconPosition="start"
+                  label="Submit"
+                />
+                <Tab
+                  icon={<BarChart />}
+                  iconPosition="start"
+                  label="Stats"
+                />
+                <Tab
+                  icon={<InfoOutlined />}
+                  iconPosition="start"
+                  label="Help"
+                />
+                <Tab
+                  icon={<InterestsOutlined />}
+                  iconPosition="start"
+                  label="Advantage"
+                />
+              </Tabs>
+            </Paper>
+          </Toolbar>*/}
+
         {/********************* Body *********************/}
         <Box sx={{
-          width: mobile ? "90%" : "50%",
+          width: mobile ? "90%" : "66%",
           margin: "auto",
           marginBottom: mobile ? "80px" : "auto"
         }}>
-          {tab === 0 ? <Ticketing /> : (tab === 1 ? <Stats /> : <Help />)}
+          {tab === 0 ?
+            <Ticketing />
+            :
+            (tab === 1 ?
+              <Stats />
+              :
+              (tab === 2 ?
+                <Help />
+                :
+                <Adv />
+              )
+            )
+          }
         </Box>
 
         {/************** Bottom Nav for Mobile **************/}
         {mobile ?
-          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={50}>
             <BottomNavigation
               showLabels
               value={tab}
@@ -285,6 +373,7 @@ function App() {
               <BottomNavigationAction label="Submit" icon={<Input />} />
               <BottomNavigationAction label="Stats" icon={<BarChart />} />
               <BottomNavigationAction label="Help" icon={<InfoOutlined />} />
+              <BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />
             </BottomNavigation>
           </Paper>
           :
