@@ -398,7 +398,7 @@ function App() {
               <BottomNavigationAction label="Stats" icon={<BarChart />} />
               <BottomNavigationAction label="History" icon={<History />} />
               <BottomNavigationAction label="Help" icon={<InfoOutlined />} />
-              // <BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />
+              {/*<BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />*/}
             </BottomNavigation>
           </Paper>
           :

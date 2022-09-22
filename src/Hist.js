@@ -13,7 +13,6 @@ import {
   Chip,
   Skeleton,
 } from "@mui/material";
-import {NewReleases} from "@mui/icons-material";
 import * as React from "react";
 
 function Hist() {
