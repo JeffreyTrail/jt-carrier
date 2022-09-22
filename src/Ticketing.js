@@ -45,12 +45,17 @@ function Ticketing() {
       "/" +
       code;
 
-    console.log(url);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setResult(data.rcode);
         setErrmsg(data.msg);
+        if (data.rcode === 0){
+          setCode("");
+          setWings("");
+          setTeacher("");
+          setSubmitted(false);
+        }
       });
   };
 

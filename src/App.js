@@ -30,11 +30,15 @@ import {
   FeedbackOutlined,
   NotificationsOutlined,
   InterestsOutlined,
+  History,
 } from "@mui/icons-material";
+
 import Ticketing from "./Ticketing";
 import Stats from "./Stats";
 import Help from "./Help";
 import Adv from "./Adv";
+import Hist from "./Hist";
+
 import ReactGA from "react-ga4";
 
 
@@ -89,7 +93,7 @@ const lightTheme = createTheme({
   },
 });
 
-const CURRENT = "09.08.22"
+const CURRENT = "09.21.22"
 
 function App() {
 
@@ -190,7 +194,7 @@ function App() {
                 rel="noreferrer"
                 color="inherit"
               >
-                <FeedbackOutlined />
+                <FeedbackOutlined sx={{marginRight: 1}}/>
                 report
               </Button>
             </Tooltip>
@@ -221,6 +225,11 @@ function App() {
             }}>
               <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
               <hr />
+              <Typography variant="body1">
+                History tab is in beta! You can now see a history of all the tickets
+                you've submitted this year and when.
+              </Typography>
+              <br />
               <Typography variant="body1">
                 Check out the Advantage Itinerary! Nav menu has been moved
                 to accommodate the additional tab.
@@ -263,7 +272,7 @@ function App() {
               <List>
                 <ListItemButton
                   selected={tab === 0}
-                  onClick={() => setTab(0)}
+                  onClick={()=>handleTabChange("", 0)}
                 >
                   <ListItemIcon>
                     <Input />
@@ -273,7 +282,7 @@ function App() {
 
                 <ListItemButton
                   selected={tab === 1}
-                  onClick={() => setTab(1)}
+                  onClick={()=>handleTabChange("", 1)}
                 >
                   <ListItemIcon>
                     <BarChart />
@@ -283,19 +292,30 @@ function App() {
 
                 <ListItemButton
                   selected={tab === 2}
-                  onClick={() => setTab(2)}
+                  onClick={()=>handleTabChange("", 2)}
+                >
+                  <ListItemIcon>
+                    <History />
+                  </ListItemIcon>
+                  <ListItemText primary="History" />
+                </ListItemButton>
+
+
+                <ListItemButton
+                  selected={tab === 3}
+                  onClick={()=>handleTabChange("", 3)}
                 >
                   <ListItemIcon>
                     <InfoOutlined />
                   </ListItemIcon>
-                  <ListItemText primary="FAQ" />
+                  <ListItemText primary="Help" />
                 </ListItemButton>
 
                 <Divider />
 
                 <ListItemButton
-                  selected={tab === 3}
-                  onClick={() => setTab(3)}
+                  selected={tab === 4}
+                  onClick={()=>handleTabChange("", 4)}
                 >
                   <ListItemIcon>
                     <InterestsOutlined />
@@ -354,9 +374,13 @@ function App() {
               <Stats />
               :
               (tab === 2 ?
-                <Help />
+                <Hist />
                 :
-                <Adv />
+                (tab === 3 ?
+                  <Help />
+                  :
+                  <Adv />
+                )
               )
             )
           }
@@ -372,8 +396,9 @@ function App() {
             >
               <BottomNavigationAction label="Submit" icon={<Input />} />
               <BottomNavigationAction label="Stats" icon={<BarChart />} />
+              <BottomNavigationAction label="History" icon={<History />} />
               <BottomNavigationAction label="Help" icon={<InfoOutlined />} />
-              <BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />
+              // <BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />
             </BottomNavigation>
           </Paper>
           :
