@@ -13,6 +13,8 @@ import {
 import * as React from "react";
 // import ticket_sample from "../public/ticket_sample.png";
 
+const OPREFIXES = "ABCDEFGHJKabcdefghjk"
+
 function Ticketing() {
   const [code, setCode] = React.useState("");
   const [sid, setSid] = React.useState("");
@@ -21,29 +23,41 @@ function Ticketing() {
   const [submitted, setSubmitted] = React.useState(false);
   const [result, setResult] = React.useState(-1);
   const [errmsg, setErrmsg] = React.useState("");
-
-  const handleSid = (e) => {
-    setSid(e.target.value);
-  };
+  const [flavor, setFlavor] = React.useState("r");
+  // flavor is  type & validity of code: o is orange, r is regular, i is invalid
 
   const handleCode = (e) => {
     let newCode = e.target.value;
     if (newCode.includes("-")){
       newCode = newCode.replaceAll("-", "");
     }
+    if (isNaN(newCode)){
+      // is Not-a-Number; has letters
+      let pref = newCode.charAt(0);
+      if (OPREFIXES.includes(pref) && !isNaN(newCode.substring(1,9))){
+        // only the first char is an acceptable letter for O tickets
+        setFlavor("o");
+      } else {
+        // invalid ticket (letters in bad places)
+        setFlavor("i");
+      }
+    } else {
+      // no letters, all numbers
+      setFlavor("r")
+    }
     setCode(newCode);
   }
 
+  const URLBASE = "https://wings-carrier.herokuapp.com/"
+
   const lookup = () => {
-    const url =
-      "https://wings-carrier.herokuapp.com/submit/" +
-      teacher +
-      "/" +
-      wings +
-      "/" +
-      sid +
-      "/" +
-      code;
+    try {
+      let url = URLBASE
+      if (flavor === "r"){
+        url += "submit/"+teacher+"/"+wings+"/"+sid+"/"+code;
+      } else if (flavor === "o"){
+        url += "orange/"+sid+"/"+code;
+      }
 
     fetch(url)
       .then((response) => response.json())
@@ -57,18 +71,27 @@ function Ticketing() {
           setSubmitted(false);
         }
       });
+    } catch {
+      setResult(-2);
+      setErrmsg(
+        "Hmm looks like there is something wrong with the server; maybe it's busy. Try again later. If this persists, please let Mr. Gu know."
+      );
+    }
   };
 
   const submit = () => {
     setSubmitted(true);
-    if (code !== "" && sid !== "" && teacher !== "" && wings !== "") {
-      try {
+    if (flavor === "o"){
+      if (code.length !== 9){
+        setFlavor("i");
+      } else if (sid !== ""){
         lookup();
-      } catch {
-        setResult(-2);
-        setErrmsg(
-          "Hmm looks like there is something wrong with the server; maybe it's busy. Try again later. If this persists, please let Mr. Gu know."
-        );
+      }
+    } else if (flavor === "r"){
+      if (code.length !== 9){
+        setFlavor("i");
+      } else if (sid !== "" && teacher !== "" && wings !== "") {
+        lookup()
       }
     }
   };
@@ -126,9 +149,17 @@ function Ticketing() {
           </Typography>
           <TextField
             required
-            error={submitted && (code === "" || isNaN(code))}
+            error={flavor === "i"}
             label="Ticket Code"
             value={code}
+            helperText={(flavor === "r" ?
+              ""
+              :
+              (flavor === "o" ?
+                "Orange ticket"
+                :
+                "Invalid code: Ticket code must be 9 characters, with at most 1 letter"
+            ))}
             onChange={handleCode}
             sx={{width:"60%"}}
           />
@@ -149,26 +180,31 @@ function Ticketing() {
             >
               <FormControlLabel
                 value="w"
+                disabled={flavor === "o"}
                 control={<Radio />}
                 label="Willing to take a risk"
               />
               <FormControlLabel
                 value="i"
+                disabled={flavor === "o"}
                 control={<Radio />}
                 label="Integrity in action"
               />
               <FormControlLabel
                 value="n"
+                disabled={flavor === "o"}
                 control={<Radio />}
                 label="Nobility in thought"
               />
               <FormControlLabel
                 value="g"
+                disabled={flavor === "o"}
                 control={<Radio />}
                 label="Generous in spirit"
               />
               <FormControlLabel
                 value="s"
+                disabled={flavor === "o"}
                 control={<Radio />}
                 label="Self-directed"
               />
@@ -185,13 +221,14 @@ function Ticketing() {
             onChange={(event, newValue) => {
               setTeacher(newValue.label);
             }}
+            disabled={flavor === "o"}
             options={staff}
             sx={{width:"60%"}}
             renderInput={(params) => (
               <TextField
                 {...params}
                 required
-                error={submitted && teacher === ""}
+                error={submitted && teacher === "" && flavor !== "o"}
                 label="Teacher Name"
               />
             )}
@@ -201,11 +238,12 @@ function Ticketing() {
         <Box sx={rowStyle}>
           <Typography variant="body1" sx={promptStyle}>What is your IUSD student ID?</Typography>
           <TextField
-            error={submitted && sid === ""}
+            error={(submitted && sid === "") || isNaN(sid)}
             required
             label="IUSD student ID"
             value={sid}
-            onChange={handleSid}
+            helperText={(sid !== "" && isNaN(sid)) ? "Invalid ID: Your 9 digit student ID should not contain any letters. It should look like '123456789'." : ""}
+            onChange={(e) => setSid(e.target.value)}
             sx={{width:"60%"}}
           />
         </Box>
