@@ -20,16 +20,18 @@ function Hist() {
   const [submitted, setSubmitted] = React.useState(false);
   const [status, setStatus] = React.useState(0);
   const [sid, setSid] = React.useState("");
+  const [cnt, setCnt] = React.useState(-1);
 
   const submit = () => {
     setSubmitted(true);
     fetch("https://wings-carrier.herokuapp.com/lookup/"+sid)
     .then((response) => response.json())
     .then((data) => {
-      setSubmitted(false);
+      setSubmitted(false); // stop loading
       setStatus(data.status);
       if (data.status === 0) {
         setTkts(data.tkts);
+        setCnt(data.cnt);
       }
     });
   }
@@ -92,6 +94,11 @@ function Hist() {
 
       </ Box>
 
+      {(cnt === -1) ? 
+        <React.Fragment />
+        :
+        <Typography variant="h6" sx={{marginTop: 5}}>You have submitted {cnt} tickets this trimester (excluding orange tickets).</Typography>
+      }
 
       <TableContainer component={Paper} sx={{
         width: "100%",
