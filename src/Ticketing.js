@@ -69,6 +69,7 @@ function Ticketing() {
           setWings("");
           setTeacher("");
           setSubmitted(false);
+          setFlavor("r");
         }
       });
     } catch {
@@ -106,8 +107,7 @@ function Ticketing() {
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Your WINGS ticket submission has been submitted. Thank you for
-              exhibiting WINGS! Pay attention to ASB announcements this week to
-              see if you've won!
+              exhibiting WINGS!
             </Typography>
             <Typography sx={{ mt: 2 }}>
               Keep up the good work! Click away to submit another ticket.
