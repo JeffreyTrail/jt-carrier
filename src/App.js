@@ -389,10 +389,14 @@ function App() {
 
         {/********************* Body *********************/}
         <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "row"}} >
-          <Box sx={{
-            width: mobile ? "90%" : "60%",
-            marginLeft: "220px",
-            marginBottom: mobile ? "80px" : "auto"
+          <Box sx={mobile ?
+            {
+              width: "92%",
+              margin: "auto",
+            } : {
+              width: mobile ? "90%" : "60%",
+              marginLeft: "220px",
+              marginBottom: mobile ? "80px" : "auto"
           }}>
             {tab === 0 ?
               <Ticketing />
