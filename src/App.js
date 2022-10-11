@@ -31,6 +31,7 @@ import {
   NotificationsOutlined,
   InterestsOutlined,
   History,
+  CalendarMonth,
 } from "@mui/icons-material";
 
 import Ticketing from "./Ticketing";
@@ -38,6 +39,7 @@ import Stats from "./Stats";
 import Help from "./Help";
 import Adv from "./Adv";
 import Hist from "./Hist";
+import Events from "./Events";
 
 import ReactGA from "react-ga4";
 
@@ -93,7 +95,7 @@ const lightTheme = createTheme({
   },
 });
 
-const CURRENT = "09.21.22"
+const CURRENT = "10.10.22"
 
 function App() {
 
@@ -177,6 +179,15 @@ function App() {
             {mobile ? "" : "JT Carrier"}
           </Typography>
 
+          <Typography variant="body1" color={dark ? "primary" : "secondary"} sx={{
+            flexGrow: 1,
+            marginLeft: 2,
+          }}>
+            <strong>
+            Want to help me run JT Carrier? Come to Mr. Gu's Advantage in G4 on Wed, 10/12!
+            </strong>
+          </Typography>
+
           {mobile ?
             <IconButton
               href="https://forms.gle/t9R29o6ZJXDM7NE37"
@@ -225,6 +236,10 @@ function App() {
             }}>
               <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
               <hr />
+              <Typography variant="body1">
+                The Events tab! Check out the latest events at JTMS, and advertise yours!
+              </Typography>
+              <br />
               <Typography variant="body1">
                 History tab is in beta! You can now see a history of all the tickets
                 you've submitted this year and when.
@@ -300,6 +315,7 @@ function App() {
                   <ListItemText primary="History" />
                 </ListItemButton>
 
+                <Divider />
 
                 <ListItemButton
                   selected={tab === 3}
@@ -311,8 +327,6 @@ function App() {
                   <ListItemText primary="Help" />
                 </ListItemButton>
 
-                <Divider />
-
                 <ListItemButton
                   selected={tab === 4}
                   onClick={()=>handleTabChange("", 4)}
@@ -321,6 +335,18 @@ function App() {
                     <InterestsOutlined />
                   </ListItemIcon>
                   <ListItemText primary="Advantage" />
+                </ListItemButton>
+
+                <ListItemButton
+                  selected={tab === 5}
+                  onClick={()=>handleTabChange("", 5)}
+                >
+                  <ListItemIcon>
+                    <Badge color="secondary" variant="dot">
+                      <CalendarMonth />
+                    </Badge>
+                  </ListItemIcon>
+                  <ListItemText primary="Events" />
                 </ListItemButton>
 
               </List>
@@ -362,28 +388,50 @@ function App() {
           </Toolbar>*/}
 
         {/********************* Body *********************/}
-        <Box sx={{
-          width: mobile ? "90%" : "66%",
-          margin: "auto",
-          marginBottom: mobile ? "80px" : "auto"
-        }}>
-          {tab === 0 ?
-            <Ticketing />
-            :
-            (tab === 1 ?
-              <Stats />
+        <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "row"}} >
+          <Box sx={{
+            width: mobile ? "90%" : "60%",
+            marginLeft: "220px",
+            marginBottom: mobile ? "80px" : "auto"
+          }}>
+            {tab === 0 ?
+              <Ticketing />
               :
-              (tab === 2 ?
-                <Hist />
+              (tab === 1 ?
+                <Stats />
                 :
-                (tab === 3 ?
-                  <Help />
+                (tab === 2 ?
+                  <Hist />
                   :
-                  <Adv />
+                  (tab === 3 ?
+                    <Help />
+                    :
+                    (tab === 4 ?
+                      <Adv />
+                      :
+                      <Events />
+                    )
+                  )
                 )
               )
-            )
-          }
+            }
+          </Box>
+          {/*mobile
+            ?
+            <React.Fragment />
+            :
+            <Box sx={{
+              width: "20%",
+              marginLeft: 5,
+              marginTop: 10,
+
+              // marginBottom: mobile ? "80px" : "auto"
+            }}>
+              <a href="https://bit.ly/ASBIdeasForm" target="_blank" rel="noreferrer">
+                <img src="https://drive.google.com/uc?id=1OlqUgzCSRaf_fovGxA8X35XdcaKpxddX" alt="ASB Events Interest"/>
+              </a>
+            </Box>
+          */}
         </Box>
 
         {/************** Bottom Nav for Mobile **************/}
