@@ -411,7 +411,7 @@ function App() {
               )
             }
           </Box>
-          {/*mobile
+          {mobile
             ?
             <React.Fragment />
             :
@@ -426,7 +426,7 @@ function App() {
                 <img src="https://drive.google.com/uc?id=1OlqUgzCSRaf_fovGxA8X35XdcaKpxddX" alt="ASB Events Interest"/>
               </a>
             </Box>
-          */}
+          }
         </Box>
 
         {/************** Bottom Nav for Mobile **************/}
