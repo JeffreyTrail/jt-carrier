@@ -179,15 +179,6 @@ function App() {
             {mobile ? "" : "JT Carrier"}
           </Typography>
 
-          <Typography variant="body1" color={dark ? "primary" : "secondary"} sx={{
-            flexGrow: 1,
-            marginLeft: 2,
-          }}>
-            <strong>
-            Want to help me run JT Carrier? Come to Mr. Gu's Advantage in G4 on Wed, 10/12!
-            </strong>
-          </Typography>
-
           {mobile ?
             <IconButton
               href="https://forms.gle/t9R29o6ZJXDM7NE37"
