@@ -5,13 +5,17 @@ import {
   ImageListItem,
   ImageListItemBar,
   Chip,
+  IconButton,
 } from "@mui/material";
+import {
+  OpenInNew,
+} from "@mui/icons-material";
 import * as React from "react";
 
 const ads = [
   {
-    img: 'https://iusd.org/sites/default/files/styles/article_hero/public/news_images/science_olympiad_team_jtms_2018.jpg?itok=0ZbqSQzh',
-    title: "Science Olympiad",
+    img: 'https://variety.com/wp-content/uploads/2022/06/Is-It-Cake.jpg?w=681&h=383&crop=1',
+    title: "Is It Cake Judging",
   },
   {
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJkAk-5OjH6ntOXNLGE_o6YoLtC7ShVMq2McwaHCkVc8hNFdSZ6BmvoxtHe8jm3HUC0x8&usqp=CAU',
@@ -91,14 +95,17 @@ function Events() {
             <ImageListItemBar
               title={item.title}
               subtitle={"This is a placeholder. Legit events coming soon."}
-              // actionIcon={
-              //   <IconButton
-              //     sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-              //     aria-label={`info about ${item.title}`}
-              //   >
-              //     <InfoIcon />
-              //   </IconButton>
-              // }
+              actionIcon={
+                <IconButton
+                  sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                  aria-label={`info about ${item.title}`}
+                  href="https://bit.ly/2022IsItCake"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <OpenInNew />
+                </IconButton>
+              }
           />
           </ImageListItem>
         ))}
