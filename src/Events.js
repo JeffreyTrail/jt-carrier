@@ -25,7 +25,7 @@ const ads = [
     url: "https://docs.google.com/document/d/1X4CVrXRRRGvaHjspfkt2wWqzgi4HrBc_On3TaBquf6A/edit?usp=sharing",
   },
   {
-    img: "https://api.army.mil/e2/c/images/2021/10/19/5ea578f1/max1200.jpg",
+    img: "https://content.myconnectsuite.com/api/documents/6b0115b85637403ea1e6eafbf7d61710.jpeg",
     title: "Red Ribbon Week",
     info: "October 24-28th Click for More Info",
     url: "https://drive.google.com/file/d/1CMHngfmFXpxFbBVN-SQv9goqWqKrqzax/view?usp=sharing",
