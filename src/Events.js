@@ -19,10 +19,10 @@ const ads = [
     url: "https://drive.google.com/file/d/1ULa1SohPLqEhmVVNbEi83s_mWQGZgFnX/view?usp=sharing",
   },
   {
-    img: 'https://media.istockphoto.com/photos/white-wall-clock-on-blue-background-picture-id1289661784?b=1&k=20&m=1289661784&s=170667a&w=0&h=pNZcN6beC8ov_ZZGwFiFxqdFLR8GQUomjBpnz8vI_8k=',
-    title: "Special Min Day Schedule",
-    info: "Conference Week: Tue 10/18 & Fri 10/20",
-    url: "https://docs.google.com/document/d/1X4CVrXRRRGvaHjspfkt2wWqzgi4HrBc_On3TaBquf6A/edit?usp=sharing",
+    img: 'https://drive.google.com/uc?id=1ioFpqtlIli3QqEwamzZy8dMdxLqsbzic',
+    title: "Halloween Dress-Up Contest",
+    info: "Rules From ASB for Mon 10/31",
+    url: "https://drive.google.com/file/d/17BLqdoIOcHZoOExlAM5lor4IfYCB8NW0/view",
   },
   {
     img: "https://content.myconnectsuite.com/api/documents/6b0115b85637403ea1e6eafbf7d61710.jpeg",
