@@ -19,6 +19,12 @@ const ads = [
     url: "https://drive.google.com/file/d/1ULa1SohPLqEhmVVNbEi83s_mWQGZgFnX/view?usp=sharing",
   },
   {
+    img: 'https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png',
+    title: "Lunchtime Clubs Schedule",
+    info: "Check Out What's Happening at Lunch!",
+    url: "https://drive.google.com/file/d/12ZXW2mYbTkY_fynNOxWA87tICx3ky4c3/view?usp=sharing",
+  },
+  {
     img: 'https://drive.google.com/uc?id=1ioFpqtlIli3QqEwamzZy8dMdxLqsbzic',
     title: "Halloween Dress-Up Contest",
     info: "Rules From ASB for Mon 10/31",
