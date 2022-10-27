@@ -49,16 +49,58 @@ const ads = [
     url: "http://bit.ly/weteamweb",
   },
   {
+    img: 'https://drive.google.com/uc?id=1oidr77YxqDIOMo7rLpsG1P09ZyrdANJe',
+    title: 'Roblox Club',
+    info: "Play games and have fun!",
+    url: "https://sites.google.com/iusd.org/roblox-club-jeffrey-trail/important-info",
+  },
+  {
+    img: 'https://drive.google.com/uc?id=10ycklaHqwBL2-FNAx77HK26bTU-QsbdQ',
+    title: 'music club',
+    info: "music club~ bring an instrument or sing to perform songs...",
+    url: "https://sites.google.com/iusd.org/music-club-aesthetic-heh/home",
+  },
+  {
+    img: 'https://drive.google.com/uc?id=17DjFcsuJxhg02gRkbCZJ06ba0CtwR59C',
+    title: 'Arts and Crafts Club',
+    info: "People join our club so they can embrace their inner artist.",
+    url: "https://iusd.instructure.com/courses/119377",
+  },
+  {
+    img: 'https://drive.google.com/uc?id=1L6sCASGvOMQBkQwN2_hKQ7-2IQbfdswf',
+    title: 'Languages for Learners',
+    info: "Learn languages in C-7, every single Monday during Lunch!",
+    url: "https://sites.google.com/iusd.org/languages-for-learners-101/home",
+  },
+  {
+    img: 'https://drive.google.com/uc?id=1KFID9qLaPQ6_t_JpSrIIS7assJoePSu-',
+    title: 'Girls Volleyball Club',
+    info: "This club allows girls to have fun while playing volleyball.",
+    url: "",
+  },
+  {
+    img: 'https://drive.google.com/uc?id=1yhpkssYO0Pub7eVTBGM4Kg9S-Kdg4PvG',
+    title: 'The Storymakers - Writing Club',
+    info: "Interested in writing? Join the Storymakers club!",
+    url: "https://hpchang720.wixsite.com/storymakersjtms",
+  },
+  {
+    img: 'https://drive.google.com/uc?id=1rxxkK8AebqKd0kyK-Vw3ejckgQHKg4rt',
+    title: 'Clash Royale Club',
+    info: "Join the clash royale club, participate in tournaments!",
+    url: "",
+  },
+  {
     img: 'https://drive.google.com/uc?id=14vIn0blNYbOY-M5yiYmAZ2YcGpczEFk8',
     title: 'Editing Club',
     info: "Editing club is where you can learn to edit and have fun.",
     url: "",
   },
   {
-    img: 'https://drive.google.com/uc?id=1G_4Oejf47D8UoXtch54ytl-P4gME_4Jw',
-    title: 'Jet Gazette (Student News)',
-    info: "Jet Gazette Student Newspaper",
-    url: "",
+    img: 'https://drive.google.com/uc?id=1yie4KuXTUKYzbtUD9dztlEMvsLXpliAi',
+    title: 'Jet Gazette, Student News.',
+    info: "JTTV But in paper (Maybe even better!)",
+    url: "https://bit.ly/JetGazette",
   },
 ];
 
