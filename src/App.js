@@ -228,7 +228,7 @@ function App() {
               <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
               <hr />
               <Typography variant="body1">
-                Ticket submissions heatmap in the Stats tab.
+                Ticket submissions heatmap & orange tickets leaderboard in the Stats tab.
               </Typography>
               <br />
               <Typography variant="body1">
