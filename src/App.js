@@ -95,7 +95,7 @@ const lightTheme = createTheme({
   },
 });
 
-const CURRENT = "10.10.22"
+const CURRENT = "10.26.22"
 
 function App() {
 
@@ -227,6 +227,10 @@ function App() {
             }}>
               <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
               <hr />
+              <Typography variant="body1">
+                Ticket submissions heatmap in the Stats tab.
+              </Typography>
+              <br />
               <Typography variant="body1">
                 The Events tab! Check out the latest events at JTMS, and advertise yours!
               </Typography>
