@@ -108,6 +108,12 @@ const ads = [
     info: "JTTV But in paper (Maybe even better!)",
     url: "https://bit.ly/JetGazette",
   },
+  {
+    img: 'https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/pages/squareimages/ennarah_friends_009.jpg',
+    title: 'ASB Ideas Form',
+    info: "Submit your event idea to ASB!",
+    url: "https://bit.ly/ASBIdeasForm",
+  },
 ];
 
 function Events() {

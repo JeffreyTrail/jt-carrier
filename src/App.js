@@ -383,53 +383,31 @@ function App() {
           </Toolbar>*/}
 
         {/********************* Body *********************/}
-        <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "row"}} >
-          <Box sx={mobile ?
-            {
-              width: "92%",
-              margin: "auto",
-            } : {
-              width: mobile ? "90%" : "60%",
-              marginLeft: "220px",
-              marginBottom: mobile ? "80px" : "auto"
-          }}>
-            {tab === 0 ?
-              <Ticketing />
+        <Box sx={{
+          width: mobile ? "90%" : "66%",
+          margin: "auto",
+          marginBottom: mobile ? "80px" : "auto"
+        }}>
+          {tab === 0 ?
+            <Ticketing />
+            :
+            (tab === 1 ?
+              <Stats />
               :
-              (tab === 1 ?
-                <Stats />
+              (tab === 2 ?
+                <Hist />
                 :
-                (tab === 2 ?
-                  <Hist />
+                (tab === 3 ?
+                  <Help />
                   :
-                  (tab === 3 ?
-                    <Help />
+                  (tab === 4 ?
+                    <Adv />
                     :
-                    (tab === 4 ?
-                      <Adv />
-                      :
-                      <Events />
-                    )
+                    <Events />
                   )
                 )
               )
-            }
-          </Box>
-          {mobile
-            ?
-            <React.Fragment />
-            :
-            <Box sx={{
-              width: "20%",
-              marginLeft: 5,
-              marginTop: 10,
-
-              // marginBottom: mobile ? "80px" : "auto"
-            }}>
-              <a href="https://bit.ly/ASBIdeasForm" target="_blank" rel="noreferrer">
-                <img src="https://drive.google.com/uc?id=1OlqUgzCSRaf_fovGxA8X35XdcaKpxddX" alt="ASB Events Interest"/>
-              </a>
-            </Box>
+            )
           }
         </Box>
 
