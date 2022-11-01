@@ -25,18 +25,6 @@ const ads = [
     url: "https://drive.google.com/file/d/12ZXW2mYbTkY_fynNOxWA87tICx3ky4c3/view?usp=sharing",
   },
   {
-    img: 'https://drive.google.com/uc?id=1ioFpqtlIli3QqEwamzZy8dMdxLqsbzic',
-    title: "Halloween Dress-Up Contest",
-    info: "Rules From ASB for Mon 10/31",
-    url: "https://drive.google.com/file/d/17BLqdoIOcHZoOExlAM5lor4IfYCB8NW0/view",
-  },
-  {
-    img: "https://content.myconnectsuite.com/api/documents/6b0115b85637403ea1e6eafbf7d61710.jpeg",
-    title: "Red Ribbon Week",
-    info: "October 24-28th Click for More Info",
-    url: "https://drive.google.com/file/d/1CMHngfmFXpxFbBVN-SQv9goqWqKrqzax/view?usp=sharing",
-  },
-  {
     img: 'https://media.istockphoto.com/photos/white-wall-clock-on-blue-background-picture-id1289661784?b=1&k=20&m=1289661784&s=170667a&w=0&h=pNZcN6beC8ov_ZZGwFiFxqdFLR8GQUomjBpnz8vI_8k=',
     title: "Bell Schedule",
     info: "Click here >>>",
@@ -91,6 +79,12 @@ const ads = [
     url: "https://hpchang720.wixsite.com/storymakersjtms",
   },
   {
+    img: 'https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/pages/squareimages/ennarah_friends_009.jpg',
+    title: 'ASB Ideas Form',
+    info: "Submit your event idea to ASB!",
+    url: "https://bit.ly/ASBIdeasForm",
+  },
+  {
     img: 'https://drive.google.com/uc?id=1rxxkK8AebqKd0kyK-Vw3ejckgQHKg4rt',
     title: 'Clash Royale Club',
     info: "Join the clash royale club, participate in tournaments!",
@@ -109,10 +103,10 @@ const ads = [
     url: "https://bit.ly/JetGazette",
   },
   {
-    img: 'https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/pages/squareimages/ennarah_friends_009.jpg',
-    title: 'ASB Ideas Form',
-    info: "Submit your event idea to ASB!",
-    url: "https://bit.ly/ASBIdeasForm",
+    img: 'https://drive.google.com/uc?id=1hjNLloj5Xl56B08N456vXNBeAj9MdqQz',
+    title: "Knitting, Crochet & Sewing",
+    info: "Join our yarn & craft club every week Wednesday at lunch!",
+    url: "https://sites.google.com/u/0/d/1pPhb8gSBiSiDA6_vmcqK_1YJnnFGGNq0/preview",
   },
 ];
 
