@@ -13,10 +13,10 @@ import * as React from "react";
 
 const ads = [
   {
-    img: 'https://www.stancoe.org/sites/default/files/styles/banner/public/banners/college%20ready.jpg?itok=MEVz3B7A',
-    title: "College & Career Fair",
-    info: "Sign up for IUSD's CCF at Woodbridge HS 11/07 5-8pm",
-    url: "https://drive.google.com/file/d/1ULa1SohPLqEhmVVNbEi83s_mWQGZgFnX/view?usp=sharing",
+    img: 'https://mycollegesavvy.com/wp-content/uploads/2022/04/Anything-But-A-Backpack-Day-Takes-High-Schools-By-Storm-768x511.jpeg',
+    title: "Dress Up Week!",
+    info: "For Nov. 14-18",
+    url: "https://drive.google.com/file/d/1S1WVofEidtr1QiophEws1iEcZWxjqxjN/view",
   },
   {
     img: 'https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png',
