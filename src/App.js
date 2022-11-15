@@ -388,6 +388,16 @@ function App() {
           margin: "auto",
           marginBottom: mobile ? "80px" : "auto"
         }}>
+          <Typography color="red" variant="body1">
+            <br />
+            Got a feature idea for jtms.app? Submit to the Features Request Contest today! <a
+              href="https://docs.google.com/presentation/d/1a9xPZ9MiDpcKo7_xZWqwP8TNVqernRzffT16TgcRBGE/edit?usp=sharing"
+              rel="noreferrer"
+              target="_blank"
+            >
+             More Info
+            </a>
+          </Typography>
           {tab === 0 ?
             <Ticketing />
             :
