@@ -221,7 +221,7 @@ function Stats() {
               if (!value) {
                 return 'color-empty';
               }
-              return `color-github-${value.count}`;
+              return `color-gitlab-${value.count}`;
             }}
             showWeekdayLabels={true}
             onMouseOver={(event, value)=>{
