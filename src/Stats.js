@@ -10,7 +10,9 @@ import {
   TableBody,
   Tooltip,
   Fade,
+  Button,
 } from "@mui/material";
+import SyncIcon from '@mui/icons-material/Sync';
 import * as React from "react";
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
@@ -54,7 +56,7 @@ function Stats() {
 
   // updateStats();
   React.useEffect(() => {
-    setInterval(updateStats, 60000);
+// setInterval(updateStats, 60000); (unused)
 
     updateStats();
     fetch("https://wings-carrier.herokuapp.com/dates/current")
@@ -101,6 +103,11 @@ function Stats() {
     }}>
       <Typography variant="h5" sx={rowStyle}>WINGS Ticket Stats</Typography>
       <Typography variant="h6">Ticket count for the week from {beg} to {end}</Typography>
+
+      <Button variant="contained" endIcon={<SyncIcon/>} onClick={updateStats}>
+        Update Stats
+      </Button>
+
       <Typography variant="h6">{errmsg}</Typography>
 
       <TableContainer component={Paper} sx={rowStyle}>
@@ -161,7 +168,6 @@ function Stats() {
           </TableBody>
         </Table>
       </TableContainer>
-
       <Typography variant="h6">This week's homeroom drawing prize is: {prize}</Typography>
 
       <Typography variant="h6" sx={rowStyle}>
