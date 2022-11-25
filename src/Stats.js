@@ -104,7 +104,7 @@ function Stats() {
       <Typography variant="h5" sx={rowStyle}>WINGS Ticket Stats</Typography>
       <Typography variant="h6">Ticket count for the week from {beg} to {end}</Typography>
 
-      <Button variant="contained" endIcon={<SyncIcon/>} onClick={() => {updateStats();}}>
+      <Button variant="contained" endIcon={<SyncIcon/>} onClick={updateStats}>
         Update Stats
       </Button>
 
