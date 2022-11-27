@@ -54,29 +54,23 @@ function Stats() {
     }
   };
 
-function percentile(set, percentage) {
-  return set[Math.floor(percentage / 100 * (set.length - 1))];
-}
-
-function sort_to_color(ct, day_count) {
-  ct = ct.sort((a,b)=>a-b);
-  const _80 = percentile(ct, 80);
-  const _60 = percentile(ct, 60);
-  const _40 = percentile(ct, 40);
-  const _20 = percentile(ct, 20);
-  // console.log(_80, _60, _40, _20) uncomment if you want to debug
-  if (day_count >= _80) {
+  const find20thPercentiles = (data) => {
+    const chunkLength = Math.ceil(data.length/5);
+    data.sort((a, b) => a - b);
+    alert([1, 2, 3, 4, 5].map((chunk) => data[(chunk*chunkLength)-1]));
+    return [1, 2, 3, 4, 5].map((chunk) => data[(chunk*chunkLength)-1]);
+  };
+  
+  function Percentileid(thresholds, day_count) {
+    for (let i = 0; i < 4; i++) {
+      console.log(day_count)
+      if (day_count <= thresholds[i]) {
+        console.log(thresholds[i], day_count);
+        return i;
+      }
+    }
     return 4;
-  } else if (day_count >= _60) {
-    return 3;
-  } else if (day_count >= _40) {
-    return 2;
-  } else if (day_count >= _20) {
-    return 1;
-  } else if (day_count <= _20) {
-    return 0;
-  }
-}
+  };
 
   // updateStats();
   React.useEffect(() => {
@@ -102,11 +96,11 @@ function sort_to_color(ct, day_count) {
     // list of objects with date and count fields
     .then((response) => response.json())
     .then((data) => {
-      const ct = (data.heatmap.map(day=>day.count));
+      const thresholds = find20thPercentiles(data.heatmap.map(day => parseInt(day.count)));
       // Parse heatmap src to be a count from 0 to 4, inclusive,
       // but still include raw count for tooltip
       const parsedhm = data.heatmap.map((day)=>{
-        return {"date": day.date, "rawct": day.count, "count": sort_to_color(ct, day.count)};
+        return {"date": day.date, "rawct": day.count, "count": Percentileid(thresholds, day.count)};
       });
       setHmsrc(parsedhm);
     });
