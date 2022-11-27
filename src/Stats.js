@@ -54,6 +54,30 @@ function Stats() {
     }
   };
 
+function percentile(set, percentage) {
+  return set[Math.floor(percentage / 100 * (set.length - 1))];
+}
+
+function sort_to_color(ct, day_count) {
+  ct = ct.sort((a,b)=>a-b);
+  const _80 = percentile(ct, 80);
+  const _60 = percentile(ct, 60);
+  const _40 = percentile(ct, 40);
+  const _20 = percentile(ct, 20);
+  // console.log(_80, _60, _40, _20) uncomment if you want to debug
+  if (day_count >= _80) {
+    return 4;
+  } else if (day_count >= _60) {
+    return 3;
+  } else if (day_count >= _40) {
+    return 2;
+  } else if (day_count >= _20) {
+    return 1;
+  } else if (day_count <= _20) {
+    return 0;
+  }
+}
+
   // updateStats();
   React.useEffect(() => {
 // setInterval(updateStats, 60000); (unused)
@@ -78,12 +102,11 @@ function Stats() {
     // list of objects with date and count fields
     .then((response) => response.json())
     .then((data) => {
-      const maxct = Math.max(...data.heatmap.map(day=>day.count));
-      const quartile = Math.ceil(maxct / 5);
+      const ct = (data.heatmap.map(day=>day.count));
       // Parse heatmap src to be a count from 0 to 4, inclusive,
       // but still include raw count for tooltip
       const parsedhm = data.heatmap.map((day)=>{
-        return {"date": day.date, "rawct": day.count, "count": Math.floor(day.count/quartile)};
+        return {"date": day.date, "rawct": day.count, "count": sort_to_color(ct, day.count)};
       });
       setHmsrc(parsedhm);
     });
@@ -104,7 +127,7 @@ function Stats() {
       <Typography variant="h5" sx={rowStyle}>WINGS Ticket Stats</Typography>
       <Typography variant="h6">Ticket count for the week from {beg} to {end}</Typography>
 
-      <Button variant="contained" endIcon={<SyncIcon/>} onClick={updateStats}>
+      <Button variant="contained" endIcon={<SyncIcon/>} onClick={() => {updateStats();}}>
         Update Stats
       </Button>
 
