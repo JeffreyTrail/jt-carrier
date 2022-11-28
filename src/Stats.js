@@ -57,15 +57,12 @@ function Stats() {
   const find20thPercentiles = (data) => {
     const chunkLength = Math.ceil(data.length/5);
     data.sort((a, b) => a - b);
-    alert([1, 2, 3, 4, 5].map((chunk) => data[(chunk*chunkLength)-1]));
     return [1, 2, 3, 4, 5].map((chunk) => data[(chunk*chunkLength)-1]);
   };
   
   function Percentileid(thresholds, day_count) {
     for (let i = 0; i < 4; i++) {
-      console.log(day_count)
       if (day_count <= thresholds[i]) {
-        console.log(thresholds[i], day_count);
         return i;
       }
     }
