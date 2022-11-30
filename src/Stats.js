@@ -54,6 +54,21 @@ function Stats() {
     }
   };
 
+  const find20thPercentiles = (data) => {
+    const chunkLength = Math.ceil(data.length/5);
+    data.sort((a, b) => a - b);
+    return [1, 2, 3, 4, 5].map((chunk) => data[(chunk*chunkLength)-1]);
+  };
+
+  const percentileid = (thresholds, day_count) => {
+    for (let i = 0; i < 4; i++) {
+      if (day_count <= thresholds[i]) {
+        return i;
+      }
+    }
+    return 4;
+  };
+
   // updateStats();
   React.useEffect(() => {
 // setInterval(updateStats, 60000); (unused)
@@ -78,12 +93,11 @@ function Stats() {
     // list of objects with date and count fields
     .then((response) => response.json())
     .then((data) => {
-      const maxct = Math.max(...data.heatmap.map(day=>day.count));
-      const quartile = Math.ceil(maxct / 5);
+      const thresholds = find20thPercentiles(data.heatmap.map(day => parseInt(day.count)));
       // Parse heatmap src to be a count from 0 to 4, inclusive,
       // but still include raw count for tooltip
       const parsedhm = data.heatmap.map((day)=>{
-        return {"date": day.date, "rawct": day.count, "count": Math.floor(day.count/quartile)};
+        return {"date": day.date, "rawct": day.count, "count": percentileid(thresholds, day.count)};
       });
       setHmsrc(parsedhm);
     });
