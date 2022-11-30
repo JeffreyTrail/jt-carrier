@@ -59,8 +59,8 @@ function Stats() {
     data.sort((a, b) => a - b);
     return [1, 2, 3, 4, 5].map((chunk) => data[(chunk*chunkLength)-1]);
   };
-  
-  function Percentileid(thresholds, day_count) {
+
+  const percentileid = (thresholds, day_count) => {
     for (let i = 0; i < 4; i++) {
       if (day_count <= thresholds[i]) {
         return i;
@@ -97,7 +97,7 @@ function Stats() {
       // Parse heatmap src to be a count from 0 to 4, inclusive,
       // but still include raw count for tooltip
       const parsedhm = data.heatmap.map((day)=>{
-        return {"date": day.date, "rawct": day.count, "count": Percentileid(thresholds, day.count)};
+        return {"date": day.date, "rawct": day.count, "count": percentileid(thresholds, day.count)};
       });
       setHmsrc(parsedhm);
     });
@@ -118,7 +118,7 @@ function Stats() {
       <Typography variant="h5" sx={rowStyle}>WINGS Ticket Stats</Typography>
       <Typography variant="h6">Ticket count for the week from {beg} to {end}</Typography>
 
-      <Button variant="contained" endIcon={<SyncIcon/>} onClick={() => {updateStats();}}>
+      <Button variant="contained" endIcon={<SyncIcon/>} onClick={updateStats}>
         Update Stats
       </Button>
 
