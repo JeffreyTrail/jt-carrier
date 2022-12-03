@@ -1,7 +1,5 @@
 import {
   Box,
-  // Tabs,
-  // Tab,
   AppBar,
   Toolbar,
   Typography,
@@ -144,7 +142,7 @@ function App() {
         localStorage.setItem("tab", newMode);
   }
 
-  const handleNews = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleNews = (event) => {
     setNews(CURRENT);
     if (typeof(Storage) !== "undefined")
         localStorage.setItem("news", CURRENT);
@@ -348,39 +346,6 @@ function App() {
             </Box>
           </Drawer>
           }
-
-          {/*<Toolbar variant="dense" sx={{width: "100%"}}>
-            <Paper elevation={3} sx={{width: "100%"}}>
-              <Tabs
-                value={tab}
-                onChange={handleTabChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                sx={{flexGrow: 1}}
-              >
-                <Tab
-                  icon={<Input />}
-                  iconPosition="start"
-                  label="Submit"
-                />
-                <Tab
-                  icon={<BarChart />}
-                  iconPosition="start"
-                  label="Stats"
-                />
-                <Tab
-                  icon={<InfoOutlined />}
-                  iconPosition="start"
-                  label="Help"
-                />
-                <Tab
-                  icon={<InterestsOutlined />}
-                  iconPosition="start"
-                  label="Advantage"
-                />
-              </Tabs>
-            </Paper>
-          </Toolbar>*/}
 
         {/********************* Body *********************/}
         <Box sx={{
