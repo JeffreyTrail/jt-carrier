@@ -13,12 +13,6 @@ import * as React from "react";
 
 const ads = [
   {
-    img: 'https://mycollegesavvy.com/wp-content/uploads/2022/04/Anything-But-A-Backpack-Day-Takes-High-Schools-By-Storm-768x511.jpeg',
-    title: "Dress Up Week!",
-    info: "For Nov. 14-18",
-    url: "https://drive.google.com/file/d/1S1WVofEidtr1QiophEws1iEcZWxjqxjN/view",
-  },
-  {
     img: 'https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png',
     title: "Lunchtime Clubs Schedule",
     info: "Check Out What's Happening at Lunch!",

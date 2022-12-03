@@ -1,7 +1,5 @@
 import {
   Box,
-  // Tabs,
-  // Tab,
   AppBar,
   Toolbar,
   Typography,
@@ -144,7 +142,7 @@ function App() {
         localStorage.setItem("tab", newMode);
   }
 
-  const handleNews = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleNews = (event) => {
     setNews(CURRENT);
     if (typeof(Storage) !== "undefined")
         localStorage.setItem("news", CURRENT);
@@ -349,39 +347,6 @@ function App() {
           </Drawer>
           }
 
-          {/*<Toolbar variant="dense" sx={{width: "100%"}}>
-            <Paper elevation={3} sx={{width: "100%"}}>
-              <Tabs
-                value={tab}
-                onChange={handleTabChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                sx={{flexGrow: 1}}
-              >
-                <Tab
-                  icon={<Input />}
-                  iconPosition="start"
-                  label="Submit"
-                />
-                <Tab
-                  icon={<BarChart />}
-                  iconPosition="start"
-                  label="Stats"
-                />
-                <Tab
-                  icon={<InfoOutlined />}
-                  iconPosition="start"
-                  label="Help"
-                />
-                <Tab
-                  icon={<InterestsOutlined />}
-                  iconPosition="start"
-                  label="Advantage"
-                />
-              </Tabs>
-            </Paper>
-          </Toolbar>*/}
-
         {/********************* Body *********************/}
         <Box sx={{
           width: mobile ? "90%" : "66%",
@@ -390,7 +355,7 @@ function App() {
         }}>
           <Typography color="red" variant="body1">
             <br />
-            Got a feature idea for jtms.app? Submit to the Features Request Contest today! <a
+            Feature request voting has been postponed to 12/05. You can still submit to the contest: <a
               href="https://docs.google.com/presentation/d/1a9xPZ9MiDpcKo7_xZWqwP8TNVqernRzffT16TgcRBGE/edit?usp=sharing"
               rel="noreferrer"
               target="_blank"
