@@ -30,14 +30,16 @@ import {
   InterestsOutlined,
   History,
   CalendarMonth,
+  Storefront,
 } from "@mui/icons-material";
 
-import Ticketing from "./Ticketing";
-import Stats from "./Stats";
-import Help from "./Help";
-import Adv from "./Adv";
-import Hist from "./Hist";
-import Events from "./Events";
+import Ticketing from "./components/Ticketing";
+import Stats from "./components/Stats";
+import Help from "./components/Help";
+import Adv from "./components/Adv";
+import Hist from "./components/Hist";
+import Events from "./components/Events";
+import Store from "./components/Store";
 
 import ReactGA from "react-ga4";
 
@@ -354,11 +356,21 @@ function App() {
                   onClick={() => handleTabChange("", 5)}
                 >
                   <ListItemIcon>
-                    <Badge color="secondary" variant="dot">
-                      <CalendarMonth />
-                    </Badge>
+                    <CalendarMonth />
                   </ListItemIcon>
                   <ListItemText primary="Events" />
+                </ListItemButton>
+
+                <Divider />
+
+                <ListItemButton
+                  selected={tab === 6}
+                  onClick={() => handleTabChange("", 6)}
+                >
+                  <ListItemIcon>
+                    <Storefront />
+                  </ListItemIcon>
+                  <ListItemText primary="Store" />
                 </ListItemButton>
               </List>
             </Box>
@@ -373,17 +385,6 @@ function App() {
             marginBottom: mobile ? "80px" : "auto",
           }}
         >
-          <Typography color="red" variant="body1">
-            <br />
-            Feature request contest voting is now open!{" "}
-            <a
-              href="https://docs.google.com/presentation/d/1wKypW8sLLtTtwOrrnKWbM7kv9JNh9gD9xzrgQa3v1_Q/edit?usp=sharing"
-              rel="noreferrer"
-              target="_blank"
-            >
-              View Submissions & Vote
-            </a>
-          </Typography>
           {tab === 0 ? (
             <Ticketing />
           ) : tab === 1 ? (
@@ -394,8 +395,10 @@ function App() {
             <Help />
           ) : tab === 4 ? (
             <Adv />
-          ) : (
+          ) : tab === 5 ? (
             <Events />
+          ) : (
+            <Store />
           )}
         </Box>
 
