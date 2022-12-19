@@ -45,7 +45,16 @@ function Store() {
                           <Chip
                             label={tag}
                             variant="outlined"
-                            color={tag === "Vegan" ? "success" : "warning"}
+                            color={
+                              tag === "Vegan"
+                                ? "success"
+                                : tag === "Food" || tag === "Drink"
+                                ? "warning"
+                                : tag === "Merch"
+                                ? "info"
+                                : "error"
+                            }
+                            // sx={{ color: "red" }}
                             size="small"
                           />
                         );
