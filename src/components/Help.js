@@ -6,15 +6,19 @@ import {
   AccordionSummary,
 } from "@mui/material";
 import * as React from "react";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function Help() {
   return (
-    <Box sx={{
-      display: "flex",
-      flexDirection: "column"
-    }}>
-      <Typography variant="h5" sx={rowStyle}>Frequently Asked Questions</Typography>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Typography variant="h5" sx={rowStyle}>
+        Frequently Asked Questions
+      </Typography>
       <br />
       <Accordion>
         <AccordionSummary
@@ -22,18 +26,26 @@ function Help() {
           aria-controls="a1-content"
           id="q1-header"
         >
-          <Typography>
-            1. How do I win a prize with my WINGS Ticket?
-          </Typography>
+          <Typography>1. How do I win a prize with my WINGS Ticket?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            A: There are 3 different ways for you to win:
-            <ol>
-            <li>Each Tuesday, there is a drawing for each homeroom. The prize is distributed by ASB each week in homeroom.</li>
-            <li>Each Friday, we hold a drawing for each of the WINGS letters for all tickets submitted in the whole school. Pay close attention during morning announcements. </li>
-            <li>Twice each trimester, the top 25% by count (i.e. number of tickets you submitted) gets invited to special lunch time activities! </li>
+          A: There are 3 different ways for you to win:
+          <ol>
+            <li>
+              Each Tuesday, there is a drawing for each homeroom. The prize is
+              distributed by ASB each week in homeroom.
+            </li>
+            <li>
+              Each Friday, we hold a drawing for each of the WINGS letters for
+              all tickets submitted in the whole school. Pay close attention
+              during morning announcements.{" "}
+            </li>
+            <li>
+              Twice each trimester, the top 25% by count (i.e. number of tickets
+              you submitted) gets invited to special lunch time activities!{" "}
+            </li>
             {/*<li>This last one is not a drawing. Some WINGS tickets are just special - they're golden tickets, which will reward you immediately after you redeem them.</li>*/}
-            </ol>
+          </ol>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -46,7 +58,8 @@ function Help() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            A: Each week starts at 0:00 on Tuesday and ends by midnight of the following Monday.
+            A: Each week starts at 0:00 on Tuesday and ends by midnight of the
+            following Monday.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -61,7 +74,10 @@ function Help() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            A: Homeroom drawings are conducted every Tuesday! Your homeroom reps will come to homeroom with the prize and announce the winner. Letter drawing winners will find out on Fridays in the morning announcements.
+            A: Homeroom drawings are conducted every Tuesday! Your homeroom reps
+            will come to homeroom with the prize and announce the winner. Letter
+            drawing winners will find out on Fridays in the morning
+            announcements.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -76,7 +92,9 @@ function Help() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            A: Homeroom drawing prizes change every week; it's listed under the Stats tab. Letter drawing winners get to choose one of many gift cards.
+            A: Homeroom drawing prizes change every week; it's listed under the
+            Stats tab. Letter drawing winners get to choose one of many gift
+            cards.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -91,7 +109,8 @@ function Help() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            A: Hold onto them! For one thing, they are a memory of your time at JTMS; for another, they might come in handy later on this year...
+            A: Hold onto them! For one thing, they are a memory of your time at
+            JTMS; for another, they might come in handy later on this year...
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -106,7 +125,23 @@ function Help() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            A: Read more in <a href="https://docs.google.com/presentation/d/1H-LzoqsSk9vMl3m1fxmCqVXjY4k1E_7nsb68xoCAiqU/edit?usp=sharing" target="_blank" rel="noreferrer">this slides deck here</a>. If you have any further questions, please submit them to <a href="https://forms.gle/t9R29o6ZJXDM7NE37" target="_blank" rel="noreferrer">the feedback form</a>!
+            A: Read more in{" "}
+            <a
+              href="https://docs.google.com/presentation/d/1H-LzoqsSk9vMl3m1fxmCqVXjY4k1E_7nsb68xoCAiqU/edit?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+            >
+              this slides deck here
+            </a>
+            . If you have any further questions, please submit them to{" "}
+            <a
+              href="https://forms.gle/t9R29o6ZJXDM7NE37"
+              target="_blank"
+              rel="noreferrer"
+            >
+              the feedback form
+            </a>
+            !
           </Typography>
         </AccordionDetails>
       </Accordion>

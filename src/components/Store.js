@@ -1,3 +1,4 @@
+import { Block } from "@mui/icons-material";
 import {
   Box,
   Typography,
@@ -10,29 +11,44 @@ import {
   CardActions,
   Chip,
   Stack,
+  Paper,
 } from "@mui/material";
 import * as React from "react";
 
-function Store() {
+function Store({ wallet }) {
   const buy = (itemn) => {
     console.log("This guy wants to buy:");
     console.log(catalogue[itemn]);
   };
 
   return (
-    <Box sx={{ marginBottom: 5 }}>
+    <Box>
       <Typography variant="h5" sx={rowStyle}>
         The WINGStore
       </Typography>
-      <br />
-      <Grid container spacing={1} alignItems="stretch">
+      <Typography variant="h6">
+        Redeem your tickets to have them added to your wallet. Orange tickets
+        will not be included. <br />
+        Running low on tickets? Ask your teachers how you can earn more!
+      </Typography>
+
+      <Grid
+        container
+        spacing={1}
+        alignItems="stretch"
+        sx={{ marginBottom: 10, marginTop: 1 }}
+      >
         {catalogue.map((item, index) => {
           return (
             <Grid item xs={4}>
               <Card raised>
                 <CardHeader
                   action={
-                    <Typography variant="h3" sx={{ marginRight: 1 }}>
+                    <Typography
+                      variant="h3"
+                      sx={{ marginRight: 1 }}
+                      color={item.price > wallet ? "error" : "default"}
+                    >
                       {item.price}
                     </Typography>
                   }
@@ -94,6 +110,7 @@ function Store() {
                     fullWidth
                     variant="contained"
                     onClick={() => buy(index)}
+                    disabled={item.price > wallet}
                   >
                     Place Order
                   </Button>
@@ -123,7 +140,7 @@ const catalogue = [
     desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free option available.",
   },
   {
-    name: "Oereos [Pack of 2]",
+    name: "Oreos [Pack of 2]",
     price: 3,
     tags: ["Food", "Vegan"],
     pic: "https://static.onecms.io/wp-content/uploads/sites/19/2021/08/12/oreo-hero.jpg",
@@ -141,7 +158,7 @@ const catalogue = [
     price: 16,
     tags: ["Experience", "Vegan"],
     pic: "https://cdn-prod.medicalnewstoday.com/content/images/articles/326/326263/person-running-in-the-forest.jpg",
-    desc: "Challenge one of your teachers running the mile or trail with you. Click below for the list of all available teachers",
+    desc: "Challenge one of your teachers to run the mile or trail with you. Click below for the list of all available teachers",
     link: "https://docs.google.com/document/d/e/2PACX-1vSTMNcX8JzvZN5775rpYrTlGna3t1vuTlC0iKVBRsQQyJsuvNf6IvGWVGky9qjvEcsEAKDzu3sV1S0O/pub",
   },
   {

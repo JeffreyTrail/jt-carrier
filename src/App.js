@@ -17,6 +17,7 @@ import {
   ListItemButton,
   Divider,
   Drawer,
+  Stack,
 } from "@mui/material";
 import * as React from "react";
 import {
@@ -40,6 +41,7 @@ import Adv from "./components/Adv";
 import Hist from "./components/Hist";
 import Events from "./components/Events";
 import Store from "./components/Store";
+import Dash from "./components/Dash";
 
 import ReactGA from "react-ga4";
 
@@ -288,10 +290,10 @@ function App() {
           <Drawer
             variant="permanent"
             sx={{
-              width: 200,
+              width: 180,
               flexShrink: 0,
               [`& .MuiDrawer-paper`]: {
-                width: 180,
+                width: 175,
                 boxSizing: "border-box",
               },
             }}
@@ -378,29 +380,40 @@ function App() {
         )}
 
         {/********************* Body *********************/}
-        <Box
-          sx={{
-            width: mobile ? "90%" : "66%",
-            margin: "auto",
-            marginBottom: mobile ? "80px" : "auto",
-          }}
-        >
-          {tab === 0 ? (
-            <Ticketing />
-          ) : tab === 1 ? (
-            <Stats />
-          ) : tab === 2 ? (
-            <Hist />
-          ) : tab === 3 ? (
-            <Help />
-          ) : tab === 4 ? (
-            <Adv />
-          ) : tab === 5 ? (
-            <Events />
+        <Stack direction="row">
+          <Box
+            sx={{
+              width: mobile ? "90%" : "66%",
+              marginLeft: mobile ? "auto" : "190px",
+              paddingRight: mobile ? "auto" : "15px",
+              marginBottom: mobile ? "10px" : "auto",
+            }}
+          >
+            {tab === 0 ? (
+              <Ticketing />
+            ) : tab === 1 ? (
+              <Stats />
+            ) : tab === 2 ? (
+              <Hist />
+            ) : tab === 3 ? (
+              <Help />
+            ) : tab === 4 ? (
+              <Adv />
+            ) : tab === 5 ? (
+              <Events />
+            ) : (
+              <Store wallet={21} />
+            )}
+          </Box>
+
+          {mobile ? (
+            <React.Fragment />
           ) : (
-            <Store />
+            <Box sx={{ width: "16%", marginLeft: 4 }}>
+              <Dash />
+            </Box>
           )}
-        </Box>
+        </Stack>
 
         {/************** Bottom Nav for Mobile **************/}
         {mobile ? (

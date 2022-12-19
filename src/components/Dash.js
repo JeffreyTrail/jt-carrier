@@ -11,75 +11,40 @@ import {
   TextField,
   Button,
   Chip,
-  Skeleton,
 } from "@mui/material";
 import * as React from "react";
 
-function Hist() {
-  const [tkts, setTkts] = React.useState([]);
-  const [submitted, setSubmitted] = React.useState(false);
-  const [status, setStatus] = React.useState(0);
+function Dash() {
+  const [name, setName] = React.useState("Sign In");
+  // const [status, setStatus] = React.useState(0);
   const [sid, setSid] = React.useState("");
   const [cnt, setCnt] = React.useState(-1);
 
-  const submit = () => {
-    setSubmitted(true);
-    fetch("https://wings-carrier.herokuapp.com/lookup/" + sid)
-      .then((response) => response.json())
-      .then((data) => {
-        setSubmitted(false); // stop loading
-        setStatus(data.status);
-        if (data.status === 0) {
-          setTkts(data.tkts);
-          setCnt(data.cnt);
-        }
-      });
-  };
-
-  // React.useEffect(() => {
-  //   const enterToSubmit = event => {
-  //     console.log('User pressed: ', event.key);
-  //     if (event.key === 'Enter') {
-  //       event.preventDefault();
-  //       submit();
-  //     }
-  //   };
-  //
-  //   document.addEventListener('keydown', enterToSubmit);
-  //
-  //   return () => {
-  //     document.removeEventListener('keydown', enterToSubmit);
-  //   };
-  // }, []);
+  const submit = () => {};
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
+        position: "sticky",
+        top: 48,
+        right: 50,
       }}
     >
       <Box sx={rowStyle}>
-        <Typography variant="h5">Tickets History</Typography>
-        <Chip
-          label="BETA"
-          color="primary"
-          variant="outlined"
-          size="small"
-          sx={{ marginLeft: 2 }}
-        />
+        <Typography variant="h5">{name}</Typography>
       </Box>
 
-      <Typography variant="h6">
-        Enter your 9-digit student ID to see a record of all the WINGS tickets
-        you've submitted
+      <Typography paragraph>
+        Sign in to use WINGStore, save your ID, and more.
       </Typography>
 
       <Box sx={rowStyle}>
         <TextField
-          error={(submitted && sid === "") || status === 1}
+          // error={( )}
           required
-          label="IUSD student ID"
+          label="student ID"
           value={sid}
           onChange={(e) => {
             setSid(e.target.value);
@@ -95,18 +60,7 @@ function Hist() {
         </Button>
       </Box>
 
-      <Box>
-        {status === 1 ? (
-          <Typography variant="body2" color="#f44336">
-            We couldn't find a student with that ID number. Did you type it in
-            correctly? If so, submit a report form!
-          </Typography>
-        ) : (
-          <React.Fragment />
-        )}
-      </Box>
-
-      {cnt === -1 ? (
+      {/* {cnt === -1 ? (
         <React.Fragment />
       ) : (
         <Typography variant="h6" sx={{ marginTop: 5 }}>
@@ -156,7 +110,7 @@ function Hist() {
             </TableBody>
           </Table>
         )}
-      </TableContainer>
+      </TableContainer> */}
     </Box>
   );
 }
@@ -168,4 +122,4 @@ const rowStyle = {
   marginTop: 3,
 };
 
-export default Hist;
+export default Dash;
