@@ -17,7 +17,6 @@ const OPREFIXES = "ABCDEFGHJKabcdefghjk";
 
 function Ticketing(props) {
   const [code, setCode] = React.useState("");
-  const [sid, setSid] = React.useState("");
   const [teacher, setTeacher] = React.useState("");
   const [wings, setWings] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
@@ -54,9 +53,9 @@ function Ticketing(props) {
     try {
       let url = URLBASE;
       if (flavor === "r") {
-        url += "submit/" + teacher + "/" + wings + "/" + sid + "/" + code;
+        url += "submit/" + teacher + "/" + wings + "/" + props.sid + "/" + code;
       } else if (flavor === "o") {
-        url += "orange/" + sid + "/" + code;
+        url += "orange/" + props.sid + "/" + code;
       }
 
       fetch(url)
@@ -87,13 +86,13 @@ function Ticketing(props) {
     if (flavor === "o") {
       if (code.length !== 9) {
         setFlavor("i");
-      } else if (sid !== "") {
+      } else if (props.sid !== "") {
         lookup();
       }
     } else if (flavor === "r") {
       if (code.length !== 9) {
         setFlavor("i");
-      } else if (sid !== "" && teacher !== "" && wings !== "") {
+      } else if (props.sid !== "" && teacher !== "" && wings !== "") {
         lookup();
       }
     }
@@ -253,16 +252,17 @@ function Ticketing(props) {
             What is your IUSD student ID?
           </Typography>
           <TextField
-            error={(submitted && sid === "") || isNaN(sid)}
+            error={(submitted && props.sid === "") || isNaN(props.sid)}
             required
+            type="password"
             label="IUSD student ID"
-            value={sid}
+            value={props.sid}
             helperText={
-              sid !== "" && isNaN(sid)
+              props.sid !== "" && isNaN(props.sid)
                 ? "Invalid ID: Your 9 digit student ID should not contain any letters. It should look like '123456789'."
                 : ""
             }
-            onChange={(e) => setSid(e.target.value)}
+            onChange={(e) => props.setSid(e.target.value)}
             sx={{ width: "60%" }}
           />
         </Box>

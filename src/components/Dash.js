@@ -14,8 +14,14 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Avatar,
+  Chip,
+  Collapse,
+  Skeleton,
+  IconButton,
 } from "@mui/material";
 import * as React from "react";
+import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
 function Dash(props) {
   const [name, setName] = React.useState("Log In");
@@ -24,6 +30,7 @@ function Dash(props) {
   const [tkts, setTkts] = React.useState([]);
   const [status, setStatus] = React.useState(0);
   const [cnt, setCnt] = React.useState(-1);
+  const [hist, setHist] = React.useState(false);
 
   const submit = () => {
     setSubmitted(true);
@@ -39,6 +46,8 @@ function Dash(props) {
           setName(data.name);
           props.setWallet(data.wallet);
           props.setNotif(["success", "Successfully signed in as " + data.name]);
+        } else if (data.status === 1) {
+          props.setNotif(["error", "We couldn't find someone with that ID."]);
         }
       });
   };
@@ -47,7 +56,7 @@ function Dash(props) {
     <Box
       sx={{
         position: "sticky",
-        top: 48,
+        top: "72px",
       }}
     >
       <Box sx={rowStyle}>
@@ -64,7 +73,7 @@ function Dash(props) {
             {/* <TextField required label="IUSD email" value={email} size="small" /> */}
 
             <TextField
-              // error={( )}
+              error={(submitted && props.sid === "") || status === 1}
               required
               label="Student ID"
               value={props.sid}
@@ -87,7 +96,80 @@ function Dash(props) {
           </Stack>
         </Box>
       ) : (
-        <Typography variant="h2">{props.wallet} Tickets</Typography>
+        <Box sx={{ margin: "auto" }}>
+          <Typography paragraph>Welcome to your dashboard!</Typography>
+          <Stack spacing={1} direction="row">
+            <Chip
+              avatar={<Avatar>{props.wallet}</Avatar>}
+              label="Wallet"
+              variant="outlined"
+            />
+            <Chip
+              avatar={<Avatar>{cnt}</Avatar>}
+              label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
+              variant="outlined"
+            />
+          </Stack>
+
+          <Button
+            onClick={() => setHist(!hist)}
+            endIcon={hist ? <ExpandLess /> : <ExpandMore />}
+            variant="outlined"
+            fullWidth
+            sx={rowStyle}
+            disabled={tkts.length === 0}
+          >
+            Load History
+          </Button>
+          {tkts.length === 0 ? (
+            <Typography paragraph sx={{ margin: 5, textAlign: "center" }}>
+              You haven't submitted any tickets...yet.
+            </Typography>
+          ) : (
+            <Collapse in={hist} timeout="auto" unmountOnExit>
+              <TableContainer
+                component={Paper}
+                sx={{
+                  width: "100%",
+                  flexGrow: "row",
+                  display: "flex",
+                }}
+              >
+                {submitted ? (
+                  <Skeleton variant="rectangular" width={"100%"} height={200} />
+                ) : (
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={{ fontWeight: "bold" }} align="center">
+                          Ticket Code
+                        </TableCell>
+                        <TableCell sx={{ fontWeight: "bold" }} align="center">
+                          Submit Time
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                      {tkts.map((t) => {
+                        return (
+                          <TableRow>
+                            <TableCell sx={{}} align="center">
+                              {t["code"]}
+                            </TableCell>
+                            <TableCell sx={{}} align="center">
+                              {t["time"]}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                )}
+              </TableContainer>
+            </Collapse>
+          )}
+        </Box>
       )}
     </Box>
   );

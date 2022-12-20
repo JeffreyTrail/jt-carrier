@@ -40,7 +40,6 @@ import Ticketing from "./components/Ticketing";
 import Stats from "./components/Stats";
 import Help from "./components/Help";
 import Adv from "./components/Adv";
-import Hist from "./components/Hist";
 import Events from "./components/Events";
 import Store from "./components/Store";
 import Dash from "./components/Dash";
@@ -334,21 +333,11 @@ function App() {
                   <ListItemText primary="Statistics" />
                 </ListItemButton>
 
-                <ListItemButton
-                  selected={tab === 2}
-                  onClick={() => handleTabChange("", 2)}
-                >
-                  <ListItemIcon>
-                    <History />
-                  </ListItemIcon>
-                  <ListItemText primary="History" />
-                </ListItemButton>
-
                 <Divider />
 
                 <ListItemButton
-                  selected={tab === 3}
-                  onClick={() => handleTabChange("", 3)}
+                  selected={tab === 2}
+                  onClick={() => handleTabChange("", 2)}
                 >
                   <ListItemIcon>
                     <InfoOutlined />
@@ -357,8 +346,8 @@ function App() {
                 </ListItemButton>
 
                 <ListItemButton
-                  selected={tab === 4}
-                  onClick={() => handleTabChange("", 4)}
+                  selected={tab === 3}
+                  onClick={() => handleTabChange("", 3)}
                 >
                   <ListItemIcon>
                     <InterestsOutlined />
@@ -403,14 +392,12 @@ function App() {
             }}
           >
             {tab === 0 ? (
-              <Ticketing setNotif={setNotif} />
+              <Ticketing setNotif={setNotif} sid={sid} setSid={setSid} />
             ) : tab === 1 ? (
               <Stats />
             ) : tab === 2 ? (
-              <Hist />
-            ) : tab === 3 ? (
               <Help />
-            ) : tab === 4 ? (
+            ) : tab === 3 ? (
               <Adv />
             ) : tab === 5 ? (
               <Events />
@@ -422,7 +409,7 @@ function App() {
           {mobile ? (
             <React.Fragment />
           ) : (
-            <Box sx={{ width: "16%", marginLeft: 4 }}>
+            <Box sx={{ width: "19%", marginLeft: 1 }}>
               <Dash
                 sid={sid}
                 setSid={setSid}
