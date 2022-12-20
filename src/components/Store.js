@@ -178,7 +178,7 @@ const catalogue = [
   {
     name: "Cup Noodles [Made]",
     price: 11,
-    tags: ["Food", "Cooked Hot", "Vegan"],
+    tags: ["Food", "Hot", "Vegan"],
     pic: "https://www.adweek.com/wp-content/uploads/files/cup-noodles-hed-2015.jpg",
     desc: "Smells good. Delivered right before lunch. Vegan options available with a slightly longer wait.",
   },

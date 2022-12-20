@@ -382,7 +382,7 @@ function App() {
         )}
 
         {/********************* Body *********************/}
-        <Stack direction="row">
+        <Stack direction="row" spacing={1}>
           <Box
             sx={{
               width: mobile ? "90%" : "66%",
@@ -409,7 +409,7 @@ function App() {
           {mobile ? (
             <React.Fragment />
           ) : (
-            <Box sx={{ width: "19%", marginLeft: 1 }}>
+            <Box sx={{ width: "17%" }}>
               <Dash
                 sid={sid}
                 setSid={setSid}

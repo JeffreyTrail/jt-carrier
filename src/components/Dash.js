@@ -18,38 +18,55 @@ import {
   Chip,
   Collapse,
   Skeleton,
-  IconButton,
 } from "@mui/material";
 import * as React from "react";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
 function Dash(props) {
   const [name, setName] = React.useState("Log In");
-  const [email, setEmail] = React.useState("");
+  // const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
   const [tkts, setTkts] = React.useState([]);
   const [status, setStatus] = React.useState(0);
   const [cnt, setCnt] = React.useState(-1);
   const [hist, setHist] = React.useState(false);
+  const [remem, setRemem] = React.useState(false);
 
   const submit = () => {
     setSubmitted(true);
     fetch("https://wings-carrier.herokuapp.com/lookup/" + props.sid)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setSubmitted(false); // stop loading
         setStatus(data.status);
         if (data.status === 0) {
           setTkts(data.tkts);
           setCnt(data.cnt);
           setName(data.name);
+
           props.setWallet(data.wallet);
           props.setNotif(["success", "Successfully signed in as " + data.name]);
+
+          if (remem && typeof Storage !== "undefined") {
+            localStorage.setItem("sid", props.sid);
+          }
         } else if (data.status === 1) {
           props.setNotif(["error", "We couldn't find someone with that ID."]);
         }
       });
+  };
+
+  React.useEffect(() => {
+    if (props.sid !== "") submit(); // Load saved SID
+    // eslint-disable-next-line
+  }, []);
+
+  const logout = () => {
+    setName("Log In");
+    props.setSid("");
+    localStorage.setItem("sid", "");
+    setSubmitted(false);
+    setStatus(0);
   };
 
   return (
@@ -70,6 +87,7 @@ function Dash(props) {
           </Typography>
 
           <Stack spacing={1}>
+            {/* Add second field to cross check network id in front of email */}
             {/* <TextField required label="IUSD email" value={email} size="small" /> */}
 
             <TextField
@@ -83,12 +101,17 @@ function Dash(props) {
               size="small"
             />
 
-            {/* <FormGroup>
+            <FormGroup>
               <FormControlLabel
-                control={<Checkbox />}
-                label="Click here to save your student ID. Only do this on your own computer"
+                control={
+                  <Checkbox
+                    checked={remem}
+                    onChange={(e) => setRemem(e.target.checked)}
+                  />
+                }
+                label="Remember Me"
               />
-            </FormGroup> */}
+            </FormGroup>
 
             <Button onClick={submit} fullWidth variant="contained">
               log in
@@ -169,6 +192,15 @@ function Dash(props) {
               </TableContainer>
             </Collapse>
           )}
+          <Button
+            fullWidth
+            sx={{ marginTop: 1 }}
+            color="secondary"
+            variant="outlined"
+            onClick={logout}
+          >
+            log out
+          </Button>
         </Box>
       )}
     </Box>
