@@ -18,6 +18,8 @@ import {
   Divider,
   Drawer,
   Stack,
+  Alert,
+  Snackbar,
 } from "@mui/material";
 import * as React from "react";
 import {
@@ -93,6 +95,9 @@ const lightTheme = createTheme({
 const CURRENT = "10.26.22";
 
 function App() {
+  // Global snackbar for delivering status info
+  const [notif, setNotif] = React.useState(["info", ""]);
+
   let localDarkSetting = null;
   let localTab = null;
   let localNews = null;
@@ -398,7 +403,7 @@ function App() {
             }}
           >
             {tab === 0 ? (
-              <Ticketing />
+              <Ticketing setNotif={setNotif} />
             ) : tab === 1 ? (
               <Stats />
             ) : tab === 2 ? (
@@ -423,10 +428,25 @@ function App() {
                 setSid={setSid}
                 wallet={wallet}
                 setWallet={setWallet}
+                setNotif={setNotif}
               />
             </Box>
           )}
         </Stack>
+
+        <Snackbar
+          open={notif[1] !== ""}
+          autoHideDuration={10000}
+          onClose={() => setNotif([notif[0], ""])}
+        >
+          <Alert
+            onClose={() => setNotif([notif[0], ""])}
+            severity={notif[0]}
+            sx={{ width: "100%" }}
+          >
+            {notif[1]}
+          </Alert>
+        </Snackbar>
 
         {/************** Bottom Nav for Mobile **************/}
         {mobile ? (

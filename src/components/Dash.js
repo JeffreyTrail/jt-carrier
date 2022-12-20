@@ -38,6 +38,7 @@ function Dash(props) {
           setCnt(data.cnt);
           setName(data.name);
           props.setWallet(data.wallet);
+          props.setNotif(["success", "Successfully signed in as " + data.name]);
         }
       });
   };

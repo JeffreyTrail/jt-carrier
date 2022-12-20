@@ -15,7 +15,7 @@ import * as React from "react";
 
 const OPREFIXES = "ABCDEFGHJKabcdefghjk";
 
-function Ticketing() {
+function Ticketing(props) {
   const [code, setCode] = React.useState("");
   const [sid, setSid] = React.useState("");
   const [teacher, setTeacher] = React.useState("");
@@ -70,6 +70,7 @@ function Ticketing() {
             setTeacher("");
             setSubmitted(false);
             setFlavor("r");
+            props.setNotif(["success", "Ticket successfully submitted!"]);
           }
         });
     } catch {
@@ -77,6 +78,7 @@ function Ticketing() {
       setErrmsg(
         "Hmm looks like there is something wrong with the server; maybe it's busy. Try again later. If this persists, please let Mr. Gu know."
       );
+      props.setNotif(["error", "Something's wrong with the server."]);
     }
   };
 
