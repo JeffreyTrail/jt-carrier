@@ -96,12 +96,14 @@ function App() {
   let localDarkSetting = null;
   let localTab = null;
   let localNews = null;
+  let localSid = null;
 
   if (typeof Storage !== "undefined") {
     // Getting user settings
     localDarkSetting = localStorage.getItem("dark");
     localTab = localStorage.getItem("tab");
     localNews = localStorage.getItem("news");
+    localSid = localStorage.getItem("sid");
   }
 
   const browserDarkSetting = useMediaQuery("(prefers-color-scheme: dark)");
@@ -112,6 +114,12 @@ function App() {
   const [dark, setDark] = React.useState(
     localDarkSetting !== null ? localDarkSetting === "true" : browserDarkSetting
   );
+
+  // Wallet for the store
+  const [wallet, setWallet] = React.useState(-1);
+
+  // Saved SID
+  const [sid, setSid] = React.useState(localSid === null ? "" : localSid);
 
   // News & News Popover
   const [news, setNews] = React.useState(
@@ -402,7 +410,7 @@ function App() {
             ) : tab === 5 ? (
               <Events />
             ) : (
-              <Store wallet={21} />
+              <Store wallet={wallet} />
             )}
           </Box>
 
@@ -410,7 +418,12 @@ function App() {
             <React.Fragment />
           ) : (
             <Box sx={{ width: "16%", marginLeft: 4 }}>
-              <Dash />
+              <Dash
+                sid={sid}
+                setSid={setSid}
+                wallet={wallet}
+                setWallet={setWallet}
+              />
             </Box>
           )}
         </Stack>

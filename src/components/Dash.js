@@ -10,107 +10,84 @@ import {
   TableBody,
   TextField,
   Button,
-  Chip,
+  Stack,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import * as React from "react";
 
-function Dash() {
-  const [name, setName] = React.useState("Sign In");
-  // const [status, setStatus] = React.useState(0);
-  const [sid, setSid] = React.useState("");
+function Dash(props) {
+  const [name, setName] = React.useState("Log In");
+  const [email, setEmail] = React.useState("");
+  const [submitted, setSubmitted] = React.useState(false);
+  const [tkts, setTkts] = React.useState([]);
+  const [status, setStatus] = React.useState(0);
   const [cnt, setCnt] = React.useState(-1);
 
-  const submit = () => {};
+  const submit = () => {
+    setSubmitted(true);
+    fetch("https://wings-carrier.herokuapp.com/lookup/" + props.sid)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setSubmitted(false); // stop loading
+        setStatus(data.status);
+        if (data.status === 0) {
+          setTkts(data.tkts);
+          setCnt(data.cnt);
+          setName(data.name);
+          props.setWallet(data.wallet);
+        }
+      });
+  };
 
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
         position: "sticky",
         top: 48,
-        right: 50,
       }}
     >
       <Box sx={rowStyle}>
         <Typography variant="h5">{name}</Typography>
       </Box>
 
-      <Typography paragraph>
-        Sign in to use WINGStore, save your ID, and more.
-      </Typography>
+      {name === "Log In" ? (
+        <Box sx={{ margin: "auto" }}>
+          <Typography paragraph>
+            Log in to use WINGStore, save your ID, and more.
+          </Typography>
 
-      <Box sx={rowStyle}>
-        <TextField
-          // error={( )}
-          required
-          label="student ID"
-          value={sid}
-          onChange={(e) => {
-            setSid(e.target.value);
-          }}
-          sx={{
-            flexGrow: 1,
-            marginRight: 3,
-          }}
-        />
+          <Stack spacing={1}>
+            {/* <TextField required label="IUSD email" value={email} size="small" /> */}
 
-        <Button onClick={submit} variant="outlined">
-          submit
-        </Button>
-      </Box>
+            <TextField
+              // error={( )}
+              required
+              label="Student ID"
+              value={props.sid}
+              onChange={(e) => {
+                props.setSid(e.target.value);
+              }}
+              size="small"
+            />
 
-      {/* {cnt === -1 ? (
-        <React.Fragment />
+            {/* <FormGroup>
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Click here to save your student ID. Only do this on your own computer"
+              />
+            </FormGroup> */}
+
+            <Button onClick={submit} fullWidth variant="contained">
+              log in
+            </Button>
+          </Stack>
+        </Box>
       ) : (
-        <Typography variant="h6" sx={{ marginTop: 5 }}>
-          You have submitted {cnt} tickets this trimester (excluding orange
-          tickets).
-        </Typography>
+        <Typography variant="h2">{props.wallet} Tickets</Typography>
       )}
-
-      <TableContainer
-        component={Paper}
-        sx={{
-          width: "100%",
-          flexGrow: "row",
-          display: "flex",
-          marginTop: 3,
-          marginBottom: 5,
-        }}
-      >
-        {submitted ? (
-          <Skeleton variant="rectangular" width={"100%"} height={200} />
-        ) : (
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: "bold" }} align="center">
-                  Ticket Code
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="center">
-                  Submit Time
-                </TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-              {tkts.map((t) => {
-                return (
-                  <TableRow>
-                    <TableCell sx={{}} align="center">
-                      {t["code"]}
-                    </TableCell>
-                    <TableCell sx={{}} align="center">
-                      {t["time"]}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        )}
-      </TableContainer> */}
     </Box>
   );
 }

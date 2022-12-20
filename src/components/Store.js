@@ -1,5 +1,5 @@
-import { Block } from "@mui/icons-material";
 import {
+  Alert,
   Box,
   Typography,
   Grid,
@@ -11,7 +11,6 @@ import {
   CardActions,
   Chip,
   Stack,
-  Paper,
 } from "@mui/material";
 import * as React from "react";
 
@@ -31,6 +30,14 @@ function Store({ wallet }) {
         will not be included. <br />
         Running low on tickets? Ask your teachers how you can earn more!
       </Typography>
+
+      {wallet === -1 ? (
+        <Alert severity="error">
+          You must sign in to use the WINGStore. Log in on your right
+        </Alert>
+      ) : (
+        <React.Fragment />
+      )}
 
       <Grid
         container

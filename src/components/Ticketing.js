@@ -8,12 +8,12 @@ import {
   Radio,
   Button,
   Modal,
-  Typography
+  Typography,
 } from "@mui/material";
 import * as React from "react";
 // import ticket_sample from "../public/ticket_sample.png";
 
-const OPREFIXES = "ABCDEFGHJKabcdefghjk"
+const OPREFIXES = "ABCDEFGHJKabcdefghjk";
 
 function Ticketing() {
   const [code, setCode] = React.useState("");
@@ -28,13 +28,13 @@ function Ticketing() {
 
   const handleCode = (e) => {
     let newCode = e.target.value;
-    if (newCode.includes("-")){
+    if (newCode.includes("-")) {
       newCode = newCode.replaceAll("-", "");
     }
-    if (isNaN(newCode)){
+    if (isNaN(newCode)) {
       // is Not-a-Number; has letters
       let pref = newCode.charAt(0);
-      if (OPREFIXES.includes(pref) && !isNaN(newCode.substring(1,9))){
+      if (OPREFIXES.includes(pref) && !isNaN(newCode.substring(1, 9))) {
         // only the first char is an acceptable letter for O tickets
         setFlavor("o");
       } else {
@@ -43,35 +43,35 @@ function Ticketing() {
       }
     } else {
       // no letters, all numbers
-      setFlavor("r")
+      setFlavor("r");
     }
     setCode(newCode);
-  }
+  };
 
-  const URLBASE = "https://wings-carrier.herokuapp.com/"
+  const URLBASE = "https://wings-carrier.herokuapp.com/";
 
   const lookup = () => {
     try {
-      let url = URLBASE
-      if (flavor === "r"){
-        url += "submit/"+teacher+"/"+wings+"/"+sid+"/"+code;
-      } else if (flavor === "o"){
-        url += "orange/"+sid+"/"+code;
+      let url = URLBASE;
+      if (flavor === "r") {
+        url += "submit/" + teacher + "/" + wings + "/" + sid + "/" + code;
+      } else if (flavor === "o") {
+        url += "orange/" + sid + "/" + code;
       }
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setResult(data.rcode);
-        setErrmsg(data.msg);
-        if (data.rcode === 0){
-          setCode("");
-          setWings("");
-          setTeacher("");
-          setSubmitted(false);
-          setFlavor("r");
-        }
-      });
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setResult(data.rcode);
+          setErrmsg(data.msg);
+          if (data.rcode === 0) {
+            setCode("");
+            setWings("");
+            setTeacher("");
+            setSubmitted(false);
+            setFlavor("r");
+          }
+        });
     } catch {
       setResult(-2);
       setErrmsg(
@@ -82,17 +82,17 @@ function Ticketing() {
 
   const submit = () => {
     setSubmitted(true);
-    if (flavor === "o"){
-      if (code.length !== 9){
+    if (flavor === "o") {
+      if (code.length !== 9) {
         setFlavor("i");
-      } else if (sid !== ""){
+      } else if (sid !== "") {
         lookup();
       }
-    } else if (flavor === "r"){
-      if (code.length !== 9){
+    } else if (flavor === "r") {
+      if (code.length !== 9) {
         setFlavor("i");
       } else if (sid !== "" && teacher !== "" && wings !== "") {
-        lookup()
+        lookup();
       }
     }
   };
@@ -125,21 +125,29 @@ function Ticketing() {
               If you believe the error you received above is a mistake with the
               system, please fill out the help form below.
               <hr />
-              <a href="https://forms.gle/t9R29o6ZJXDM7NE37" target="_blank" rel="noreferrer">
-              Report an Issue!</a>
+              <a
+                href="https://forms.gle/t9R29o6ZJXDM7NE37"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Report an Issue!
+              </a>
             </Typography>
           </Box>
         )}
       </Modal>
 
       {/**************** Begin Submission Form****************/}
-      <Box component="form" sx={{
-        margin: "auto",
-        // width: "50%",
-        display: "flex",
-        flexDirection: "column"
-      }}>
-        <Typography variant="h5" sx={rowStyle} >
+      <Box
+        component="form"
+        sx={{
+          margin: "auto",
+          // width: "50%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Typography variant="h5" sx={rowStyle}>
           Submit your WINGS ticket
         </Typography>
 
@@ -152,16 +160,15 @@ function Ticketing() {
             error={flavor === "i"}
             label="Ticket Code"
             value={code}
-            helperText={(flavor === "r" ?
-              ""
-              :
-              (flavor === "o" ?
-                "Orange ticket"
-                :
-                "Invalid code: Ticket code must be 9 characters, with at most 1 letter"
-            ))}
+            helperText={
+              flavor === "r"
+                ? ""
+                : flavor === "o"
+                ? "Orange ticket"
+                : "Invalid code: Ticket code must be 9 characters, with at most 1 letter"
+            }
             onChange={handleCode}
-            sx={{width:"60%"}}
+            sx={{ width: "60%" }}
           />
         </Box>
 
@@ -170,13 +177,15 @@ function Ticketing() {
             Which WINGS letter did you demonstrate?
           </Typography>
 
-          <FormControl sx={{width:"60%"}}>
+          <FormControl sx={{ width: "60%" }}>
             <RadioGroup
               aria-labelledby="wings-choice"
               // error={submitted && wings === ""}
               name="wings-choice"
               value={wings}
-              onChange={(event) => {setWings(event.target.value)}}
+              onChange={(event) => {
+                setWings(event.target.value);
+              }}
             >
               <FormControlLabel
                 value="w"
@@ -213,7 +222,9 @@ function Ticketing() {
         </Box>
 
         <Box sx={rowStyle}>
-          <Typography variant="body1" sx={promptStyle}>Who issued you the ticket?</Typography>
+          <Typography variant="body1" sx={promptStyle}>
+            Who issued you the ticket?
+          </Typography>
           <Autocomplete
             id="teacher-select"
             value={teacher}
@@ -223,7 +234,7 @@ function Ticketing() {
             }}
             disabled={flavor === "o"}
             options={staff}
-            sx={{width:"60%"}}
+            sx={{ width: "60%" }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -236,19 +247,30 @@ function Ticketing() {
         </Box>
 
         <Box sx={rowStyle}>
-          <Typography variant="body1" sx={promptStyle}>What is your IUSD student ID?</Typography>
+          <Typography variant="body1" sx={promptStyle}>
+            What is your IUSD student ID?
+          </Typography>
           <TextField
             error={(submitted && sid === "") || isNaN(sid)}
             required
             label="IUSD student ID"
             value={sid}
-            helperText={(sid !== "" && isNaN(sid)) ? "Invalid ID: Your 9 digit student ID should not contain any letters. It should look like '123456789'." : ""}
+            helperText={
+              sid !== "" && isNaN(sid)
+                ? "Invalid ID: Your 9 digit student ID should not contain any letters. It should look like '123456789'."
+                : ""
+            }
             onChange={(e) => setSid(e.target.value)}
-            sx={{width:"60%"}}
+            sx={{ width: "60%" }}
           />
         </Box>
 
-        <Button onClick={submit} fullWidth={true} sx={rowStyle} variant="contained">
+        <Button
+          onClick={submit}
+          fullWidth={true}
+          sx={rowStyle}
+          variant="contained"
+        >
           submit
         </Button>
       </Box>
@@ -279,7 +301,7 @@ const modalStyle = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4
+  p: 4,
 };
 
 const rowStyle = {
@@ -292,7 +314,7 @@ const rowStyle = {
 const promptStyle = {
   width: "39%",
   marginRight: 1,
-}
+};
 
 const staff = [
   { label: "ALLEN" },
