@@ -83,7 +83,8 @@ function Dash(props) {
       {name === "Log In" ? (
         <Box sx={{ margin: "auto" }}>
           <Typography paragraph>
-            Log in to use WINGStore, save your ID, and more.
+            Log in to use WINGStore, save your ID when submitting tickets, and
+            more.
           </Typography>
 
           <Stack spacing={1}>
@@ -109,8 +110,11 @@ function Dash(props) {
                     onChange={(e) => setRemem(e.target.checked)}
                   />
                 }
-                label="Remember Me"
+                label="Stay Logged In"
               />
+              <Typography variant="body2">
+                Check this only on your own device.
+              </Typography>
             </FormGroup>
 
             <Button onClick={submit} fullWidth variant="contained">
