@@ -125,18 +125,39 @@ function Dash(props) {
       ) : (
         <Box sx={{ margin: "auto" }}>
           <Typography paragraph>Welcome to your dashboard!</Typography>
-          {/* <Stack spacing={1} direction="row"> */}
           <Chip
             avatar={<Avatar>{props.wallet}</Avatar>}
             label="Wallet"
             variant="outlined"
+            sx={{
+              height: 42,
+              borderRadius: "999px",
+              fontSize: "1rem",
+              mb: 1,
+              mr: 1,
+              "& .MuiChip-avatar": {
+                fontSize: "1.1rem",
+                height: "32px",
+                width: "32px",
+              },
+            }}
           />
           <Chip
             avatar={<Avatar>{cnt}</Avatar>}
             label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
             variant="outlined"
+            sx={{
+              height: 42,
+              borderRadius: "999px",
+              fontSize: "1rem",
+              mb: 1,
+              "& .MuiChip-avatar": {
+                fontSize: "1.1rem",
+                height: "32px",
+                width: "32px",
+              },
+            }}
           />
-          {/* </Stack> */}
 
           <Button
             onClick={() => setHist(!hist)}

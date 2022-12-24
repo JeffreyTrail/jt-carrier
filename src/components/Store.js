@@ -140,6 +140,7 @@ const rowStyle = {
 
 const catalogue = [
   {
+    pid: 1,
     name: "Can of Pepsi",
     price: 6,
     tags: ["Drink", "Vegan"],
@@ -147,6 +148,7 @@ const catalogue = [
     desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free option available.",
   },
   {
+    pid: 2,
     name: "Oreos [Pack of 2]",
     price: 3,
     tags: ["Food", "Vegan"],
@@ -154,6 +156,7 @@ const catalogue = [
     desc: "Sometimes you just CRAVE an oreo. You don't need a lot; just one or two. Same-day pick up available.",
   },
   {
+    pid: 3,
     name: "Be Georgino for a Day",
     price: 52,
     tags: ["Experience", "Vegan"],
@@ -161,6 +164,7 @@ const catalogue = [
     desc: "Take Mr. Georgino's job for a day! Kinda. You will shadow Mr. Georgino and live a day in his shoes.",
   },
   {
+    pid: 4,
     name: "WINGSmate",
     price: 16,
     tags: ["Experience", "Vegan"],
@@ -169,6 +173,7 @@ const catalogue = [
     link: "https://docs.google.com/document/d/e/2PACX-1vSTMNcX8JzvZN5775rpYrTlGna3t1vuTlC0iKVBRsQQyJsuvNf6IvGWVGky9qjvEcsEAKDzu3sV1S0O/pub",
   },
   {
+    pid: 5,
     name: "Pickleball",
     price: 32,
     tags: ["Merch", "Vegan"],
@@ -176,6 +181,7 @@ const catalogue = [
     desc: "Franklin X-40 Outdoor Pickleball, USAPA Approved. Neon-green. Is it supposed to look like a pickle?",
   },
   {
+    pid: 6,
     name: "Cup Noodles [Made]",
     price: 11,
     tags: ["Food", "Hot", "Vegan"],
