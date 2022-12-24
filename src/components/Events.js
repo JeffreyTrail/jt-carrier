@@ -116,7 +116,7 @@ function Events() {
 
       <br />
 
-      <Typography variant="h6">
+      <Typography paragraph>
         Advertise your club or event right here on JT Carrier!{" "}
         <a
           href="https://forms.gle/mWXPPqiaDCzEvRuu6"

@@ -25,7 +25,7 @@ function Store({ wallet }) {
       <Typography variant="h5" sx={rowStyle}>
         The WINGStore
       </Typography>
-      <Typography variant="h6">
+      <Typography paragraph>
         Redeem your tickets to have them added to your wallet. Orange tickets
         will not be included. <br />
         Running low on tickets? Ask your teachers how you can earn more!
@@ -77,7 +77,6 @@ function Store({ wallet }) {
                                 ? "info"
                                 : "error"
                             }
-                            // sx={{ color: "red" }}
                             size="small"
                           />
                         );

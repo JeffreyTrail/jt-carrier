@@ -125,18 +125,18 @@ function Dash(props) {
       ) : (
         <Box sx={{ margin: "auto" }}>
           <Typography paragraph>Welcome to your dashboard!</Typography>
-          <Stack spacing={1} direction="row">
-            <Chip
-              avatar={<Avatar>{props.wallet}</Avatar>}
-              label="Wallet"
-              variant="outlined"
-            />
-            <Chip
-              avatar={<Avatar>{cnt}</Avatar>}
-              label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
-              variant="outlined"
-            />
-          </Stack>
+          {/* <Stack spacing={1} direction="row"> */}
+          <Chip
+            avatar={<Avatar>{props.wallet}</Avatar>}
+            label="Wallet"
+            variant="outlined"
+          />
+          <Chip
+            avatar={<Avatar>{cnt}</Avatar>}
+            label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
+            variant="outlined"
+          />
+          {/* </Stack> */}
 
           <Button
             onClick={() => setHist(!hist)}

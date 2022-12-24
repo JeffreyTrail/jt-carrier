@@ -13,7 +13,7 @@ function Adv() {
         Advantage Flight Plan
       </Typography>
       <br />
-      <Typography variant="h6">
+      <Typography paragraph>
         Make an appointment at{" "}
         <a
           href="https://teachmore.org/jeffreytrail/students/"
@@ -23,7 +23,7 @@ function Adv() {
           https://teachmore.org/jeffreytrail/students/
         </a>
       </Typography>
-      <Typography variant="h6">
+      <Typography paragraph>
         Make sure to make an appointment for both Wednesday and Thursday and to
         check your teacher's advantage offering below.
       </Typography>

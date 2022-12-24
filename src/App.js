@@ -75,9 +75,6 @@ const lightTheme = createTheme({
   palette: {
     htmlFontSize: 15,
     mode: "light",
-    // primary: {
-    //   main: '#1452ee',
-    // },
     primary: {
       main: "#eeb114",
     },
@@ -302,10 +299,9 @@ function App() {
           <Drawer
             variant="permanent"
             sx={{
-              width: 180,
               flexShrink: 0,
               [`& .MuiDrawer-paper`]: {
-                width: 175,
+                width: 160,
                 boxSizing: "border-box",
               },
             }}
@@ -352,7 +348,7 @@ function App() {
                   <ListItemIcon>
                     <InterestsOutlined />
                   </ListItemIcon>
-                  <ListItemText primary="Advantage" />
+                  <ListItemText primary="Advan" />
                 </ListItemButton>
 
                 <ListItemButton
@@ -386,8 +382,8 @@ function App() {
           <Box
             sx={{
               width: mobile ? "90%" : "66%",
-              marginLeft: mobile ? "auto" : "190px",
-              paddingRight: mobile ? "auto" : "15px",
+              marginLeft: mobile ? "auto" : "170px",
+              paddingRight: mobile ? "auto" : "5px",
               marginBottom: mobile ? "10px" : "auto",
             }}
           >
