@@ -31,7 +31,6 @@ import {
   FeedbackOutlined,
   NotificationsOutlined,
   InterestsOutlined,
-  History,
   CalendarMonth,
   Storefront,
 } from "@mui/icons-material";
@@ -301,7 +300,7 @@ function App() {
             sx={{
               flexShrink: 0,
               [`& .MuiDrawer-paper`]: {
-                width: 160,
+                width: 145,
                 boxSizing: "border-box",
               },
             }}
@@ -313,8 +312,8 @@ function App() {
                   selected={tab === 0}
                   onClick={() => handleTabChange("", 0)}
                 >
-                  <ListItemIcon>
-                    <Input />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <Input sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Submit" />
                 </ListItemButton>
@@ -323,8 +322,8 @@ function App() {
                   selected={tab === 1}
                   onClick={() => handleTabChange("", 1)}
                 >
-                  <ListItemIcon>
-                    <BarChart />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <BarChart sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Statistics" />
                 </ListItemButton>
@@ -335,8 +334,8 @@ function App() {
                   selected={tab === 2}
                   onClick={() => handleTabChange("", 2)}
                 >
-                  <ListItemIcon>
-                    <InfoOutlined />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <InfoOutlined sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Help" />
                 </ListItemButton>
@@ -345,18 +344,18 @@ function App() {
                   selected={tab === 3}
                   onClick={() => handleTabChange("", 3)}
                 >
-                  <ListItemIcon>
-                    <InterestsOutlined />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <InterestsOutlined sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
-                  <ListItemText primary="Advan" />
+                  <ListItemText primary="Advantage" />
                 </ListItemButton>
 
                 <ListItemButton
                   selected={tab === 5}
                   onClick={() => handleTabChange("", 5)}
                 >
-                  <ListItemIcon>
-                    <CalendarMonth />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <CalendarMonth sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Events" />
                 </ListItemButton>
@@ -367,8 +366,8 @@ function App() {
                   selected={tab === 6}
                   onClick={() => handleTabChange("", 6)}
                 >
-                  <ListItemIcon>
-                    <Storefront />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <Storefront sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Store" />
                 </ListItemButton>
@@ -381,8 +380,8 @@ function App() {
         <Stack direction="row" spacing={1}>
           <Box
             sx={{
-              width: mobile ? "90%" : "66%",
-              marginLeft: mobile ? "auto" : "170px",
+              width: mobile ? "90%" : "70%",
+              marginLeft: mobile ? "auto" : "155px",
               paddingRight: mobile ? "auto" : "5px",
               marginBottom: mobile ? "10px" : "auto",
             }}
@@ -398,7 +397,12 @@ function App() {
             ) : tab === 5 ? (
               <Events />
             ) : (
-              <Store wallet={wallet} />
+              <Store
+                wallet={wallet}
+                setWallet={setWallet}
+                sid={sid}
+                setNotif={setNotif}
+              />
             )}
           </Box>
 
@@ -419,8 +423,9 @@ function App() {
 
         <Snackbar
           open={notif[1] !== ""}
-          autoHideDuration={10000}
+          autoHideDuration={15000}
           onClose={() => setNotif([notif[0], ""])}
+          resumeHideDuration={30000}
         >
           <Alert
             onClose={() => setNotif([notif[0], ""])}
@@ -435,14 +440,16 @@ function App() {
         {mobile ? (
           <Paper
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-            elevation={50}
+            elevation={5}
           >
             <BottomNavigation showLabels value={tab} onChange={handleTabChange}>
               <BottomNavigationAction label="Submit" icon={<Input />} />
               <BottomNavigationAction label="Stats" icon={<BarChart />} />
-              <BottomNavigationAction label="History" icon={<History />} />
               <BottomNavigationAction label="Help" icon={<InfoOutlined />} />
-              {/*<BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />*/}
+              <BottomNavigationAction
+                label="Advantage"
+                icon={<InterestsOutlined />}
+              />
             </BottomNavigation>
           </Paper>
         ) : (

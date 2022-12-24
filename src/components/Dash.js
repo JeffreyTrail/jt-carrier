@@ -74,6 +74,8 @@ function Dash(props) {
       sx={{
         position: "sticky",
         top: "72px",
+        marginRight: 1,
+        marginBottom: 3,
       }}
     >
       <Box sx={rowStyle}>
@@ -164,7 +166,6 @@ function Dash(props) {
             endIcon={hist ? <ExpandLess /> : <ExpandMore />}
             variant="outlined"
             fullWidth
-            sx={rowStyle}
             disabled={tkts.length === 0}
           >
             Load History
