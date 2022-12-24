@@ -47,7 +47,7 @@ function Store({ wallet }) {
       >
         {catalogue.map((item, index) => {
           return (
-            <Grid item xs={4}>
+            <Grid item xs={4} key={index}>
               <Card raised>
                 <CardHeader
                   action={
@@ -63,9 +63,10 @@ function Store({ wallet }) {
                   titleTypographyProps={{ variant: "h6" }}
                   subheader={
                     <Stack direction="row" spacing={1} sx={{ marginTop: 1 }}>
-                      {item.tags.map((tag) => {
+                      {item.tags.map((tag, i) => {
                         return (
                           <Chip
+                            key={i}
                             label={tag}
                             variant="outlined"
                             color={

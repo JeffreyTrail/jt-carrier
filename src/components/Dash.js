@@ -178,9 +178,9 @@ function Dash(props) {
                     </TableHead>
 
                     <TableBody>
-                      {tkts.map((t) => {
+                      {tkts.map((t, i) => {
                         return (
-                          <TableRow>
+                          <TableRow key={i}>
                             <TableCell sx={{}} align="center">
                               {t["code"]}
                             </TableCell>
