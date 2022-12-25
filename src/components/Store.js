@@ -26,24 +26,40 @@ function Store({ wallet, setWallet, sid, setNotif }) {
   // expand stores the pid of the item option that is currently expanded
   const [expand, setExpand] = React.useState(-1);
   const [deliv, setDeliv] = React.useState("ready");
+
   const buy = (itemn) => {
     console.log("This guy wants to buy:");
     console.log(catalogue[itemn]);
     console.log("with " + deliv + " delivery");
-    setWallet(wallet - catalogue[itemn].price);
-    setNotif([
-      "success",
-      "Your order of " +
-        catalogue[itemn].name +
-        " has been placed. " +
-        (deliv === "ready"
-          ? "We will deliver it as soon as it becomes available."
-          : deliv === "thurs"
-          ? "It will be delivered during 4th period on " + nextThurs + "."
-          : "Come by G4 today during the first 10 minutes of lunch to pick up!"),
-    ]);
-    setDeliv("ready");
-    setExpand(-1);
+    fetch(
+      "https://wings-carrier.herokuapp.com/buy/" +
+        sid +
+        "/" +
+        itemn +
+        "/" +
+        deliv
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.rcode !== 0) {
+          setNotif(["error", data.msg]);
+        } else {
+          setWallet(wallet - catalogue[itemn].price);
+          setNotif([
+            "success",
+            "Your order of " +
+              catalogue[itemn].name +
+              " has been placed. " +
+              (deliv === "ready"
+                ? "We will deliver it as soon as it becomes available."
+                : deliv === "thurs"
+                ? "It will be delivered during 4th period on " + nextThurs + "."
+                : "Come by G4 today during the first 10 minutes of lunch to pick up!"),
+          ]);
+          setDeliv("ready");
+          setExpand(-1);
+        }
+      });
   };
 
   // calculate the date for next
