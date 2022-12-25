@@ -20,6 +20,7 @@ import {
   Stack,
   Alert,
   Snackbar,
+  Slide,
 } from "@mui/material";
 import * as React from "react";
 import {
@@ -33,6 +34,7 @@ import {
   InterestsOutlined,
   CalendarMonth,
   Storefront,
+  MenuOpen,
 } from "@mui/icons-material";
 
 import Ticketing from "./components/Ticketing";
@@ -126,6 +128,9 @@ function App() {
     localNews !== null ? localNews : "08.18.22"
   );
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // Dashboard hide
+  const [dashon, setDashon] = React.useState(true);
 
   const open = Boolean(anchorEl);
   const id = open ? "news-popover" : undefined;
@@ -289,6 +294,16 @@ function App() {
                 {dark ? <DarkModeOutlined /> : <LightModeOutlined />}
               </IconButton>
             </Tooltip>
+
+            <Tooltip title={dashon ? "Hide Dashboard" : "Show Dashboard"}>
+              <IconButton color="inherit" onClick={() => setDashon(!dashon)}>
+                {dashon ? (
+                  <MenuOpen sx={{ transform: "rotate(180deg)" }} />
+                ) : (
+                  <MenuOpen />
+                )}
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
 
@@ -406,18 +421,20 @@ function App() {
             )}
           </Box>
 
-          {mobile ? (
+          {mobile || !dashon ? (
             <React.Fragment />
           ) : (
-            <Box sx={{ width: "17%" }}>
-              <Dash
-                sid={sid}
-                setSid={setSid}
-                wallet={wallet}
-                setWallet={setWallet}
-                setNotif={setNotif}
-              />
-            </Box>
+            <Slide direction="left" in={dashon}>
+              <Box sx={{ width: "17%" }}>
+                <Dash
+                  sid={sid}
+                  setSid={setSid}
+                  wallet={wallet}
+                  setWallet={setWallet}
+                  setNotif={setNotif}
+                />
+              </Box>
+            </Slide>
           )}
         </Stack>
 
