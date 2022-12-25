@@ -134,7 +134,7 @@ function Stats() {
       <Typography variant="h6">{errmsg}</Typography>
 
       <Typography variant="h6">
-        Ticket count for the week from {beg} to {end}
+        Ticket count for the week from {beg} to {end}:
       </Typography>
 
       <TableContainer component={Paper} sx={rowStyle}>

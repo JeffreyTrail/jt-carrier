@@ -21,52 +21,59 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
+import { catalogue } from "./Catalogue";
 
-function Dash(props) {
+function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
   const [name, setName] = React.useState("Log In");
   // const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
   const [tkts, setTkts] = React.useState([]);
+  const [purch, setPurch] = React.useState([]);
   const [status, setStatus] = React.useState(0);
   const [cnt, setCnt] = React.useState(-1);
-  const [hist, setHist] = React.useState(false);
+  const [thist, setThist] = React.useState(false);
+  const [phist, setPhist] = React.useState(false);
   const [remem, setRemem] = React.useState(false);
 
   const submit = () => {
     setSubmitted(true);
-    fetch("https://wings-carrier.herokuapp.com/lookup/" + props.sid)
+    fetch("https://wings-carrier.herokuapp.com/lookup/" + sid)
       .then((response) => response.json())
       .then((data) => {
         setSubmitted(false); // stop loading
         setStatus(data.status);
         if (data.status === 0) {
           setTkts(data.tkts);
+          setPurch(data.purch);
           setCnt(data.cnt);
           setName(data.name);
 
-          props.setWallet(data.wallet);
-          props.setNotif(["success", "Successfully signed in as " + data.name]);
+          setWallet(data.wallet);
+          setNotif(["success", "Successfully signed in as " + data.name]);
 
           if (remem && typeof Storage !== "undefined") {
-            localStorage.setItem("sid", props.sid);
+            localStorage.setItem("sid", sid);
           }
         } else if (data.status === 1) {
-          props.setNotif(["error", "We couldn't find someone with that ID."]);
+          setNotif(["error", "We couldn't find someone with that ID."]);
         }
       });
   };
 
   React.useEffect(() => {
-    if (props.sid !== "") submit(); // Load saved SID
+    if (sid !== "") submit(); // Load saved SID
     // eslint-disable-next-line
   }, []);
 
   const logout = () => {
+    // Reset everything
     setName("Log In");
-    props.setSid("");
+    setWallet(-1);
+    setSid("");
     localStorage.setItem("sid", "");
     setSubmitted(false);
     setStatus(0);
+    setNotif(["success", "Log out successful :)"]);
   };
 
   return (
@@ -94,13 +101,18 @@ function Dash(props) {
             {/* <TextField required label="IUSD email" value={email} size="small" /> */}
 
             <TextField
-              error={(submitted && props.sid === "") || status === 1}
+              error={(submitted && sid === "") || status === 1}
               required
-              label="Student ID"
-              value={props.sid}
+              label="Student ID Number"
+              value={sid}
               onChange={(e) => {
-                props.setSid(e.target.value);
+                setSid(e.target.value);
               }}
+              helperText={
+                sid !== "" && isNaN(sid) // is Not a Number
+                  ? "Invalid ID: Your 9 digit student ID should not contain any letters. It should look like '123456789'."
+                  : ""
+              }
               size="small"
             />
 
@@ -128,7 +140,7 @@ function Dash(props) {
         <Box sx={{ margin: "auto" }}>
           <Typography paragraph>Welcome to your dashboard!</Typography>
           <Chip
-            avatar={<Avatar>{props.wallet}</Avatar>}
+            avatar={<Avatar>{wallet}</Avatar>}
             label="Wallet"
             variant="outlined"
             sx={{
@@ -162,20 +174,20 @@ function Dash(props) {
           />
 
           <Button
-            onClick={() => setHist(!hist)}
-            endIcon={hist ? <ExpandLess /> : <ExpandMore />}
+            onClick={() => setThist(!thist)}
+            endIcon={thist ? <ExpandLess /> : <ExpandMore />}
             variant="outlined"
             fullWidth
             disabled={tkts.length === 0}
           >
-            Load History
+            Ticket History
           </Button>
           {tkts.length === 0 ? (
             <Typography paragraph sx={{ margin: 5, textAlign: "center" }}>
               You haven't submitted any tickets...yet.
             </Typography>
           ) : (
-            <Collapse in={hist} timeout="auto" unmountOnExit>
+            <Collapse in={thist} timeout="auto" unmountOnExit>
               <TableContainer
                 component={Paper}
                 sx={{
@@ -194,7 +206,7 @@ function Dash(props) {
                           Ticket Code
                         </TableCell>
                         <TableCell sx={{ fontWeight: "bold" }} align="center">
-                          Submit Time
+                          Submit Date
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -218,6 +230,66 @@ function Dash(props) {
               </TableContainer>
             </Collapse>
           )}
+
+          <Button
+            onClick={() => setPhist(!phist)}
+            endIcon={phist ? <ExpandLess /> : <ExpandMore />}
+            variant="outlined"
+            fullWidth
+            disabled={purch.length === 0}
+            sx={{ marginTop: 1 }}
+          >
+            Purchase History
+          </Button>
+          {purch.length === 0 ? (
+            <Typography paragraph sx={{ margin: 2, textAlign: "center" }}>
+              You haven't purchased anything...yet.
+            </Typography>
+          ) : (
+            <Collapse in={phist} timeout="auto" unmountOnExit>
+              <TableContainer
+                component={Paper}
+                sx={{
+                  width: "100%",
+                  flexGrow: "row",
+                  display: "flex",
+                }}
+              >
+                {submitted ? (
+                  <Skeleton variant="rectangular" width={"100%"} height={200} />
+                ) : (
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={{ fontWeight: "bold" }} align="center">
+                          Item
+                        </TableCell>
+                        <TableCell sx={{ fontWeight: "bold" }} align="center">
+                          Date
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                      {purch.map((t, i) => {
+                        return (
+                          <TableRow key={i}>
+                            <TableCell sx={{}} align="center">
+                              {catalogue[parseInt(t["itemn"])]["name"]}
+                            </TableCell>
+                            <TableCell sx={{}} align="center">
+                              {t["time"]}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                )}
+              </TableContainer>
+            </Collapse>
+          )}
+
           <Button
             fullWidth
             sx={{ marginTop: 1 }}
