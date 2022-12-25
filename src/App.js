@@ -99,6 +99,7 @@ function App() {
   let localTab = null;
   let localNews = null;
   let localSid = null;
+  let localDashon = null;
 
   if (typeof Storage !== "undefined") {
     // Getting user settings
@@ -106,6 +107,7 @@ function App() {
     localTab = localStorage.getItem("tab");
     localNews = localStorage.getItem("news");
     localSid = localStorage.getItem("sid");
+    localDashon = localStorage.getItem("dashon");
   }
 
   const browserDarkSetting = useMediaQuery("(prefers-color-scheme: dark)");
@@ -130,7 +132,9 @@ function App() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   // Dashboard hide
-  const [dashon, setDashon] = React.useState(true);
+  const [dashon, setDashon] = React.useState(
+    localDashon === null ? "on" : localDashon
+  );
 
   const open = Boolean(anchorEl);
   const id = open ? "news-popover" : undefined;
@@ -152,6 +156,13 @@ function App() {
       window.removeEventListener("resize", updateWidth);
     };
   });
+
+  const handleDashonChange = (e) => {
+    const newDashset = dashon === "on" ? "off" : "on";
+    if (typeof Storage !== "undefined")
+      localStorage.setItem("dashon", newDashset);
+    setDashon(newDashset);
+  };
 
   const handleTabChange = (e, newMode) => {
     setTab(newMode);
@@ -295,9 +306,11 @@ function App() {
               </IconButton>
             </Tooltip>
 
-            <Tooltip title={dashon ? "Hide Dashboard" : "Show Dashboard"}>
-              <IconButton color="inherit" onClick={() => setDashon(!dashon)}>
-                {dashon ? (
+            <Tooltip
+              title={dashon === "on" ? "Hide Dashboard" : "Show Dashboard"}
+            >
+              <IconButton color="inherit" onClick={handleDashonChange}>
+                {dashon === "on" ? (
                   <MenuOpen sx={{ transform: "rotate(180deg)" }} />
                 ) : (
                   <MenuOpen />
@@ -421,20 +434,22 @@ function App() {
             )}
           </Box>
 
-          {mobile || !dashon ? (
+          {mobile ? (
             <React.Fragment />
           ) : (
-            <Slide direction="left" in={dashon}>
-              <Box sx={{ width: "17%" }}>
-                <Dash
-                  sid={sid}
-                  setSid={setSid}
-                  wallet={wallet}
-                  setWallet={setWallet}
-                  setNotif={setNotif}
-                />
-              </Box>
-            </Slide>
+            <Box sx={{ width: "17%", overflowX: "hidden" }}>
+              <Slide direction="left" in={dashon === "on"}>
+                <Box>
+                  <Dash
+                    sid={sid}
+                    setSid={setSid}
+                    wallet={wallet}
+                    setWallet={setWallet}
+                    setNotif={setNotif}
+                  />
+                </Box>
+              </Slide>
+            </Box>
           )}
         </Stack>
 
