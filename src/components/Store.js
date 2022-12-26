@@ -28,9 +28,6 @@ function Store({ wallet, setWallet, sid, setNotif }) {
   const [deliv, setDeliv] = React.useState("ready");
 
   const buy = (itemn) => {
-    console.log("This guy wants to buy:");
-    console.log(catalogue[itemn]);
-    console.log("with " + deliv + " delivery");
     fetch(
       "https://wings-carrier.herokuapp.com/buy/" +
         sid +

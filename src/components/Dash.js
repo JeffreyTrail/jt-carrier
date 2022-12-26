@@ -1,22 +1,23 @@
 import {
+  Avatar,
   Box,
-  Typography,
+  Button,
+  Checkbox,
+  Chip,
+  Collapse,
+  Divider,
+  FormGroup,
+  FormControlLabel,
+  Paper,
+  Stack,
   Table,
   TableContainer,
-  Paper,
   TableCell,
   TableHead,
   TableRow,
   TableBody,
   TextField,
-  Button,
-  Stack,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  Avatar,
-  Chip,
-  Collapse,
+  Typography,
 } from "@mui/material";
 import * as React from "react";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
@@ -25,14 +26,18 @@ import { catalogue } from "./Catalogue";
 function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
   const [name, setName] = React.useState("Log In");
   const [email, setEmail] = React.useState("");
+  const [chance, setChance] = React.useState("calculate");
+
   const [submitted, setSubmitted] = React.useState(false);
+  const [remem, setRemem] = React.useState(false);
+
   const [tkts, setTkts] = React.useState([]);
   const [purch, setPurch] = React.useState([]);
   const [status, setStatus] = React.useState(0);
   const [cnt, setCnt] = React.useState(-1);
+
   const [thist, setThist] = React.useState(false);
   const [phist, setPhist] = React.useState(false);
-  const [remem, setRemem] = React.useState(false);
 
   const submit = () => {
     // Submit is used to catch empty fields (i.e. user is done typing)
@@ -68,6 +73,21 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
       });
   };
 
+  const chanceMe = () => {
+    fetch("https://wings-carrier.herokuapp.com/chance/" + sid)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 0) {
+          setChance(data.chance);
+        } else if (data.status === 1) {
+          setNotif([
+            "error",
+            "Incorrect ID. Please log out and try logging back in again.",
+          ]);
+        }
+      });
+  };
+
   const getUserData = () => {
     // Update data in dashboard
     fetch("https://wings-carrier.herokuapp.com/lookup/" + sid)
@@ -84,7 +104,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
         } else if (data.status === 1) {
           setNotif([
             "error",
-            "Incorrect ID. Please log out and try logging back in again. ",
+            "Incorrect ID. Please log out and try logging back in again.",
           ]);
         }
       });
@@ -135,6 +155,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
 
       {name === "Log In" ? (
         <Box sx={{ margin: "auto" }}>
+          {/* ******************************** SIGN IN PAGE ******************************** */}
           <Typography paragraph>
             Log in to use WINGStore, save your ID when submitting tickets, and
             more.
@@ -195,40 +216,37 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
         </Box>
       ) : (
         <Box sx={{ margin: "auto" }}>
+          {/* ********************************** SIGNED IN ********************************** */}
           <Typography paragraph>Welcome to your dashboard!</Typography>
           <Chip
             avatar={<Avatar>{wallet}</Avatar>}
             label="Wallet"
             variant="outlined"
-            sx={{
-              height: 42,
-              borderRadius: "999px",
-              fontSize: "1rem",
-              mb: 1,
-              mr: 1,
-              "& .MuiChip-avatar": {
-                fontSize: "1.1rem",
-                height: "32px",
-                width: "32px",
-              },
-            }}
+            sx={largeChip}
           />
           <Chip
             avatar={<Avatar>{cnt}</Avatar>}
             label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
             variant="outlined"
-            sx={{
-              height: 42,
-              borderRadius: "999px",
-              fontSize: "1rem",
-              mb: 1,
-              "& .MuiChip-avatar": {
-                fontSize: "1.1rem",
-                height: "32px",
-                width: "32px",
-              },
-            }}
+            sx={largeChip}
           />
+
+          <Divider />
+
+          <Typography variant="body2">
+            Your chances of winning next Tuesday's homeroom drawing:
+          </Typography>
+          {/* Generate Chances of Winning */}
+          <Button
+            onClick={chanceMe}
+            variant="text"
+            fullWidth
+            disabled={chance !== "calculate"}
+          >
+            {chance}
+          </Button>
+
+          <Divider />
 
           <Button
             onClick={() => setThist(!thist)}
@@ -236,6 +254,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
             variant="outlined"
             fullWidth
             disabled={tkts.length === 0}
+            sx={{ marginTop: 1 }}
           >
             Ticket History
           </Button>
@@ -251,6 +270,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                   width: "100%",
                   flexGrow: "row",
                   display: "flex",
+                  overflowX: "hidden",
                 }}
               >
                 <Table>
@@ -269,12 +289,8 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                     {tkts.map((t, i) => {
                       return (
                         <TableRow key={i}>
-                          <TableCell sx={{}} align="center">
-                            {t["code"]}
-                          </TableCell>
-                          <TableCell sx={{}} align="center">
-                            {t["time"]}
-                          </TableCell>
+                          <TableCell align="center">{t["code"]}</TableCell>
+                          <TableCell align="center">{t["time"]}</TableCell>
                         </TableRow>
                       );
                     })}
@@ -306,6 +322,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                   width: "100%",
                   flexGrow: "row",
                   display: "flex",
+                  overflowX: "hidden",
                 }}
               >
                 <Table>
@@ -324,12 +341,10 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                     {purch.map((t, i) => {
                       return (
                         <TableRow key={i}>
-                          <TableCell sx={{}} align="center">
+                          <TableCell align="center">
                             {catalogue[parseInt(t["itemn"])]["name"]}
                           </TableCell>
-                          <TableCell sx={{}} align="center">
-                            {t["time"]}
-                          </TableCell>
+                          <TableCell align="center">{t["time"]}</TableCell>
                         </TableRow>
                       );
                     })}
@@ -359,6 +374,18 @@ const rowStyle = {
   flexGrow: "row",
   display: "flex",
   marginTop: 3,
+};
+
+const largeChip = {
+  height: 35,
+  borderRadius: "999px",
+  fontSize: "0.9rem",
+  mb: 1,
+  "& .MuiChip-avatar": {
+    fontSize: "1.1rem",
+    height: "25px",
+    width: "25px",
+  },
 };
 
 export default Dash;
