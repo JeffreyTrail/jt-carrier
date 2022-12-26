@@ -17,7 +17,6 @@ import {
   Avatar,
   Chip,
   Collapse,
-  Skeleton,
 } from "@mui/material";
 import * as React from "react";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
@@ -25,7 +24,7 @@ import { catalogue } from "./Catalogue";
 
 function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
   const [name, setName] = React.useState("Log In");
-  // const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
   const [tkts, setTkts] = React.useState([]);
   const [purch, setPurch] = React.useState([]);
@@ -36,34 +35,79 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
   const [remem, setRemem] = React.useState(false);
 
   const submit = () => {
+    // Submit is used to catch empty fields (i.e. user is done typing)
     setSubmitted(true);
-    fetch("https://wings-carrier.herokuapp.com/lookup/" + sid)
+    // Skip auth if invalid inputs
+    if (sid === "" || isNaN(sid) || !validateEmail(email)) return;
+    // Authenticate user's SID and NID (from email)
+    fetch(
+      "https://wings-carrier.herokuapp.com/authenticate/" +
+        sid +
+        "/" +
+        email.substring(0, email.indexOf("@"))
+    )
       .then((response) => response.json())
       .then((data) => {
         setSubmitted(false); // stop loading
         setStatus(data.status);
         if (data.status === 0) {
-          setTkts(data.tkts);
-          setPurch(data.purch);
-          setCnt(data.cnt);
-          setName(data.name);
+          setNotif(["success", "Successfully signed in."]);
 
-          setWallet(data.wallet);
-          setNotif(["success", "Successfully signed in as " + data.name]);
-
+          // Remember this device for user; stay signed in
           if (remem && typeof Storage !== "undefined") {
             localStorage.setItem("sid", sid);
           }
+
+          // User is legit & Refresh user data
+          getUserData();
         } else if (data.status === 1) {
           setNotif(["error", "We couldn't find someone with that ID."]);
+        } else if (data.status === 2) {
+          setNotif(["error", "Your email does not match that ID."]);
         }
       });
   };
 
+  const getUserData = () => {
+    // Update data in dashboard
+    fetch("https://wings-carrier.herokuapp.com/lookup/" + sid)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 0) {
+          // All good
+          setTkts(data.tkts);
+          setPurch(data.purch);
+          setCnt(data.cnt);
+          setName(data.name);
+          setWallet(data.wallet);
+          // setNotif(["success", "Successfully signed in as " + data.name]);
+        } else if (data.status === 1) {
+          setNotif([
+            "error",
+            "Incorrect ID. Please log out and try logging back in again. ",
+          ]);
+        }
+      });
+  };
+
+  const validateEmail = (email) => {
+    if (email === "") {
+      return false;
+    }
+    if (!email.includes("@iusd.org")) {
+      return false;
+    }
+    if (email.includes(" ")) {
+      return false;
+    }
+    return true;
+  };
+
   React.useEffect(() => {
-    if (sid !== "") submit(); // Load saved SID
+    // Load saved SID on initial render or on purchase (wallet change)
+    if (sid !== "") getUserData();
     // eslint-disable-next-line
-  }, []);
+  }, [wallet]);
 
   const logout = () => {
     // Reset everything
@@ -97,11 +141,8 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
           </Typography>
 
           <Stack spacing={1}>
-            {/* Add second field to cross check network id in front of email */}
-            {/* <TextField required label="IUSD email" value={email} size="small" /> */}
-
             <TextField
-              error={(submitted && sid === "") || status === 1}
+              error={(submitted && (sid === "" || isNaN(sid))) || status === 1}
               required
               label="Student ID Number"
               value={sid}
@@ -111,6 +152,22 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
               helperText={
                 sid !== "" && isNaN(sid) // is Not a Number
                   ? "Invalid ID: Your 9 digit student ID should not contain any letters. It should look like '123456789'."
+                  : ""
+              }
+              size="small"
+            />
+
+            <TextField
+              error={(submitted && !validateEmail(email)) || status === 2}
+              required
+              label="IUSD email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              helperText={
+                email !== "" && !validateEmail(email)
+                  ? "Invalid email: Please use your iusd.org email. E.g. 26JonSmith@iusd.org."
                   : ""
               }
               size="small"
@@ -196,37 +253,33 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                   display: "flex",
                 }}
               >
-                {submitted ? (
-                  <Skeleton variant="rectangular" width={"100%"} height={200} />
-                ) : (
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: "bold" }} align="center">
-                          Ticket Code
-                        </TableCell>
-                        <TableCell sx={{ fontWeight: "bold" }} align="center">
-                          Submit Date
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: "bold" }} align="center">
+                        Ticket Code
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: "bold" }} align="center">
+                        Submit Date
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
 
-                    <TableBody>
-                      {tkts.map((t, i) => {
-                        return (
-                          <TableRow key={i}>
-                            <TableCell sx={{}} align="center">
-                              {t["code"]}
-                            </TableCell>
-                            <TableCell sx={{}} align="center">
-                              {t["time"]}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                )}
+                  <TableBody>
+                    {tkts.map((t, i) => {
+                      return (
+                        <TableRow key={i}>
+                          <TableCell sx={{}} align="center">
+                            {t["code"]}
+                          </TableCell>
+                          <TableCell sx={{}} align="center">
+                            {t["time"]}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
               </TableContainer>
             </Collapse>
           )}
@@ -255,37 +308,33 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                   display: "flex",
                 }}
               >
-                {submitted ? (
-                  <Skeleton variant="rectangular" width={"100%"} height={200} />
-                ) : (
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: "bold" }} align="center">
-                          Item
-                        </TableCell>
-                        <TableCell sx={{ fontWeight: "bold" }} align="center">
-                          Date
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: "bold" }} align="center">
+                        Item
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: "bold" }} align="center">
+                        Date
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
 
-                    <TableBody>
-                      {purch.map((t, i) => {
-                        return (
-                          <TableRow key={i}>
-                            <TableCell sx={{}} align="center">
-                              {catalogue[parseInt(t["itemn"])]["name"]}
-                            </TableCell>
-                            <TableCell sx={{}} align="center">
-                              {t["time"]}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                )}
+                  <TableBody>
+                    {purch.map((t, i) => {
+                      return (
+                        <TableRow key={i}>
+                          <TableCell sx={{}} align="center">
+                            {catalogue[parseInt(t["itemn"])]["name"]}
+                          </TableCell>
+                          <TableCell sx={{}} align="center">
+                            {t["time"]}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
               </TableContainer>
             </Collapse>
           )}

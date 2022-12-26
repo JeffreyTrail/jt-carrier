@@ -415,7 +415,12 @@ function App() {
             }}
           >
             {tab === 0 ? (
-              <Ticketing setNotif={setNotif} sid={sid} setSid={setSid} />
+              <Ticketing
+                setNotif={setNotif}
+                sid={sid}
+                setSid={setSid}
+                wallet={wallet}
+              />
             ) : tab === 1 ? (
               <Stats />
             ) : tab === 2 ? (

@@ -254,7 +254,8 @@ function Ticketing(props) {
           <TextField
             error={(submitted && props.sid === "") || isNaN(props.sid)}
             required
-            type="password"
+            type={props.wallet === -1 ? "number" : "password"}
+            disabled={props.wallet !== -1} // -1 if not logged in
             label="IUSD student ID"
             value={props.sid}
             helperText={
@@ -276,20 +277,6 @@ function Ticketing(props) {
           submit
         </Button>
       </Box>
-
-      {/*
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          margin: 10
-        }}
-      >
-        <Typography variant="h6">Sample Ticket</Typography>
-        <img src={ticket_sample} alt="sample WINGS ticket" />
-      </Box>
-      */}
     </React.Fragment>
   );
 }
