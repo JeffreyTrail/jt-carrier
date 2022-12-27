@@ -26,14 +26,6 @@ function Ticketing() {
   const [flavor, setFlavor] = React.useState("r");
   // flavor is  type & validity of code: o is orange, r is regular, i is invalid
 
-  const handleKeyPress = (event) => {
-    // Check if the key press is the "Enter" key
-    if (event.keyCode === 13) {
-      // Perform the button action here
-      alert('Button action!');
-    }
-  };
-
   const handleCode = (e) => {
     let newCode = e.target.value;
     if (newCode.includes("-")){
