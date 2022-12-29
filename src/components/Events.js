@@ -100,6 +100,54 @@ const ads = [
     info: "Join our yarn & craft club every week Wednesday at lunch!",
     url: "https://sites.google.com/u/0/d/1pPhb8gSBiSiDA6_vmcqK_1YJnnFGGNq0/preview",
   },
+  {
+    img: "https://drive.google.com/uc?id=16pup8eeeuiRqtQg-L8vM62StHPp-jMG5",
+    title: "Website Enhancer",
+    info: "Need help with your website? Click here!",
+    url: "https://bit.ly/WebsiteEnhancer",
+  },
+  {
+    img: "https://drive.google.com/uc?id=1v9RX5nm8BhX6NOHe6r7X6O_3emS01rsr",
+    title: "Dungeons and Dragons.",
+    info: "Join us. We will take you on a mystical journey.",
+    url: "https://bit.ly/DnD_SIte",
+  },
+  {
+    img: "https://drive.google.com/uc?id=1iYcwWtGz7CnYdCcX5JJaM6FqYV8W5itm",
+    title: "Film Club",
+    info: "Having fun, making a movie together!",
+    url: "https://sites.google.com/iusd.org/film-club/home?authuser=2",
+  },  
+  {
+    img: "https://drive.google.com/uc?id=16HinJGkdxGNO4WUh_QUYGj5-PsKp8k2W",
+    title: "Environment Club",
+    info: "Show your love for the Environment!",
+    url: "",
+  },
+  {
+    img: "https://drive.google.com/uc?id=1gFVS3Unp7Lh8xDLtvtFxHRJQk4dccFL3",
+    title: "Baking Club!!",
+    info: "Even if you can't bake, you can join! ( We have treats C: )",
+    url: "https://bakingclub22.carrd.co/",
+  },  
+  {
+    img: "https://drive.google.com/uc?id=1FTOm4d_YE5n5yNy3v8F-AAshlxoFzjvP",
+    title: "Sticker Workshop 101",
+    info: "Come to C-5 every Tuesday to make DIY Stickers!",
+    url: "https://sites.google.com/iusd.org/sticker-workshop-101/home",
+  },  
+  {
+    img: "https://drive.google.com/uc?id=1ZhttLslA0EXhEpf2GXDMB6qiAOefWLtv",
+    title: "Skill and Tell",
+    info: "Learn fun skills with your friends and win the weekly games!",
+    url: "",
+  },
+  {
+    img: "https://variety.com/wp-content/uploads/2021/11/DSCF3101_2_crop-e1637611739593.jpg",
+    title: "Taylor Swift",
+    info: "is in D3 Mrs. Barcenas",
+    url: "",
+  },
 ];
 
 function Events() {
@@ -129,7 +177,7 @@ function Events() {
         Reach ~600 students each week. All you need is an image and a tag line!
       </Typography>
 
-      <ImageList variant="quilted" cols={3} gap={9}>
+      <ImageList variant="masonry" cols={3} gap={9}>
         {ads.map((item) => (
           <ImageListItem key={item.img}>
             <img
