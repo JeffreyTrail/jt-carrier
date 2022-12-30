@@ -442,9 +442,15 @@ function App() {
           {mobile ? (
             <React.Fragment />
           ) : (
-            <Box sx={{ width: "17%", overflowX: "hidden" }}>
-              <Slide direction="left" in={dashon === "on"}>
-                <Box>
+            <Box sx={{width: "17%"}}>
+              <Slide sx={{ 
+              position: "sticky",
+              top: "72px",
+              marginRight: 1,
+              marginBottom: 3,
+            }} direction="left" in={dashon === "on"}>
+                <Box sx={{ 
+            overflowX: "hidden"}}>
                   <Dash
                     sid={sid}
                     setSid={setSid}

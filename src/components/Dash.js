@@ -141,14 +141,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
   };
 
   return (
-    <Box
-      sx={{
-        position: "sticky",
-        top: "72px",
-        marginRight: 1,
-        marginBottom: 3,
-      }}
-    >
+    <Box>
       <Box sx={rowStyle}>
         <Typography variant="h5">{name}</Typography>
       </Box>
