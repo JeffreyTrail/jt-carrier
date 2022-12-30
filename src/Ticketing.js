@@ -97,6 +97,12 @@ function Ticketing() {
     }
   };
 
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) { // 13 is the keycode for enter
+        submit(); // run the submit function
+    }
+  });
+
   return (
     <React.Fragment>
       <Modal open={result !== -1} onClose={() => setResult(-1)}>
