@@ -34,7 +34,8 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         "/" +
         itemn +
         "/" +
-        deliv
+        deliv +
+        nextThurs
     )
       .then((response) => response.json())
       .then((data) => {
@@ -71,8 +72,15 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         The WINGStore
       </Typography>
       <Typography paragraph>
-        Redeem your tickets to have them added to your wallet. Orange tickets
-        will not be included. <br />
+        How to use the WINGStore?{" "}
+        <a
+          href="https://docs.google.com/presentation/d/1q-KJYjRUWTL7tviBwHbPr_1wQQ52IH1ya_vYL6GRm9Y/edit?usp=sharing"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Learn more here.
+        </a>
+        <br />
         Running low on tickets? Ask your teachers how you can earn more!
       </Typography>
 

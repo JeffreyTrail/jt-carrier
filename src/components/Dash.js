@@ -370,14 +370,14 @@ const rowStyle = {
 };
 
 const largeChip = {
-  height: 35,
+  height: 39,
   borderRadius: "999px",
   fontSize: "0.9rem",
   mb: 1,
   "& .MuiChip-avatar": {
-    fontSize: "1.1rem",
-    height: "25px",
-    width: "25px",
+    fontSize: "1.2rem",
+    height: "29px",
+    width: "29px",
   },
 };
 
