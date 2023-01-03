@@ -17,6 +17,10 @@ import {
   ListItemButton,
   Divider,
   Drawer,
+  Stack,
+  Alert,
+  Snackbar,
+  Slide,
 } from "@mui/material";
 import * as React from "react";
 import {
@@ -28,16 +32,18 @@ import {
   FeedbackOutlined,
   NotificationsOutlined,
   InterestsOutlined,
-  History,
   CalendarMonth,
+  Storefront,
+  MenuOpen,
 } from "@mui/icons-material";
 
-import Ticketing from "./Ticketing";
-import Stats from "./Stats";
-import Help from "./Help";
-import Adv from "./Adv";
-import Hist from "./Hist";
-import Events from "./Events";
+import Ticketing from "./components/Ticketing";
+import Stats from "./components/Stats";
+import Help from "./components/Help";
+import Adv from "./components/Adv";
+import Events from "./components/Events";
+import Store from "./components/Store";
+import Dash from "./components/Dash";
 
 import ReactGA from "react-ga4";
 
@@ -70,9 +76,6 @@ const lightTheme = createTheme({
   palette: {
     htmlFontSize: 15,
     mode: "light",
-    // primary: {
-    //   main: '#1452ee',
-    // },
     primary: {
       main: "#eeb114",
     },
@@ -89,15 +92,22 @@ const lightTheme = createTheme({
 const CURRENT = "10.26.22";
 
 function App() {
+  // Global snackbar for delivering status info
+  const [notif, setNotif] = React.useState(["info", ""]);
+
   let localDarkSetting = null;
   let localTab = null;
   let localNews = null;
+  let localSid = null;
+  let localDashon = null;
 
   if (typeof Storage !== "undefined") {
     // Getting user settings
     localDarkSetting = localStorage.getItem("dark");
     localTab = localStorage.getItem("tab");
     localNews = localStorage.getItem("news");
+    localSid = localStorage.getItem("sid");
+    localDashon = localStorage.getItem("dashon");
   }
 
   const browserDarkSetting = useMediaQuery("(prefers-color-scheme: dark)");
@@ -109,11 +119,22 @@ function App() {
     localDarkSetting !== null ? localDarkSetting === "true" : browserDarkSetting
   );
 
+  // Wallet for the store
+  const [wallet, setWallet] = React.useState(-1);
+
+  // Saved SID
+  const [sid, setSid] = React.useState(localSid === null ? "" : localSid);
+
   // News & News Popover
   const [news, setNews] = React.useState(
     localNews !== null ? localNews : "08.18.22"
   );
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // Dashboard hide
+  const [dashon, setDashon] = React.useState(
+    localDashon === null ? "on" : localDashon
+  );
 
   const open = Boolean(anchorEl);
   const id = open ? "news-popover" : undefined;
@@ -135,6 +156,13 @@ function App() {
       window.removeEventListener("resize", updateWidth);
     };
   });
+
+  const handleDashonChange = (e) => {
+    const newDashset = dashon === "on" ? "off" : "on";
+    if (typeof Storage !== "undefined")
+      localStorage.setItem("dashon", newDashset);
+    setDashon(newDashset);
+  };
 
   const handleTabChange = (e, newMode) => {
     setTab(newMode);
@@ -277,6 +305,18 @@ function App() {
                 {dark ? <DarkModeOutlined /> : <LightModeOutlined />}
               </IconButton>
             </Tooltip>
+
+            <Tooltip
+              title={dashon === "on" ? "Hide Dashboard" : "Show Dashboard"}
+            >
+              <IconButton color="inherit" onClick={handleDashonChange}>
+                {dashon === "on" ? (
+                  <MenuOpen sx={{ transform: "rotate(180deg)" }} />
+                ) : (
+                  <MenuOpen />
+                )}
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
 
@@ -286,10 +326,9 @@ function App() {
           <Drawer
             variant="permanent"
             sx={{
-              width: 200,
               flexShrink: 0,
               [`& .MuiDrawer-paper`]: {
-                width: 180,
+                width: 145,
                 boxSizing: "border-box",
               },
             }}
@@ -301,8 +340,8 @@ function App() {
                   selected={tab === 0}
                   onClick={() => handleTabChange("", 0)}
                 >
-                  <ListItemIcon>
-                    <Input />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <Input sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Submit" />
                 </ListItemButton>
@@ -311,40 +350,30 @@ function App() {
                   selected={tab === 1}
                   onClick={() => handleTabChange("", 1)}
                 >
-                  <ListItemIcon>
-                    <BarChart />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <BarChart sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Statistics" />
-                </ListItemButton>
-
-                <ListItemButton
-                  selected={tab === 2}
-                  onClick={() => handleTabChange("", 2)}
-                >
-                  <ListItemIcon>
-                    <History />
-                  </ListItemIcon>
-                  <ListItemText primary="History" />
                 </ListItemButton>
 
                 <Divider />
 
                 <ListItemButton
-                  selected={tab === 3}
-                  onClick={() => handleTabChange("", 3)}
+                  selected={tab === 2}
+                  onClick={() => handleTabChange("", 2)}
                 >
-                  <ListItemIcon>
-                    <InfoOutlined />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <InfoOutlined sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Help" />
                 </ListItemButton>
 
                 <ListItemButton
-                  selected={tab === 4}
-                  onClick={() => handleTabChange("", 4)}
+                  selected={tab === 3}
+                  onClick={() => handleTabChange("", 3)}
                 >
-                  <ListItemIcon>
-                    <InterestsOutlined />
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <InterestsOutlined sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Advantage" />
                 </ListItemButton>
@@ -353,12 +382,22 @@ function App() {
                   selected={tab === 5}
                   onClick={() => handleTabChange("", 5)}
                 >
-                  <ListItemIcon>
-                    <Badge color="secondary" variant="dot">
-                      <CalendarMonth />
-                    </Badge>
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <CalendarMonth sx={{ fontSize: "1.2rem" }} />
                   </ListItemIcon>
                   <ListItemText primary="Events" />
+                </ListItemButton>
+
+                <Divider />
+
+                <ListItemButton
+                  selected={tab === 6}
+                  onClick={() => handleTabChange("", 6)}
+                >
+                  <ListItemIcon sx={{ minWidth: 32 }}>
+                    <Storefront sx={{ fontSize: "1.2rem" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="Store" />
                 </ListItemButton>
               </List>
             </Box>
@@ -366,51 +405,101 @@ function App() {
         )}
 
         {/********************* Body *********************/}
-        <Box
-          sx={{
-            width: mobile ? "90%" : "66%",
-            margin: "auto",
-            marginBottom: mobile ? "80px" : "auto",
-          }}
-        >
-          <Typography color="red" variant="body1">
-            <br />
-            Feature request contest voting is now open!{" "}
-            <a
-              href="https://docs.google.com/presentation/d/1wKypW8sLLtTtwOrrnKWbM7kv9JNh9gD9xzrgQa3v1_Q/edit?usp=sharing"
-              rel="noreferrer"
-              target="_blank"
-            >
-              View Submissions & Vote
-            </a>
-          </Typography>
-          {tab === 0 ? (
-            <Ticketing />
-          ) : tab === 1 ? (
-            <Stats />
-          ) : tab === 2 ? (
-            <Hist />
-          ) : tab === 3 ? (
-            <Help />
-          ) : tab === 4 ? (
-            <Adv />
+        <Stack direction="row" spacing={1}>
+          <Box
+            sx={{
+              width: mobile ? "90%" : "70%",
+              marginLeft: mobile ? "auto" : "155px",
+              paddingRight: mobile ? "auto" : "5px",
+              marginBottom: mobile ? "10px" : "auto",
+            }}
+          >
+            {tab === 0 ? (
+              <Ticketing
+                setNotif={setNotif}
+                sid={sid}
+                setSid={setSid}
+                wallet={wallet}
+              />
+            ) : tab === 1 ? (
+              <Stats />
+            ) : tab === 2 ? (
+              <Help />
+            ) : tab === 3 ? (
+              <Adv />
+            ) : tab === 5 ? (
+              <Events />
+            ) : (
+              <Store
+                wallet={wallet}
+                setWallet={setWallet}
+                sid={sid}
+                setNotif={setNotif}
+              />
+            )}
+          </Box>
+
+          {mobile ? (
+            <React.Fragment />
           ) : (
-            <Events />
+            <Box sx={{ width: "17%" }}>
+              <Slide
+                sx={{
+                  position: "sticky",
+                  top: "72px",
+                  marginRight: 1,
+                  marginBottom: 3,
+                }}
+                direction="left"
+                in={dashon === "on"}
+              >
+                <Box
+                  sx={{
+                    overflowX: "hidden",
+                  }}
+                >
+                  <Dash
+                    sid={sid}
+                    setSid={setSid}
+                    wallet={wallet}
+                    setWallet={setWallet}
+                    setNotif={setNotif}
+                  />
+                </Box>
+              </Slide>
+            </Box>
           )}
-        </Box>
+        </Stack>
+
+        <Snackbar
+          open={notif[1] !== ""}
+          autoHideDuration={15000}
+          onClose={() => setNotif([notif[0], ""])}
+          resumeHideDuration={30000}
+        >
+          <Alert
+            onClose={() => setNotif([notif[0], ""])}
+            severity={notif[0]}
+            sx={{ width: "100%" }}
+          >
+            {notif[1]}
+          </Alert>
+        </Snackbar>
 
         {/************** Bottom Nav for Mobile **************/}
         {mobile ? (
           <Paper
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-            elevation={50}
+            elevation={5}
           >
             <BottomNavigation showLabels value={tab} onChange={handleTabChange}>
               <BottomNavigationAction label="Submit" icon={<Input />} />
               <BottomNavigationAction label="Stats" icon={<BarChart />} />
-              <BottomNavigationAction label="History" icon={<History />} />
               <BottomNavigationAction label="Help" icon={<InfoOutlined />} />
-              {/*<BottomNavigationAction label="Advantage" icon={<InterestsOutlined />} />*/}
+              <BottomNavigationAction
+                label="Advantage"
+                icon={<InterestsOutlined />}
+              />
             </BottomNavigation>
           </Paper>
         ) : (
