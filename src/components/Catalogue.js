@@ -100,6 +100,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1WBRIC-R7M0oLAgC6n5WBRZySWku1uFSI",
     desc: "Limited edition, vintage JTMS branded pens. They will bless you during a test.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 11,

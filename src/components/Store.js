@@ -173,12 +173,12 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                       setExpand(expand === item.pid ? -1 : item.pid);
                       setDeliv("ready");
                     }}
-                    disabled={item.price > wallet}
+                    disabled={item.price > wallet || item.sold === "out"}
                     endIcon={
                       expand === item.pid ? <ExpandLess /> : <ExpandMore />
                     }
                   >
-                    order
+                    {item.sold === "out" ? "sold out" : "order"}
                   </Button>
                 </CardActions>
                 <Collapse in={expand === item.pid} timeout="auto" unmountOnExit>
