@@ -35,7 +35,7 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         itemn +
         "/" +
         deliv +
-        nextThurs
+        (deliv === "thurs" ? nextThurs : "")
     )
       .then((response) => response.json())
       .then((data) => {
@@ -209,7 +209,7 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                           disabled={item.deliv[2]}
                           value="ready"
                           control={<Radio />}
-                          label="When Ready (ASAP)"
+                          label="When Ready"
                         />
                       </RadioGroup>
                     </FormControl>
