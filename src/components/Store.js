@@ -123,7 +123,7 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                             label={tag}
                             variant="outlined"
                             color={
-                              tag === "Vegan"
+                              tag.includes("Veg")
                                 ? "success"
                                 : tag === "Food" || tag === "Drink"
                                 ? "warning"
