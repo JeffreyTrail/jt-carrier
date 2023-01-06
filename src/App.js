@@ -89,7 +89,7 @@ const lightTheme = createTheme({
   },
 });
 
-const CURRENT = "10.26.22";
+const CURRENT = "01.02.23";
 
 function App() {
   // Global snackbar for delivering status info
@@ -266,6 +266,10 @@ function App() {
               >
                 <Typography variant="h6">🎉What's New?! {CURRENT}</Typography>
                 <hr />
+                <Typography variant="body1">
+                  The WINGStore is now live! Also added the accounts dashboard. 
+                </Typography>
+                <br />
                 <Typography variant="body1">
                   Ticket submissions heatmap & orange tickets leaderboard in the
                   Stats tab.
