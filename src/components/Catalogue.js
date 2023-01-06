@@ -16,7 +16,7 @@ export const catalogue = [
     price: 6,
     tags: ["Drink", "Vegan"],
     pic: "https://www.snackhistory.com/wp-content/uploads/2022/02/Pepsi-3.jpg",
-    desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available.",
+    desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free & caffeine-free options available.",
     deliv: [false, false, false],
   },
   {
@@ -43,7 +43,7 @@ export const catalogue = [
     price: 52,
     tags: ["Experience"],
     pic: "https://drive.google.com/uc?id=18fI0rsRjgptBcie6x2y_OU7p-qEpyTW8",
-    desc: "Be Assistant Principal for a day! Live a day in her shoes, learn the ins and outs of her job, and help manager the school for a day. ",
+    desc: "Be Assistant Principal for a day! Live a day in her shoes, learn the ins and outs of her job, and help manage the school for a day. ",
     deliv: [true, true, false],
   },
   {
