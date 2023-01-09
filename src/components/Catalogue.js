@@ -18,6 +18,7 @@ export const catalogue = [
     pic: "https://www.snackhistory.com/wp-content/uploads/2022/02/Pepsi-3.jpg",
     desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free & caffeine-free options available.",
     deliv: [false, false, false],
+    options: ["Refrigerated", "Sugar-free & Caffeine-free"],
   },
   {
     pid: 2,
@@ -61,7 +62,7 @@ export const catalogue = [
     price: 11,
     tags: ["Food", "Hot", "Vegan"],
     pic: "https://www.adweek.com/wp-content/uploads/files/cup-noodles-hed-2015.jpg",
-    desc: "Smells good. Delivered right before lunch. Vegan options available with a slightly longer wait.",
+    desc: "Smells good. Come grab it at the start of lunch. Vegan options available with a slightly longer wait.",
     deliv: [true, false, false],
   },
   {
@@ -130,6 +131,7 @@ export const catalogue = [
     pic: "https://s3-prod.adage.com/s3fs-public/20220215_Gatorade_3x2.jpg",
     desc: "It's a hot day, and you just ran a mile. Time to cool down and replenish your electrolytes.",
     deliv: [false, false, false],
+    options: ["Refrigerated"],
   },
   {
     pid: 14,
@@ -139,6 +141,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1iiRxMV2Oo2CsL-ReLejLMlTKvWyTSyqi",
     desc: "Limited edition, old school throwback JTMS Spirit gear. Limited sizes and designs available.",
     deliv: [true, false, false],
+    options: ["Size S", "Size M", "Size L", "Size XL"],
   },
   {
     pid: 15,
@@ -148,6 +151,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1rY3uD9Gl1oMs0K3TeegbiDSjYEBkTRrT",
     desc: "Limited edition, old school throwback JTMS Spirit gear. Limited sizes and designs available.",
     deliv: [true, false, false],
+    options: ["Size S", "Size M", "Size L", "Size XL"],
   },
   {
     pid: 16,
@@ -157,6 +161,7 @@ export const catalogue = [
     pic: "https://www.7up.com/images/products/slider/7up_featured_m.jpg",
     desc: "Do you want a coke but without a caffeine? Here's a 7-up. Much better than a Sprite. Diet version available upon request.",
     deliv: [false, false, false],
+    options: ["Refrigerated", "Sugar-free"],
   },
   {
     pid: 17,

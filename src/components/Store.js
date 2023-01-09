@@ -16,6 +16,8 @@ import {
   Radio,
   FormControl,
   FormLabel,
+  FormGroup,
+  Checkbox,
   RadioGroup,
 } from "@mui/material";
 import * as React from "react";
@@ -26,6 +28,7 @@ function Store({ wallet, setWallet, sid, setNotif }) {
   // expand stores the pid of the item option that is currently expanded
   const [expand, setExpand] = React.useState(-1);
   const [deliv, setDeliv] = React.useState("ready");
+  const [options, setOptions] = React.useState([]);
 
   const buy = (itemn) => {
     fetch(
@@ -35,7 +38,9 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         itemn +
         "/" +
         deliv +
-        (deliv === "thurs" ? nextThurs : "")
+        (deliv === "thurs" ? nextThurs : "") +
+        "/" +
+        (options.length === 0 ? "NA" : options.join(", "))
     )
       .then((response) => response.json())
       .then((data) => {
@@ -55,12 +60,29 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                 : "Come by G4 today during the first 10 minutes of lunch to pick up!"),
           ]);
           setDeliv("ready");
+          setOptions([]);
           setExpand(-1);
         }
       });
   };
 
-  // calculate the date for next
+  const customize = (e) => {
+    // Check to see if this option has been added
+    // If so, remove it; else, add it
+    const index = options.indexOf(e.target.name);
+    let newOptions = options;
+    if (index === -1) {
+      // Adding option
+      newOptions.push(e.target.name);
+    } else {
+      // Removing option
+      newOptions.splice(index, 1);
+    }
+    // newOptions.sort()
+    setOptions(newOptions);
+  };
+
+  // calculate the date for next Thurs
   let d = new Date();
   d.setDate(d.getDate() + (4 + 7 - (d.getDay() || 7)));
   let nextThurs = d.toString();
@@ -166,12 +188,13 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                     <React.Fragment />
                   )}
                   <Button
-                    aria-label="buy"
+                    aria-label="order"
                     fullWidth
                     variant="outlined"
                     onClick={() => {
                       setExpand(expand === item.pid ? -1 : item.pid);
                       setDeliv("ready");
+                      setOptions([]);
                     }}
                     disabled={item.price > wallet || item.sold === "out"}
                     endIcon={
@@ -195,24 +218,49 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                       >
                         <FormControlLabel
                           disabled={item.deliv[0]}
+                          key={0}
                           value="pickup"
                           control={<Radio />}
                           label="Same-day Pickup"
                         />
                         <FormControlLabel
                           disabled={item.deliv[1]}
+                          key={1}
                           value="thurs"
                           control={<Radio />}
                           label={"Next Thurs (" + nextThurs + ")"}
                         />
                         <FormControlLabel
                           disabled={item.deliv[2]}
+                          key={2}
                           value="ready"
                           control={<Radio />}
                           label="When Ready"
                         />
                       </RadioGroup>
                     </FormControl>
+
+                    {item.options ? (
+                      <FormGroup>
+                        <FormLabel id="deliv-options">
+                          Additional options:
+                        </FormLabel>
+                        {item.options.map((o, i) => {
+                          return (
+                            <FormControlLabel
+                              control={
+                                <Checkbox onChange={customize} name={o} />
+                              }
+                              key={i}
+                              label={o}
+                            />
+                          );
+                        })}
+                      </FormGroup>
+                    ) : (
+                      <React.Fragment />
+                    )}
+
                     <Button
                       fullWidth
                       variant="contained"

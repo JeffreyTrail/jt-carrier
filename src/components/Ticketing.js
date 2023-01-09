@@ -69,6 +69,7 @@ function Ticketing(props) {
             setTeacher("");
             setSubmitted(false);
             setFlavor("r");
+            props.setWallet(props.wallet + 1);
             props.setNotif(["success", "Ticket successfully submitted!"]);
           }
         });
@@ -98,9 +99,10 @@ function Ticketing(props) {
     }
   };
 
-  document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) { // 13 is the keycode for enter
-        submit(); // run the submit function
+  document.addEventListener("keydown", function (event) {
+    if (event.keyCode === 13) {
+      // 13 is the keycode for enter
+      submit(); // run the submit function
     }
   });
 
