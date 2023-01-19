@@ -17,7 +17,7 @@ export const catalogue = [
     tags: ["Drink", "Vegan"],
     pic: "https://www.snackhistory.com/wp-content/uploads/2022/02/Pepsi-3.jpg",
     desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free & caffeine-free options available.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
     options: ["Refrigerated", "Sugar-free & Caffeine-free"],
   },
   {
@@ -27,7 +27,7 @@ export const catalogue = [
     tags: ["Food"],
     pic: "https://static.onecms.io/wp-content/uploads/sites/19/2021/08/12/oreo-hero.jpg",
     desc: "Sometimes you just CRAVE an oreo. You don't need a lot; just one or two. Same-day pick up available.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
   },
   {
     pid: 3,
@@ -60,9 +60,9 @@ export const catalogue = [
     pid: 6,
     name: "Cup Noodles [Made]",
     price: 11,
-    tags: ["Food", "Hot", "Vegan"],
+    tags: ["Food", "Hot"],
     pic: "https://www.adweek.com/wp-content/uploads/files/cup-noodles-hed-2015.jpg",
-    desc: "Smells good. Come grab it at the start of lunch. Vegan options available with a slightly longer wait.",
+    desc: "Smells good. Come grab it at the start of lunch. Vegan options NO LONGER available.",
     deliv: [true, false, false],
   },
   {
@@ -91,7 +91,7 @@ export const catalogue = [
     tags: ["Merch"],
     pic: "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/S/aplus-media/sc/dacc10c3-706c-40cf-a948-a7de629274a1.__CR0,0,300,300_PT0_SX300_V1___.jpg",
     desc: "Life is like an orange - it's pretty amazing. Here's an orange that will never go bad.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
   },
   {
     pid: 10,
@@ -130,7 +130,7 @@ export const catalogue = [
     tags: ["Drink"],
     pic: "https://s3-prod.adage.com/s3fs-public/20220215_Gatorade_3x2.jpg",
     desc: "It's a hot day, and you just ran a mile. Time to cool down and replenish your electrolytes.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
     options: ["Refrigerated"],
   },
   {
@@ -160,7 +160,7 @@ export const catalogue = [
     tags: ["Drink", "Merch", "Vegan"],
     pic: "https://www.7up.com/images/products/slider/7up_featured_m.jpg",
     desc: "Do you want a coke but without a caffeine? Here's a 7-up. Much better than a Sprite. Diet version available upon request.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
     options: ["Refrigerated", "Sugar-free"],
   },
   {
@@ -170,7 +170,7 @@ export const catalogue = [
     tags: ["Food"],
     pic: "https://cdn.shopify.com/s/files/1/0972/7116/products/Meiji-Hello-Panda-Chocolate-Mini-Cookies-3-768x768_2048x.jpg?v=1652369963",
     desc: "Crunchy on the outside, soft and chocolatey on the inside. Sharing size, and bite-sized.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
   },
   {
     pid: 18,
@@ -197,6 +197,6 @@ export const catalogue = [
     tags: ["Experience"],
     pic: "https://drive.google.com/uc?id=1cw0lZuRZE7GhcdcqjrqDUOxQvtF63MnC",
     desc: "Got a lunch club to run? Got a game to win? Got the urge to just skip the line? Well this pass is for you. Single-use, and non-transferable.",
-    deliv: [false, false, false],
+    deliv: [true, false, false],
   },
 ];
