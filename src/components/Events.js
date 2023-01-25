@@ -117,7 +117,7 @@ const ads = [
     title: "Film Club",
     info: "Having fun, making a movie together!",
     url: "https://sites.google.com/iusd.org/film-club/home?authuser=2",
-  },  
+  },
   {
     img: "https://drive.google.com/uc?id=16HinJGkdxGNO4WUh_QUYGj5-PsKp8k2W",
     title: "Environment Club",
@@ -129,18 +129,24 @@ const ads = [
     title: "Baking Club!!",
     info: "Even if you can't bake, you can join! ( We have treats C: )",
     url: "https://bakingclub22.carrd.co/",
-  },  
+  },
   {
     img: "https://drive.google.com/uc?id=1FTOm4d_YE5n5yNy3v8F-AAshlxoFzjvP",
     title: "Sticker Workshop 101",
     info: "Come to C-5 every Tuesday to make DIY Stickers!",
     url: "https://sites.google.com/iusd.org/sticker-workshop-101/home",
-  },  
+  },
   {
     img: "https://drive.google.com/uc?id=1ZhttLslA0EXhEpf2GXDMB6qiAOefWLtv",
     title: "Skill and Tell",
     info: "Learn fun skills with your friends and win the weekly games!",
     url: "",
+  },
+  {
+    img: "https://drive.google.com/uc?id=1Db_GYa-J8D5eBAU54gOev_tupP-L5XJl",
+    title: "Minecraft Club",
+    info: "Hang out and talk about minecraft and play on a SMP and etc!",
+    url: "https://bit.ly/JtmsMinecraft",
   },
   {
     img: "https://variety.com/wp-content/uploads/2021/11/DSCF3101_2_crop-e1637611739593.jpg",
