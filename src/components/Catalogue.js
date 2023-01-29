@@ -64,6 +64,7 @@ export const catalogue = [
     pic: "https://www.adweek.com/wp-content/uploads/files/cup-noodles-hed-2015.jpg",
     desc: "Smells good. Come grab it at the start of lunch. Vegan options NO LONGER available.",
     deliv: [true, false, false],
+    options: ["Chicken Flavor", "Shrimp Flavor"],
   },
   {
     pid: 7,

@@ -13,12 +13,12 @@ import {
   Collapse,
   Stack,
   FormControlLabel,
-  Radio,
-  FormControl,
+  // Radio,
+  // FormControl,
   FormLabel,
   FormGroup,
   Checkbox,
-  RadioGroup,
+  // RadioGroup,
 } from "@mui/material";
 import * as React from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
@@ -27,8 +27,13 @@ import { catalogue } from "./Catalogue";
 function Store({ wallet, setWallet, sid, setNotif }) {
   // expand stores the pid of the item option that is currently expanded
   const [expand, setExpand] = React.useState(-1);
-  const [deliv, setDeliv] = React.useState("ready");
   const [options, setOptions] = React.useState([]);
+
+  // calculate the date for next Thurs
+  let d = new Date();
+  d.setDate(d.getDate() + (4 + 7 - (d.getDay() || 7)));
+  let deliv = d.toString();
+  deliv = deliv.substring(4, deliv.indexOf("202") - 1);
 
   const buy = (itemn) => {
     fetch(
@@ -38,7 +43,6 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         itemn +
         "/" +
         deliv +
-        (deliv === "thurs" ? nextThurs : "") +
         "/" +
         (options.length === 0 ? "NA" : options.join(", "))
     )
@@ -52,14 +56,10 @@ function Store({ wallet, setWallet, sid, setNotif }) {
             "success",
             "Your order of " +
               catalogue[itemn].name +
-              " has been placed. " +
-              (deliv === "ready"
-                ? "We will deliver it as soon as it becomes available."
-                : deliv === "thurs"
-                ? "It will be delivered during 4th period on " + nextThurs + "."
-                : "Come by G4 today during the first 10 minutes of lunch to pick up!"),
+              " has been placed. ASB will deliver it by next Thursday " +
+              deliv +
+              ".",
           ]);
-          setDeliv("ready");
           setOptions([]);
           setExpand(-1);
         }
@@ -81,12 +81,6 @@ function Store({ wallet, setWallet, sid, setNotif }) {
     // newOptions.sort()
     setOptions(newOptions);
   };
-
-  // calculate the date for next Thurs
-  let d = new Date();
-  d.setDate(d.getDate() + (4 + 7 - (d.getDay() || 7)));
-  let nextThurs = d.toString();
-  nextThurs = nextThurs.substring(4, nextThurs.indexOf("202") - 1);
 
   return (
     <Box>
@@ -193,7 +187,6 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                     variant="outlined"
                     onClick={() => {
                       setExpand(expand === item.pid ? -1 : item.pid);
-                      setDeliv("ready");
                       setOptions([]);
                     }}
                     disabled={item.price > wallet || item.sold === "out"}
@@ -206,43 +199,13 @@ function Store({ wallet, setWallet, sid, setNotif }) {
                 </CardActions>
                 <Collapse in={expand === item.pid} timeout="auto" unmountOnExit>
                   <CardContent>
-                    <FormControl>
-                      <FormLabel id="deliv-options">
-                        Choose a delivery option:
-                      </FormLabel>
-                      <RadioGroup
-                        aria-labelledby="deliv-options"
-                        value={deliv}
-                        onChange={(e) => setDeliv(e.target.value)}
-                        name="deliv-options"
-                      >
-                        <FormControlLabel
-                          disabled={item.deliv[0]}
-                          key={0}
-                          value="pickup"
-                          control={<Radio />}
-                          label="Same-day Pickup"
-                        />
-                        <FormControlLabel
-                          disabled={item.deliv[1]}
-                          key={1}
-                          value="thurs"
-                          control={<Radio />}
-                          label={"Next Thurs (" + nextThurs + ")"}
-                        />
-                        <FormControlLabel
-                          disabled={item.deliv[2]}
-                          key={2}
-                          value="ready"
-                          control={<Radio />}
-                          label="When Ready"
-                        />
-                      </RadioGroup>
-                    </FormControl>
+                    <Typography paragraph>
+                      ASB will deliver your order by next Thursday {deliv}
+                    </Typography>
 
                     {item.options ? (
                       <FormGroup>
-                        <FormLabel id="deliv-options">
+                        <FormLabel id="custome-options">
                           Additional options:
                         </FormLabel>
                         {item.options.map((o, i) => {
