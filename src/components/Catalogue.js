@@ -93,6 +93,7 @@ export const catalogue = [
     pic: "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/S/aplus-media/sc/dacc10c3-706c-40cf-a948-a7de629274a1.__CR0,0,300,300_PT0_SX300_V1___.jpg",
     desc: "Life is like an orange - it's pretty amazing. Here's an orange that will never go bad.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 10,
