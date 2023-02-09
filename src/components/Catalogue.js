@@ -13,7 +13,7 @@ export const catalogue = [
   {
     pid: 1,
     name: "Can of Pepsi",
-    price: 6,
+    price: 8,
     tags: ["Drink", "Vegan"],
     pic: "https://www.snackhistory.com/wp-content/uploads/2022/02/Pepsi-3.jpg",
     desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free & caffeine-free options available.",
@@ -23,7 +23,7 @@ export const catalogue = [
   {
     pid: 2,
     name: "Oreos [Pack of 2]",
-    price: 3,
+    price: 5,
     tags: ["Food"],
     pic: "https://static.onecms.io/wp-content/uploads/sites/19/2021/08/12/oreo-hero.jpg",
     desc: "Sometimes you just CRAVE an oreo. You don't need a lot; just one or two. Same-day pick up available.",
@@ -59,7 +59,7 @@ export const catalogue = [
   {
     pid: 6,
     name: "Cup Noodles [Made]",
-    price: 11,
+    price: 13,
     tags: ["Food", "Hot"],
     pic: "https://www.adweek.com/wp-content/uploads/files/cup-noodles-hed-2015.jpg",
     desc: "Smells good. Come grab it at the start of lunch. Vegan options NO LONGER available.",
@@ -157,7 +157,7 @@ export const catalogue = [
   {
     pid: 16,
     name: "Can of 7-Up",
-    price: 6,
+    price: 8,
     tags: ["Drink", "Merch", "Vegan"],
     pic: "https://www.7up.com/images/products/slider/7up_featured_m.jpg",
     desc: "Do you want a coke but without a caffeine? Here's a 7-up. Much better than a Sprite. Diet version available upon request.",
@@ -176,7 +176,7 @@ export const catalogue = [
   {
     pid: 18,
     name: "Tech Deck Fingerboard",
-    price: 24,
+    price: 28,
     tags: ["Merch"],
     pic: "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/81MZ6hG0psL._AC_SL1500_.jpg",
     desc: "Official Tech Decks; several designs available. Please don't play with them in class. We don't take responsibility if they get taken away lol.",
