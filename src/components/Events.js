@@ -11,6 +11,12 @@ import * as React from "react";
 
 const ads = [
   {
+    img: "https://www.onoursleeves.org/-/media/onoursleeves/graphics/hands-and-heart.ashx?la=en&hash=C1C7A5CDBD2C3F441886AE4C70EE94EE",
+    title: "Kindness Week Schedule",
+    info: "Check out fun events and dress-up themes everyday!",
+    url: "https://docs.google.com/presentation/d/1tk4Nvy2Ah6GyA-N8ZWhfVmlDivk6P-4gdjw5Gv5s-js/edit?usp=sharing",
+  },
+  {
     img: "https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png",
     title: "Lunchtime Clubs Schedule",
     info: "Check Out What's Happening at Lunch!",
