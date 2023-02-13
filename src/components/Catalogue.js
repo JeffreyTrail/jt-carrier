@@ -18,7 +18,7 @@ export const catalogue = [
     pic: "https://www.snackhistory.com/wp-content/uploads/2022/02/Pepsi-3.jpg",
     desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free & caffeine-free options available.",
     deliv: [true, false, false],
-    options: ["Refrigerated", "Sugar-free & Caffeine-free"],
+    options: ["Diet"],
   },
   {
     pid: 2,
@@ -157,13 +157,13 @@ export const catalogue = [
   },
   {
     pid: 16,
-    name: "Can of 7-Up",
+    name: "Can of Sprite",
     price: 8,
     tags: ["Drink", "Merch", "Vegan"],
     pic: "https://www.7up.com/images/products/slider/7up_featured_m.jpg",
-    desc: "Do you want a coke but without a caffeine? Here's a 7-up. Much better than a Sprite. Diet version available upon request.",
+    desc: "Do you want a coke but without caffeine? Here's a *Sprite. Much better than a 7-Up. Diet version available upon request.",
     deliv: [true, false, false],
-    options: ["Refrigerated", "Sugar-free"],
+    options: ["Sugar-free"],
   },
   {
     pid: 17,
