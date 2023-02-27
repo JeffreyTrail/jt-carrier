@@ -160,7 +160,7 @@ export const catalogue = [
     name: "Can of Sprite",
     price: 8,
     tags: ["Drink", "Merch", "Vegan"],
-    pic: "https://www.7up.com/images/products/slider/7up_featured_m.jpg",
+    pic: "https://isitbadforyou.s3.amazonaws.com/uploads/article/pictures/223/big_is_sprite_bad_for_you_2.jpg",
     desc: "Do you want a coke but without caffeine? Here's a *Sprite. Much better than a 7-Up. Diet version available upon request.",
     deliv: [true, false, false],
     options: ["Sugar-free"],
