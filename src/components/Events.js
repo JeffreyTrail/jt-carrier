@@ -155,6 +155,12 @@ const ads = [
     url: "https://bit.ly/JtmsMinecraft",
   },
   {
+    img: "https://drive.google.com/uc?id=1kk5GDUqnuG2LsjCtJvoJayBn67SO9nNz",
+    title: "KPOP CLUB",
+    info: "Our Kpop club is the club that everyone enjoy and learn kpop",
+    url: "https://sites.google.com/iusd.org/k-pop-club/home",
+  },
+  {
     img: "https://variety.com/wp-content/uploads/2021/11/DSCF3101_2_crop-e1637611739593.jpg",
     title: "Taylor Swift",
     info: "is in D3 Mrs. Barcenas",
