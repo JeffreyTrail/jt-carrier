@@ -25,6 +25,21 @@ function Ticketing(props) {
   const [flavor, setFlavor] = React.useState("r");
   // flavor is  type & validity of code: o is orange, r is regular, i is invalid
 
+  const handleLastTeachers = (teacher) => {
+    let teacherData = localStorage.getItem("lastTeachers");
+    if (teacherData === null) {
+      localStorage.setItem("lastTeachers", [teacher]);
+    } else {
+      teacherData = teacherData.split(",");
+      if (teacherData.includes(teacher)) {
+        teacherData.splice(teacherData.indexOf(teacher));
+      }
+      teacherData.unshift(teacher);
+      teacherData.splice(3);
+      localStorage.setItem("lastTeachers", teacherData);
+    }
+  }
+
   const handleCode = (e) => {
     let newCode = e.target.value;
     if (newCode.includes("-")) {
@@ -71,6 +86,7 @@ function Ticketing(props) {
             setFlavor("r");
             props.setWallet(props.wallet + 1);
             props.setNotif(["success", "Ticket successfully submitted!"]);
+            handleLastTeachers(teacher);
           }
         });
     } catch {
