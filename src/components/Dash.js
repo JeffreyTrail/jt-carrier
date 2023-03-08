@@ -335,7 +335,12 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                       return (
                         <TableRow key={i}>
                           <TableCell align="center">
-                            {catalogue[parseInt(t["itemn"])]["name"]}
+                            {
+                              catalogue.find(
+                                (product) =>
+                                  product.pid === parseInt(t["itemn"])
+                              )["name"]
+                            }
                           </TableCell>
                           <TableCell align="center">{t["time"]}</TableCell>
                         </TableRow>

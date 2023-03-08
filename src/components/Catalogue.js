@@ -2,6 +2,33 @@
 // false means available, true means not available
 export const catalogue = [
   {
+    pid: 21,
+    name: "Cookie Decorating",
+    price: 8,
+    tags: ["Limited Time"],
+    pic: "https://www.number-2-pencil.com/wp-content/uploads/2019/12/Cookie-Decorating-Party-3.jpg",
+    desc: "No other food will be available at the dance (03/17) so don't miss this opportunity to decorate a cookie! You will receive a pass on the day of the dance. Yummmmm!",
+    deliv: [true, false, false],
+  },
+  {
+    pid: 22,
+    name: "VIP Access Pass",
+    price: 37,
+    tags: ["Food", "Limited Time"],
+    pic: "https://drive.google.com/uc?id=1mP73DE74i5TTxQCjFLw-_ksxR2uAhib2",
+    desc: "Don't worry about waiting in line for ANYTHING at the dance (03/17)! Obstacle course, arcade games, karaoke, cookie decorating (separate purchase), and more!",
+    deliv: [true, false, false],
+  },
+  {
+    pid: 23,
+    name: "Hawaiian Lei",
+    price: 15,
+    tags: ["Limited Time"],
+    pic: "https://asset.bloomnation.com/c_pad,d_vendor:global:catalog:product:image.png,f_auto,fl_preserve_transparency,q_auto/v1675310684/vendor/694/catalog/product/2/0/20190930083719_file_5d92677f8df01_5d926787c7788.jpg",
+    desc: "A Hawaiian Lei that you can wear to the dance, and more! The possibilities are limitless. At this price of 15 WINGS tickets, it's a steal!",
+    deliv: [true, false, false],
+  },
+  {
     pid: 0,
     name: "Bag of Chips [Classic]",
     price: 5,

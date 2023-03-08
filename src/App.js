@@ -415,7 +415,7 @@ function App() {
               width: mobile ? "90%" : "70%",
               marginLeft: mobile ? "auto" : "155px",
               paddingRight: mobile ? "auto" : "5px",
-              marginBottom: mobile ? "10px" : "auto",
+              marginBottom: mobile ? "60px" : "auto",
             }}
           >
             {tab === 0 ? (
@@ -440,6 +440,7 @@ function App() {
                 setWallet={setWallet}
                 sid={sid}
                 setNotif={setNotif}
+                dark={dark}
               />
             )}
           </Box>
