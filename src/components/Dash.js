@@ -219,7 +219,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
           />
           <Chip
             avatar={<Avatar>{cnt}</Avatar>}
-            label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
+            label={cnt === 1 ? "Ticket in Tri III" : "Tickets in Tri III"}
             variant="outlined"
             sx={largeChip}
           />
@@ -335,7 +335,12 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
                       return (
                         <TableRow key={i}>
                           <TableCell align="center">
-                            {catalogue[parseInt(t["itemn"])]["name"]}
+                            {
+                              catalogue.find(
+                                (product) =>
+                                  product.pid === parseInt(t["itemn"])
+                              )["name"]
+                            }
                           </TableCell>
                           <TableCell align="center">{t["time"]}</TableCell>
                         </TableRow>

@@ -36,13 +36,14 @@ function Help() {
               distributed by ASB each week in homeroom.
             </li>
             <li>
-              Each Friday, we hold a drawing for each of the WINGS letters for
-              all tickets submitted in the whole school. Pay close attention
-              during morning announcements.{" "}
+              You can buy things from the WINGStore with tickets earned so far
+              this year! ASB will deliver most things, unless they give you a
+              slip to go pick up during lunch.{" "}
             </li>
             <li>
               Twice each trimester, the top 25% by count (i.e. number of tickets
-              you submitted) gets invited to special lunch time activities!{" "}
+              you submitted in that trimester) gets invited to special lunch
+              time activities!{" "}
             </li>
             {/*<li>This last one is not a drawing. Some WINGS tickets are just special - they're golden tickets, which will reward you immediately after you redeem them.</li>*/}
           </ol>
@@ -75,9 +76,7 @@ function Help() {
         <AccordionDetails>
           <Typography>
             A: Homeroom drawings are conducted every Tuesday! Your homeroom reps
-            will come to homeroom with the prize and announce the winner. Letter
-            drawing winners will find out on Fridays in the morning
-            announcements.
+            will come to homeroom with the prize and announce the winner.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -93,8 +92,7 @@ function Help() {
         <AccordionDetails>
           <Typography>
             A: Homeroom drawing prizes change every week; it's listed under the
-            Stats tab. Letter drawing winners get to choose one of many gift
-            cards.
+            Stats tab.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -142,6 +140,29 @@ function Help() {
               the feedback form
             </a>
             !
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="q3-content"
+          id="q3-header"
+        >
+          <Typography>7. Is jtms.app open source?</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            A: The front-end is available! The Github repo is linked{" "}
+            <a
+              href="https://github.com/JeffreyTrail/jt-carrier"
+              target="_blank"
+              rel="noreferrer"
+            >
+              here
+            </a>
+            .
           </Typography>
         </AccordionDetails>
       </Accordion>

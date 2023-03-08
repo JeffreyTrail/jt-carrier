@@ -24,7 +24,7 @@ import * as React from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { catalogue } from "./Catalogue";
 
-function Store({ wallet, setWallet, sid, setNotif }) {
+function Store({ wallet, setWallet, sid, setNotif, dark }) {
   // expand stores the pid of the item option that is currently expanded
   const [expand, setExpand] = React.useState(-1);
   const [options, setOptions] = React.useState([]);
@@ -33,6 +33,7 @@ function Store({ wallet, setWallet, sid, setNotif }) {
   let d = new Date();
   d.setDate(d.getDate() + (4 + 7 - (d.getDay() || 7)));
   let deliv = d.toString();
+  // Get rid of unnecessary year and time info
   deliv = deliv.substring(4, deliv.indexOf("202") - 1);
 
   const buy = (itemn) => {
@@ -51,11 +52,13 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         if (data.rcode !== 0) {
           setNotif(["error", data.msg]);
         } else {
-          setWallet(wallet - catalogue[itemn].price);
+          setWallet(
+            wallet - catalogue.find((product) => product.pid === itemn).price
+          );
           setNotif([
             "success",
             "Your order of " +
-              catalogue[itemn].name +
+              catalogue.find((product) => product.pid === itemn).name +
               " has been placed. ASB will deliver it by next Thursday " +
               deliv +
               ".",
@@ -117,7 +120,16 @@ function Store({ wallet, setWallet, sid, setNotif }) {
         {catalogue.map((item, index) => {
           return (
             <Grid item xs={4} key={index}>
-              <Card raised>
+              <Card
+                raised
+                sx={
+                  item.tags.includes("Limited Time")
+                    ? {
+                        backgroundColor: dark ? "#061f46" : "#e3f2fd",
+                      }
+                    : {}
+                }
+              >
                 <CardHeader
                   action={
                     <Typography
