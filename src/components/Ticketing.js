@@ -25,7 +25,7 @@ function Ticketing(props) {
   const [flavor, setFlavor] = React.useState("r");
   // flavor is  type & validity of code: o is orange, r is regular, i is invalid
 
-  let localLastTeachers = localStorage.getItem("lastTeachers").toUpperCase().split(",").reverse();
+  let localLastTeachers = localStorage.getItem("lastTeachers").split(",").filter(teacher => teacher !== "").reverse();
   if (localLastTeachers !== null) { 
     for (let i = 0; i < localLastTeachers.length; i++) {
       staff.splice(staff.findIndex((teacher) => teacher.label === localLastTeachers[i]), 1);
@@ -36,8 +36,8 @@ function Ticketing(props) {
   const handleLastTeachers = (teacher) => {
     let teacherData = localStorage.getItem("lastTeachers");
     if (teacherData === null) {
-      localStorage.setItem("lastTeachers", [teacher]);
-    } else {
+      localStorage.setItem("lastTeachers", teacher);
+    } else if (teacherData !== null) {
       teacherData = teacherData.split(",");
       if (teacherData.includes(teacher)) {
         teacherData.splice(teacherData.indexOf(teacher));
