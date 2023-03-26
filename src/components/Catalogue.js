@@ -9,7 +9,7 @@ export const catalogue = [
     pic: "https://www.number-2-pencil.com/wp-content/uploads/2019/12/Cookie-Decorating-Party-3.jpg",
     desc: "No other food will be available at the dance (03/17) so don't miss this opportunity to decorate a cookie! You will receive a pass on the day of the dance. Yummmmm!",
     deliv: [true, false, false],
-    sold: "out",
+    sold: "hidden",
   },
   {
     pid: 22,
@@ -19,7 +19,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1mP73DE74i5TTxQCjFLw-_ksxR2uAhib2",
     desc: "Don't worry about waiting in line for ANYTHING at the dance (03/17)! Obstacle course, arcade games, karaoke, cookie decorating (separate purchase), and more!",
     deliv: [true, false, false],
-    sold: "out",
+    sold: "hidden",
   },
   {
     pid: 23,
@@ -29,7 +29,7 @@ export const catalogue = [
     pic: "https://asset.bloomnation.com/c_pad,d_vendor:global:catalog:product:image.png,f_auto,fl_preserve_transparency,q_auto/v1675310684/vendor/694/catalog/product/2/0/20190930083719_file_5d92677f8df01_5d926787c7788.jpg",
     desc: "A Hawaiian Lei that you can wear to the dance, and more! The possibilities are limitless. At this price of 15 WINGS tickets, it's a steal!",
     deliv: [true, false, false],
-    sold: "out",
+    sold: "hidden",
   },
   {
     pid: 0,
@@ -46,7 +46,7 @@ export const catalogue = [
     price: 8,
     tags: ["Drink", "Vegan"],
     pic: "https://www.snackhistory.com/wp-content/uploads/2022/02/Pepsi-3.jpg",
-    desc: "Sorry we don't have coke. Is Pepsi okay? Same-day pick up available. Sugar-free & caffeine-free options available.",
+    desc: "Sorry we don't have coke. Is Pepsi okay? Diet options available.",
     deliv: [true, false, false],
     options: ["Diet"],
   },
@@ -56,7 +56,7 @@ export const catalogue = [
     price: 5,
     tags: ["Food"],
     pic: "https://static.onecms.io/wp-content/uploads/sites/19/2021/08/12/oreo-hero.jpg",
-    desc: "Sometimes you just CRAVE an oreo. You don't need a lot; just one or two. Same-day pick up available.",
+    desc: "Sometimes you just CRAVE an oreo. You don't need a lot; just one or two.",
     deliv: [true, false, false],
   },
   {
@@ -89,7 +89,7 @@ export const catalogue = [
   {
     pid: 6,
     name: "Cup Noodles [Made]",
-    price: 13,
+    price: 17,
     tags: ["Food", "Hot"],
     pic: "https://www.adweek.com/wp-content/uploads/files/cup-noodles-hed-2015.jpg",
     desc: "Smells good. Come grab it at the start of lunch. Vegan options NO LONGER available.",
@@ -109,7 +109,7 @@ export const catalogue = [
   {
     pid: 8,
     name: "Mac n Cheese [Made]",
-    price: 16,
+    price: 19,
     tags: ["Food", "Vegetarian"],
     pic: "https://www.champagneandcoffeestains.com/wp-content/uploads/2021/02/bowl-of-kraft-macaroni-and-cheese.jpg",
     desc: "Warm and cheesy~ Upgrade your lunch with a a special lunch.",
@@ -127,13 +127,12 @@ export const catalogue = [
   },
   {
     pid: 10,
-    name: "Vintage JTMS Pen",
-    price: 3,
+    name: "Retro Vintage JTMS Pen",
+    price: 19,
     tags: ["Merch", "Limited Edition"],
-    pic: "https://drive.google.com/uc?id=1WBRIC-R7M0oLAgC6n5WBRZySWku1uFSI",
-    desc: "Limited edition, vintage JTMS branded pens. They will bless you during a test.",
+    pic: "https://drive.google.com/uc?id=117KlOSCk3kGAjkFFotUAJxy4Yuss04mL",
+    desc: "Brought back for a limited time! Beautifully crafted, JTMS branded pens will bless you during a test.",
     deliv: [true, false, false],
-    sold: "out",
   },
   {
     pid: 11,

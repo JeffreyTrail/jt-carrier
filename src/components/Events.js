@@ -11,10 +11,10 @@ import * as React from "react";
 
 const ads = [
   {
-    img: "https://www.onoursleeves.org/-/media/onoursleeves/graphics/hands-and-heart.ashx?la=en&hash=C1C7A5CDBD2C3F441886AE4C70EE94EE",
-    title: "Kindness Week Schedule",
-    info: "Check out fun events and dress-up themes everyday!",
-    url: "https://docs.google.com/presentation/d/1tk4Nvy2Ah6GyA-N8ZWhfVmlDivk6P-4gdjw5Gv5s-js/edit?usp=sharing",
+    img: "https://drive.google.com/uc?id=1XszSNBtfTbpeNx9r9QRppDqlZThYRrEu",
+    title: "HackOrange",
+    info: "Hosted by STEAM for All: Showcase your coding skills!",
+    url: "https://www.steamforall.org/hackorange",
   },
   {
     img: "https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png",

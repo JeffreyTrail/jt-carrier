@@ -117,138 +117,144 @@ function Store({ wallet, setWallet, sid, setNotif, dark }) {
         alignItems="stretch"
         sx={{ marginBottom: 3, marginTop: 1 }}
       >
-        {catalogue.map((item, index) => {
-          return (
-            <Grid item xs={4} key={index}>
-              <Card
-                raised
-                sx={
-                  item.tags.includes("Limited Time")
-                    ? {
-                        backgroundColor: dark ? "#061f46" : "#e3f2fd",
-                      }
-                    : {}
-                }
-              >
-                <CardHeader
-                  action={
-                    <Typography
-                      variant="h3"
-                      sx={{ marginRight: 1 }}
-                      color={item.price > wallet ? "error" : "default"}
-                    >
-                      {item.price}
-                    </Typography>
+        {catalogue
+          .filter((item) => item.sold !== "hidden")
+          .map((item, index) => {
+            return (
+              <Grid item xs={4} key={index}>
+                <Card
+                  raised
+                  sx={
+                    item.tags.includes("Limited Time")
+                      ? {
+                          backgroundColor: dark ? "#061f46" : "#e3f2fd",
+                        }
+                      : {}
                   }
-                  title={item.name}
-                  titleTypographyProps={{ variant: "h6" }}
-                  subheader={
-                    <Stack direction="row" spacing={1} sx={{ marginTop: 1 }}>
-                      {item.tags.map((tag, i) => {
-                        return (
-                          <Chip
-                            key={i}
-                            label={tag}
-                            variant="outlined"
-                            color={
-                              tag.includes("Veg")
-                                ? "success"
-                                : tag === "Food" || tag === "Drink"
-                                ? "warning"
-                                : tag === "Merch"
-                                ? "info"
-                                : "error"
-                            }
-                            size="small"
-                          />
-                        );
-                      })}
-                    </Stack>
-                  }
-                />
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={item.pic}
-                  alt={item.name}
-                />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.desc}
-                  </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                  {item.link ? (
-                    <Button
-                      href={item.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      fullWidth
-                      color="secondary"
-                      variant="outlined"
-                      sx={{ marginRight: 1 }}
-                    >
-                      More Info
-                    </Button>
-                  ) : (
-                    <React.Fragment />
-                  )}
-                  <Button
-                    aria-label="order"
-                    fullWidth
-                    variant="outlined"
-                    onClick={() => {
-                      setExpand(expand === item.pid ? -1 : item.pid);
-                      setOptions([]);
-                    }}
-                    disabled={item.price > wallet || item.sold === "out"}
-                    endIcon={
-                      expand === item.pid ? <ExpandLess /> : <ExpandMore />
+                >
+                  <CardHeader
+                    action={
+                      <Typography
+                        variant="h3"
+                        sx={{ marginRight: 1 }}
+                        color={item.price > wallet ? "error" : "default"}
+                      >
+                        {item.price}
+                      </Typography>
                     }
-                  >
-                    {item.sold === "out" ? "sold out" : "order"}
-                  </Button>
-                </CardActions>
-                <Collapse in={expand === item.pid} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography paragraph>
-                      ASB will deliver your order by next Thursday {deliv}
-                    </Typography>
-
-                    {item.options ? (
-                      <FormGroup>
-                        <FormLabel id="custome-options">
-                          Additional options:
-                        </FormLabel>
-                        {item.options.map((o, i) => {
+                    title={item.name}
+                    titleTypographyProps={{ variant: "h6" }}
+                    subheader={
+                      <Stack direction="row" spacing={1} sx={{ marginTop: 1 }}>
+                        {item.tags.map((tag, i) => {
                           return (
-                            <FormControlLabel
-                              control={
-                                <Checkbox onChange={customize} name={o} />
-                              }
+                            <Chip
                               key={i}
-                              label={o}
+                              label={tag}
+                              variant="outlined"
+                              color={
+                                tag.includes("Veg")
+                                  ? "success"
+                                  : tag === "Food" || tag === "Drink"
+                                  ? "warning"
+                                  : tag === "Merch"
+                                  ? "info"
+                                  : "error"
+                              }
+                              size="small"
                             />
                           );
                         })}
-                      </FormGroup>
+                      </Stack>
+                    }
+                  />
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={item.pic}
+                    alt={item.name}
+                  />
+                  <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.desc}
+                    </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing>
+                    {item.link ? (
+                      <Button
+                        href={item.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        fullWidth
+                        color="secondary"
+                        variant="outlined"
+                        sx={{ marginRight: 1 }}
+                      >
+                        More Info
+                      </Button>
                     ) : (
                       <React.Fragment />
                     )}
-
                     <Button
+                      aria-label="order"
                       fullWidth
-                      variant="contained"
-                      onClick={() => buy(item.pid)}
+                      variant="outlined"
+                      onClick={() => {
+                        setExpand(expand === item.pid ? -1 : item.pid);
+                        setOptions([]);
+                      }}
+                      disabled={item.price > wallet || item.sold === "out"}
+                      endIcon={
+                        expand === item.pid ? <ExpandLess /> : <ExpandMore />
+                      }
                     >
-                      Place Order
+                      {item.sold === "out" ? "sold out" : "order"}
                     </Button>
-                  </CardContent>
-                </Collapse>
-              </Card>
-            </Grid>
-          );
-        })}
+                  </CardActions>
+                  <Collapse
+                    in={expand === item.pid}
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <CardContent>
+                      <Typography paragraph>
+                        ASB will deliver your order by next Thursday {deliv}
+                      </Typography>
+
+                      {item.options ? (
+                        <FormGroup>
+                          <FormLabel id="custome-options">
+                            Additional options:
+                          </FormLabel>
+                          {item.options.map((o, i) => {
+                            return (
+                              <FormControlLabel
+                                control={
+                                  <Checkbox onChange={customize} name={o} />
+                                }
+                                key={i}
+                                label={o}
+                              />
+                            );
+                          })}
+                        </FormGroup>
+                      ) : (
+                        <React.Fragment />
+                      )}
+
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={() => buy(item.pid)}
+                      >
+                        Place Order
+                      </Button>
+                    </CardContent>
+                  </Collapse>
+                </Card>
+              </Grid>
+            );
+          })}
       </Grid>
     </Box>
   );
