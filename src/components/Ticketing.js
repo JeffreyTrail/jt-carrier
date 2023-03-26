@@ -25,11 +25,18 @@ function Ticketing(props) {
   const [flavor, setFlavor] = React.useState("r");
   // flavor is  type & validity of code: o is orange, r is regular, i is invalid
 
-  let localLastTeachers = localStorage.getItem("lastTeachers").split(",").filter(teacher => teacher !== "").reverse();
-  if (localLastTeachers !== null) { 
+  let localLastTeachers = localStorage.getItem("lastTeachers");
+  if (localLastTeachers !== null) {
+    localLastTeachers = localLastTeachers
+      .split(",")
+      .filter((teacher) => teacher !== "")
+      .reverse();
     for (let i = 0; i < localLastTeachers.length; i++) {
-      staff.splice(staff.findIndex((teacher) => teacher.label === localLastTeachers[i]), 1);
-      staff.unshift({ label: localLastTeachers[i]});
+      staff.splice(
+        staff.findIndex((teacher) => teacher.label === localLastTeachers[i]),
+        1
+      );
+      staff.unshift({ label: localLastTeachers[i] });
     }
   }
 
@@ -46,7 +53,7 @@ function Ticketing(props) {
       teacherData.splice(3);
       localStorage.setItem("lastTeachers", teacherData);
     }
-  }
+  };
 
   const handleCode = (e) => {
     let newCode = e.target.value;
@@ -119,7 +126,6 @@ function Ticketing(props) {
         setFlavor("i");
       } else if (props.sid !== "" && teacher !== "" && wings !== "") {
         lookup();
-
       }
     }
   };
