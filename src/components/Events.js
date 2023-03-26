@@ -29,6 +29,12 @@ const ads = [
     url: "https://jeffreytrail.iusd.org/about/calendar-events/bell-schedule",
   },
   {
+    img: "https://drive.google.com/uc?id=1bJu43zGnOrmgvC0h68JLEq2GVkUJesoZ",
+    title: "Automatic Bell Schedule",
+    info: "Tired of calculating your bell schedule?",
+    url: "https://trinket.io/python3/1770ccaaa0?outputOnly=true&runOption=run&showInstructions=true",
+  },
+  {
     img: "https://drive.google.com/uc?id=16a3BXjQDtgg8uv2YjOka8kE6UDLrKrk0",
     title: "Rubik's Cube Club",
     info: "We turn colorful cubes quickly",
