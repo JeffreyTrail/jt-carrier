@@ -11,6 +11,12 @@ import * as React from "react";
 
 const ads = [
   {
+    img: "https://deadline.com/wp-content/uploads/2022/11/TheMaskedSinger.png?w=1020",
+    title: "Masked Singer Voting",
+    info: "Ask your homeroom to watch the masked singer video!",
+    url: "https://docs.google.com/document/d/177VmM3OAY5gone4aBPnLnLldJgMHJVnup8yKw-S7uKU/edit?usp=sharing",
+  },
+  {
     img: "https://drive.google.com/uc?id=1XszSNBtfTbpeNx9r9QRppDqlZThYRrEu",
     title: "HackOrange",
     info: "Hosted by STEAM for All: Showcase your coding skills!",
