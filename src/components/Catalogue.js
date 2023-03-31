@@ -182,7 +182,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1rY3uD9Gl1oMs0K3TeegbiDSjYEBkTRrT",
     desc: "Limited edition, old school throwback JTMS Spirit gear. Limited sizes and designs available.",
     deliv: [true, false, false],
-    options: ["Size S", "Size M", "Size XL"],
+    options: ["Size S", "Size M"],
   },
   {
     pid: 16,
