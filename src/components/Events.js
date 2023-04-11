@@ -11,16 +11,16 @@ import * as React from "react";
 
 const ads = [
   {
-    img: "https://deadline.com/wp-content/uploads/2022/11/TheMaskedSinger.png?w=1020",
-    title: "Masked Singer Voting",
-    info: "Ask your homeroom to watch the masked singer video!",
-    url: "https://docs.google.com/document/d/177VmM3OAY5gone4aBPnLnLldJgMHJVnup8yKw-S7uKU/edit?usp=sharing",
+    img: "https://cosmic-s3.imgix.net/ed60b990-cb42-11e9-a833-4fe99c887177-selling_a_house_at_auction_vs_for_sale_by_owner_vs_a_traditional_agent-ogid-124804.jpg?auto=format&w=1920&q=20",
+    title: "Student Silent Auction",
+    info: "Bid on cool items and support JTMS!",
+    url: "https://sites.google.com/iusd.org/2023studentsilentauction/home",
   },
   {
-    img: "https://drive.google.com/uc?id=1XszSNBtfTbpeNx9r9QRppDqlZThYRrEu",
-    title: "HackOrange",
-    info: "Hosted by STEAM for All: Showcase your coding skills!",
-    url: "https://www.steamforall.org/hackorange",
+    img: "https://drive.google.com/uc?id=16D_tzFztySv-SHiyBqc6QPxQkaTgkloF",
+    title: "All-Girls Math Tournament",
+    info: "Hosted by STEAM for All: Showcase your Math skills!",
+    url: "https://www.steamforall.org/agmt",
   },
   {
     img: "https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png",
