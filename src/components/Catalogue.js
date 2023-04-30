@@ -2,6 +2,15 @@
 // false means available, true means not available
 export const catalogue = [
   {
+    pid: 24,
+    name: "Teacher Appreciation Gram",
+    price: 3,
+    tags: ["Limited Time"],
+    pic: "https://www.scetv.org/sites/default/files/blogs/ThankYouTeachers.png",
+    desc: "Send a special hand-written note to thank your teacher! ASB will deliver you a blank template after you order, collect them outside D-9 during lunch, and deliver them on your behalf! Limited time: Order by Wednesday 05/03.",
+    deliv: [true, false, false],
+  },
+  {
     pid: 21,
     name: "Cookie Decorating",
     price: 8,
