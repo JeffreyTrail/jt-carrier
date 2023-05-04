@@ -9,6 +9,7 @@ export const catalogue = [
     pic: "https://www.scetv.org/sites/default/files/blogs/ThankYouTeachers.png",
     desc: "Send a special hand-written note to thank your teacher! ASB will deliver you a blank template after you order, collect them outside D-9 during lunch, and deliver them on your behalf! Limited time: Order by Wednesday 05/03.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 21,
