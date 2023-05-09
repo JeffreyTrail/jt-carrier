@@ -10,19 +10,13 @@ import { OpenInNew } from "@mui/icons-material";
 import * as React from "react";
 
 const ads = [
-  {
-    img: "https://cosmic-s3.imgix.net/ed60b990-cb42-11e9-a833-4fe99c887177-selling_a_house_at_auction_vs_for_sale_by_owner_vs_a_traditional_agent-ogid-124804.jpg?auto=format&w=1920&q=20",
-    title: "Student Silent Auction",
-    info: "Bid on cool items and support JTMS!",
-    url: "https://sites.google.com/iusd.org/2023studentsilentauction/home",
-  },
-  {
-    img: "https://drive.google.com/uc?id=16D_tzFztySv-SHiyBqc6QPxQkaTgkloF",
-    title: "All-Girls Math Tournament",
-    info: "Hosted by STEAM for All: Showcase your Math skills!",
-    url: "https://www.steamforall.org/agmt",
-  },
-  {
+   {
+    img: "https://drive.google.com/uc?id=1yie4KuXTUKYzbtUD9dztlEMvsLXpliAi",
+    title: "Jet Gazette, Student News.",
+    info: "JTTV But in paper (Maybe even better!)",
+    url: "https://bit.ly/JetGazette",
+   },
+   {
     img: "https://jeffreytrail.iusd.org/sites/jeffreytrail/files/images/jt-solo.png",
     title: "Lunchtime Clubs Schedule",
     info: "Check Out What's Happening at Lunch!",
@@ -105,12 +99,6 @@ const ads = [
     title: "Editing Club",
     info: "Editing club is where you can learn to edit and have fun.",
     url: "",
-  },
-  {
-    img: "https://drive.google.com/uc?id=1yie4KuXTUKYzbtUD9dztlEMvsLXpliAi",
-    title: "Jet Gazette, Student News.",
-    info: "JTTV But in paper (Maybe even better!)",
-    url: "https://bit.ly/JetGazette",
   },
   {
     img: "https://drive.google.com/uc?id=1hjNLloj5Xl56B08N456vXNBeAj9MdqQz",
