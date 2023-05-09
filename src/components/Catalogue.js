@@ -77,6 +77,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1X1k6ClQ7wW8N6OqqSyjXzpAFxqaIuk4E",
     desc: "Be Principal for a day! Shadow Mr. Georgino as he shows you what his job really means. You'll take on the responsibility of JTMS.",
     deliv: [true, true, false],
+    sold: "out",
   },
   {
     pid: 4,
@@ -86,6 +87,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=18fI0rsRjgptBcie6x2y_OU7p-qEpyTW8",
     desc: "Be Assistant Principal for a day! Live a day in her shoes, learn the ins and outs of her job, and help manage the school for a day. ",
     deliv: [true, true, false],
+    sold: "out",
   },
   {
     pid: 5,
