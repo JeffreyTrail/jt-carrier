@@ -222,6 +222,7 @@ export const catalogue = [
     pic: "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/81MZ6hG0psL._AC_SL1500_.jpg",
     desc: "Official Tech Decks; several designs available. Please don't play with them in class. We don't take responsibility if they get taken away lol.",
     deliv: [true, true, false],
+    sold: "out",
   },
   {
     pid: 19,
