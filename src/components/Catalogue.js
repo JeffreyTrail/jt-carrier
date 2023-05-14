@@ -126,6 +126,7 @@ export const catalogue = [
     pic: "https://www.champagneandcoffeestains.com/wp-content/uploads/2021/02/bowl-of-kraft-macaroni-and-cheese.jpg",
     desc: "Warm and cheesy~ Upgrade your lunch with a a special lunch.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 9,
