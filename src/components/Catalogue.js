@@ -9,7 +9,7 @@ export const catalogue = [
     pic: "https://www.scetv.org/sites/default/files/blogs/ThankYouTeachers.png",
     desc: "Send a special hand-written note to thank your teacher! ASB will deliver you a blank template after you order, collect them outside D-9 during lunch, and deliver them on your behalf! Limited time: Order by Wednesday 05/03.",
     deliv: [true, false, false],
-    sold: "out",
+    sold: "hidden",
   },
   {
     pid: 21,
@@ -49,6 +49,7 @@ export const catalogue = [
     pic: "https://blog.counselfinancial.com/hubfs/EMAIL_Images/Association%20Endorsements/potato-chips-448737_640.jpg",
     desc: "You get a RANDOM bag of chips. Try your luck and see if you get the bag you want.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 1,
@@ -107,6 +108,7 @@ export const catalogue = [
     desc: "Smells good. Come grab it at the start of lunch. Vegan options NO LONGER available.",
     deliv: [true, false, false],
     options: ["Chicken Flavor", "Shrimp Flavor"],
+    sold: "out",
   },
   {
     pid: 7,
@@ -176,6 +178,7 @@ export const catalogue = [
     desc: "It's a hot day, and you just ran a mile. Time to cool down and replenish your electrolytes.",
     deliv: [true, false, false],
     options: ["Refrigerated"],
+    sold: "out",
   },
   {
     pid: 14,
@@ -207,6 +210,7 @@ export const catalogue = [
     desc: "Do you want a coke but without caffeine? Here's a *Sprite. Much better than a 7-Up. Diet version available upon request.",
     deliv: [true, false, false],
     options: ["Sugar-free"],
+    sold: "out",
   },
   {
     pid: 17,
