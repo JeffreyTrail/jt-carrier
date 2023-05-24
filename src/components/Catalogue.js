@@ -60,6 +60,7 @@ export const catalogue = [
     desc: "Sorry we don't have coke. Is Pepsi okay? Diet options available.",
     deliv: [true, false, false],
     options: ["Diet"],
+    sold: "out",
   },
   {
     pid: 2,
@@ -69,6 +70,7 @@ export const catalogue = [
     pic: "https://static.onecms.io/wp-content/uploads/sites/19/2021/08/12/oreo-hero.jpg",
     desc: "Sometimes you just CRAVE an oreo. You don't need a lot; just one or two.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 3,
