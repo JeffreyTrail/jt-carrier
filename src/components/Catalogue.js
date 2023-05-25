@@ -222,6 +222,7 @@ export const catalogue = [
     pic: "https://cdn.shopify.com/s/files/1/0972/7116/products/Meiji-Hello-Panda-Chocolate-Mini-Cookies-3-768x768_2048x.jpg?v=1652369963",
     desc: "Crunchy on the outside, soft and chocolatey on the inside. Sharing size, and bite-sized.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 18,
