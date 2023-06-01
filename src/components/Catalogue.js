@@ -100,6 +100,7 @@ export const catalogue = [
     pic: "https://cityofukiah.com/wp-content/uploads/2022/05/pickleball-3-1920x1054-1.jpg",
     desc: "Franklin X-40 Outdoor Pickleball, USAPA Approved. Neon-green. Is it supposed to look like a pickle?",
     deliv: [true, true, false],
+    sold: "out",
   },
   {
     pid: 6,
@@ -121,6 +122,7 @@ export const catalogue = [
     desc: "Challenge one of your teachers to run the mile or trail with you. Click below for the list of all available teachers",
     deliv: [true, true, false],
     link: "https://docs.google.com/document/d/e/2PACX-1vSTMNcX8JzvZN5775rpYrTlGna3t1vuTlC0iKVBRsQQyJsuvNf6IvGWVGky9qjvEcsEAKDzu3sV1S0O/pub",
+    sold: "out",
   },
   {
     pid: 8,
@@ -150,6 +152,7 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=117KlOSCk3kGAjkFFotUAJxy4Yuss04mL",
     desc: "Brought back for a limited time! Beautifully crafted, JTMS branded pens will bless you during a test.",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 11,
@@ -160,6 +163,7 @@ export const catalogue = [
     desc: "Win against a teacher at basketball for a special prize. Click below for available teachers.",
     deliv: [true, true, false],
     link: "https://docs.google.com/document/d/e/2PACX-1vSTMNcX8JzvZN5775rpYrTlGna3t1vuTlC0iKVBRsQQyJsuvNf6IvGWVGky9qjvEcsEAKDzu3sV1S0O/pub",
+    sold: "out",
   },
   {
     pid: 12,
@@ -170,6 +174,7 @@ export const catalogue = [
     desc: "Win against a staff member at pickleball to earn a special prize. Click below to see available members.",
     deliv: [true, true, false],
     link: "https://docs.google.com/document/d/e/2PACX-1vSTMNcX8JzvZN5775rpYrTlGna3t1vuTlC0iKVBRsQQyJsuvNf6IvGWVGky9qjvEcsEAKDzu3sV1S0O/pub",
+    sold: "out",
   },
   {
     pid: 13,
@@ -191,6 +196,7 @@ export const catalogue = [
     desc: "Limited edition, old school throwback JTMS Spirit gear. Limited sizes and designs available.",
     deliv: [true, false, false],
     options: ["Size S", "Size M", "Size L", "Size XL"],
+    sold: "out",
   },
   {
     pid: 15,
@@ -242,6 +248,7 @@ export const catalogue = [
     pic: "https://hips.hearstapps.com/hmg-prod/images/walgreens-gift-cards-display-news-photo-614264964-1545846134.jpg?crop=1xw:0.7501xh;center,top&resize=1200:*",
     desc: "This one's self-explanatory. Target, Starbucks, 7Leaves, Lollicup, Chic-fil-a, Chipotle, First Class Pizza",
     deliv: [true, false, false],
+    sold: "out",
   },
   {
     pid: 20,
@@ -251,5 +258,6 @@ export const catalogue = [
     pic: "https://drive.google.com/uc?id=1cw0lZuRZE7GhcdcqjrqDUOxQvtF63MnC",
     desc: "Got a lunch club to run? Got a game to win? Got the urge to just skip the line? Well this pass is for you. Single-use, and non-transferable.",
     deliv: [true, false, false],
+    sold: "out",
   },
 ];
