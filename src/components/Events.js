@@ -16,7 +16,7 @@ function Events() {
     fetch("https://jt-carrier-default-rtdb.firebaseio.com/events.json")
       .then((response) => response.json())
       .then((data) => {
-        setAds(data.ads);
+        setAds(data);
       });
   }, []);
 

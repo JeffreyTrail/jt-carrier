@@ -22,12 +22,20 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { catalogue } from "./Catalogue";
 
 function Store({ wallet, setWallet, sid, setNotif, dark }) {
   // expand stores the pid of the item option that is currently expanded
   const [expand, setExpand] = React.useState(-1);
   const [options, setOptions] = React.useState([]);
+  const [catalogue, setCatalogue] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://jt-carrier-default-rtdb.firebaseio.com/catalogue.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setCatalogue(data);
+      });
+  }, []);
 
   // calculate the date for next Thurs
   let d = new Date();

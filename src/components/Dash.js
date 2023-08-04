@@ -21,7 +21,6 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
-import { catalogue } from "./Catalogue";
 
 function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
   const [name, setName] = React.useState("Log In");
@@ -38,6 +37,16 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
 
   const [thist, setThist] = React.useState(false);
   const [phist, setPhist] = React.useState(false);
+
+  const [catalogue, setCatalogue] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://jt-carrier-default-rtdb.firebaseio.com/catalogue.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setCatalogue(data);
+      });
+  }, []);
 
   const submit = () => {
     // Submit is used to catch empty fields (i.e. user is done typing)
