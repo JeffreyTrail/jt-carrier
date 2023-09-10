@@ -25,6 +25,16 @@ function Ticketing(props) {
   const [flavor, setFlavor] = React.useState("r");
   // flavor is  type & validity of code: o is orange, r is regular, i is invalid
 
+  const [staff, setStaff] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://jt-carrier-default-rtdb.firebaseio.com/staff.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setStaff(Object.keys(data).map((member) => ({ label: member })));
+      });
+  }, []);
+
   let localLastTeachers = localStorage.getItem("lastTeachers");
   if (localLastTeachers !== null) {
     localLastTeachers = localLastTeachers
@@ -343,66 +353,5 @@ const promptStyle = {
   width: "39%",
   marginRight: 1,
 };
-
-const staff = [
-  { label: "ALLEN" },
-  { label: "ALVAREZ" },
-  { label: "ANGEL" },
-  { label: "ARROYO" },
-  { label: "BABE" },
-  { label: "BARCENAS" },
-  { label: "BIRCHLER" },
-  { label: "BONHALL" },
-  { label: "BOSSHART" },
-  { label: "BROWN" },
-  { label: "BYRNE" },
-  { label: "CANTU" },
-  { label: "CETINELIAN" },
-  { label: "CHITTAPHONG" },
-  { label: "CLAPPER" },
-  { label: "COLLINS" },
-  { label: "CURIEL" },
-  { label: "DIAZ" },
-  { label: "DIFRANCESCO" },
-  { label: "EISMAN" },
-  { label: "FORD" },
-  { label: "GARCIA" },
-  { label: "GARCIAK" },
-  { label: "GEORGINO" },
-  { label: "GRAHAM" },
-  { label: "GU" },
-  { label: "HALL" },
-  { label: "HARRISON" },
-  { label: "HEINZ" },
-  { label: "HOLNESS" },
-  { label: "HONG" },
-  { label: "HOUGH" },
-  { label: "IGNACIO" },
-  { label: "JONG" },
-  { label: "KAHELIN" },
-  { label: "KOZUKI" },
-  { label: "KUBO" },
-  { label: "LAKY" },
-  { label: "LEAVEY" },
-  { label: "LELLIOTT" },
-  { label: "LEVENSAILOR" },
-  { label: "MASCIEL" },
-  { label: "MELGOZA" },
-  { label: "MONTGOMERY" },
-  { label: "MUNOZ" },
-  { label: "NGUYEN" },
-  { label: "OHASHI" },
-  { label: "PATRICK" },
-  { label: "PIPP" },
-  { label: "RAMBO" },
-  { label: "RANGEL" },
-  { label: "SEILHAN" },
-  { label: "SHIMAMOTO" },
-  { label: "SOLIDAY" },
-  { label: "TRAN" },
-  { label: "TRAPP" },
-  { label: "VREELAND" },
-  { label: "WARE" },
-];
 
 export default Ticketing;
