@@ -133,7 +133,7 @@ function Store({ wallet, setWallet, sid, setNotif, dark }) {
                 <Card
                   raised
                   sx={
-                    item.tags.includes("Limited Time")
+                    item.tags && item.tags.includes("Limited Time")
                       ? {
                           backgroundColor: dark ? "#061f46" : "#e3f2fd",
                         }
@@ -153,27 +153,35 @@ function Store({ wallet, setWallet, sid, setNotif, dark }) {
                     title={item.name}
                     titleTypographyProps={{ variant: "h6" }}
                     subheader={
-                      <Stack direction="row" spacing={1} sx={{ marginTop: 1 }}>
-                        {item.tags.map((tag, i) => {
-                          return (
-                            <Chip
-                              key={i}
-                              label={tag}
-                              variant="outlined"
-                              color={
-                                tag.includes("Veg")
-                                  ? "success"
-                                  : tag === "Food" || tag === "Drink"
-                                  ? "warning"
-                                  : tag === "Merch"
-                                  ? "info"
-                                  : "error"
-                              }
-                              size="small"
-                            />
-                          );
-                        })}
-                      </Stack>
+                      item.tags ? (
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          sx={{ marginTop: 1 }}
+                        >
+                          {item.tags.map((tag, i) => {
+                            return (
+                              <Chip
+                                key={i}
+                                label={tag}
+                                variant="outlined"
+                                color={
+                                  tag.includes("Veg")
+                                    ? "success"
+                                    : tag === "Food" || tag === "Drink"
+                                    ? "warning"
+                                    : tag === "Merch"
+                                    ? "info"
+                                    : "error"
+                                }
+                                size="small"
+                              />
+                            );
+                          })}
+                        </Stack>
+                      ) : (
+                        <React.Fragment />
+                      )
                     }
                   />
                   <CardMedia
