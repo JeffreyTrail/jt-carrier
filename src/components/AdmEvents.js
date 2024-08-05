@@ -71,10 +71,21 @@ function AdmEvents() {
   };
 
   const submit = () => {
+    // https://drive.google.com/file/d/1dLoc4kY-OcHfyrZoNVUQwB7vWq4WWINl/view?usp=drive_link
+    // https://drive.google.com/thumbnail?id=1cw0lZuRZE7GhcdcqjrqDUOxQvtF63MnC
+    let copy = current;
+    if (copy.img.includes("drive.google.com/file/d")) {
+      copy.img =
+        "https://drive.google.com/thumbnail?id=" +
+        copy.img.substring(
+          copy.img.indexOf("file/d") + 7,
+          copy.img.indexOf("/view?")
+        );
+    }
     if (mode === "Add") {
-      setAds([current, ...ads]);
+      setAds([copy, ...ads]);
     } else {
-      setAds([...ads.splice(0, index), current, ...ads.splice(index + 1)]);
+      setAds([...ads.splice(0, index), copy, ...ads.splice(index + 1)]);
     }
     setMode("Closed");
     // send to backend
