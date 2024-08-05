@@ -42,6 +42,7 @@ import Stats from "./components/Stats";
 import Help from "./components/Help";
 import Adv from "./components/Adv";
 import Events from "./components/Events";
+import AdmEvents from "./components/AdmEvents";
 import Store from "./components/Store";
 import Dash from "./components/Dash";
 
@@ -53,6 +54,8 @@ import carrierLight from "./carrier-lightm.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+
+// Add unread flag to events tab
 
 const darkTheme = createTheme({
   palette: {
@@ -134,6 +137,11 @@ function App() {
   // Dashboard hide
   const [dashon, setDashon] = React.useState(
     localDashon === null ? "on" : localDashon
+  );
+
+  // Admin mode
+  const [admin, setAdmin] = React.useState(
+    localSid === "50122089" ? true : false
   );
 
   const open = Boolean(anchorEl);
@@ -433,7 +441,11 @@ function App() {
             ) : tab === 3 ? (
               <Adv />
             ) : tab === 5 ? (
-              <Events />
+              admin ? (
+                <AdmEvents />
+              ) : (
+                <Events />
+              )
             ) : (
               <Store
                 wallet={wallet}
@@ -470,6 +482,7 @@ function App() {
                     wallet={wallet}
                     setWallet={setWallet}
                     setNotif={setNotif}
+                    setAdmin={setAdmin}
                   />
                 </Box>
               </Slide>

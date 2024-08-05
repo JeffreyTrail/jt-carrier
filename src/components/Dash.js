@@ -22,7 +22,7 @@ import {
 import * as React from "react";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
-function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
+function Dash({ sid, setSid, wallet, setWallet, setNotif, setAdmin }) {
   const [name, setName] = React.useState("Log In");
   const [email, setEmail] = React.useState("");
   const [chance, setChance] = React.useState("calculate");
@@ -54,12 +54,8 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
     // Skip auth if invalid inputs
     if (sid === "" || isNaN(sid) || !validateEmail(email)) return;
     // Authenticate user's SID and NID (from email)
-    fetch(
-      "https://wings-carrier.herokuapp.com/authenticate/" +
-        sid +
-        "/" +
-        email.substring(0, email.indexOf("@"))
-    )
+    let nid = email.substring(0, email.indexOf("@"));
+    fetch("https://wings-carrier.herokuapp.com/authenticate/" + sid + "/" + nid)
       .then((response) => response.json())
       .then((data) => {
         setSubmitted(false); // stop loading
@@ -74,6 +70,9 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif }) {
 
           // User is legit & Refresh user data
           getUserData();
+
+          // If user is admin
+          setAdmin(nid === "admin");
         } else if (data.status === 1) {
           setNotif(["error", "We couldn't find someone with that ID."]);
         } else if (data.status === 2) {
