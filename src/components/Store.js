@@ -26,12 +26,18 @@ function Store({ wallet, setWallet, sid, setNotif, dark }) {
   const [expand, setExpand] = React.useState(-1);
   const [options, setOptions] = React.useState([]);
   const [catalogue, setCatalogue] = React.useState([]);
+  const [status, setStatus] = React.useState("off");
 
   React.useEffect(() => {
     fetch("https://jt-carrier-default-rtdb.firebaseio.com/catalogue.json")
       .then((response) => response.json())
       .then((data) => {
         setCatalogue(data);
+      });
+    fetch("https://jt-carrier-default-rtdb.firebaseio.com/status.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatus(data.store);
       });
   }, []);
 
@@ -117,119 +123,126 @@ function Store({ wallet, setWallet, sid, setNotif, dark }) {
         <React.Fragment />
       )}
 
-      <Grid
-        container
-        spacing={1}
-        alignItems="stretch"
-        sx={{ marginBottom: 3, marginTop: 1 }}
-      >
-        {catalogue
-          .filter((item) => item.sold !== "hidden")
-          .map((item, index) => {
-            return (
-              <Grid item xs={4} key={index}>
-                <Card raised>
-                  <CardHeader
-                    action={
-                      <Typography
-                        variant="h3"
-                        sx={{ marginRight: 1 }}
-                        color={item.price > wallet ? "error" : "default"}
-                      >
-                        {item.price}
-                      </Typography>
-                    }
-                    title={item.name}
-                    titleTypographyProps={{ variant: "h6" }}
-                  />
-                  <CardMedia
-                    component="img"
-                    height="194"
-                    image={item.pic}
-                    alt={item.name}
-                  />
-                  <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                      {item.desc}
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    {item.link ? (
-                      <Button
-                        href={item.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        fullWidth
-                        color="secondary"
-                        variant="outlined"
-                        sx={{ marginRight: 1 }}
-                      >
-                        More Info
-                      </Button>
-                    ) : (
-                      <React.Fragment />
-                    )}
-                    <Button
-                      aria-label="order"
-                      fullWidth
-                      variant="outlined"
-                      onClick={() => {
-                        setExpand(expand === item.pid ? -1 : item.pid);
-                        setOptions([]);
-                      }}
-                      disabled={item.price > wallet || item.sold === "out"}
-                      endIcon={
-                        expand === item.pid ? <ExpandLess /> : <ExpandMore />
+      {status === "off" ? (
+        <Alert severity="error">
+          The WINGStore is temporarily closed. We'll be back soon with exciting
+          excitement.
+        </Alert>
+      ) : (
+        <Grid
+          container
+          spacing={1}
+          alignItems="stretch"
+          sx={{ marginBottom: 3, marginTop: 1 }}
+        >
+          {catalogue
+            .filter((item) => item.sold !== "hidden")
+            .map((item, index) => {
+              return (
+                <Grid item xs={4} key={index}>
+                  <Card raised>
+                    <CardHeader
+                      action={
+                        <Typography
+                          variant="h3"
+                          sx={{ marginRight: 1 }}
+                          color={item.price > wallet ? "error" : "default"}
+                        >
+                          {item.price}
+                        </Typography>
                       }
-                    >
-                      {item.sold === "out" ? "sold out" : "order"}
-                    </Button>
-                  </CardActions>
-                  <Collapse
-                    in={expand === item.pid}
-                    timeout="auto"
-                    unmountOnExit
-                  >
+                      title={item.name}
+                      titleTypographyProps={{ variant: "h6" }}
+                    />
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image={item.pic}
+                      alt={item.name}
+                    />
                     <CardContent>
-                      <Typography paragraph>
-                        ASB will deliver your order by next Thursday {deliv}
+                      <Typography variant="body2" color="text.secondary">
+                        {item.desc}
                       </Typography>
-
-                      {item.options ? (
-                        <FormGroup>
-                          <FormLabel id="custome-options">
-                            Additional options:
-                          </FormLabel>
-                          {item.options.map((o, i) => {
-                            return (
-                              <FormControlLabel
-                                control={
-                                  <Checkbox onChange={customize} name={o} />
-                                }
-                                key={i}
-                                label={o}
-                              />
-                            );
-                          })}
-                        </FormGroup>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                      {item.link ? (
+                        <Button
+                          href={item.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          fullWidth
+                          color="secondary"
+                          variant="outlined"
+                          sx={{ marginRight: 1 }}
+                        >
+                          More Info
+                        </Button>
                       ) : (
                         <React.Fragment />
                       )}
-
                       <Button
+                        aria-label="order"
                         fullWidth
-                        variant="contained"
-                        onClick={() => buy(item.pid)}
+                        variant="outlined"
+                        onClick={() => {
+                          setExpand(expand === item.pid ? -1 : item.pid);
+                          setOptions([]);
+                        }}
+                        disabled={item.price > wallet || item.sold === "out"}
+                        endIcon={
+                          expand === item.pid ? <ExpandLess /> : <ExpandMore />
+                        }
                       >
-                        Place Order
+                        {item.sold === "out" ? "sold out" : "order"}
                       </Button>
-                    </CardContent>
-                  </Collapse>
-                </Card>
-              </Grid>
-            );
-          })}
-      </Grid>
+                    </CardActions>
+                    <Collapse
+                      in={expand === item.pid}
+                      timeout="auto"
+                      unmountOnExit
+                    >
+                      <CardContent>
+                        <Typography paragraph>
+                          ASB will deliver your order by next Thursday {deliv}
+                        </Typography>
+
+                        {item.options ? (
+                          <FormGroup>
+                            <FormLabel id="custome-options">
+                              Additional options:
+                            </FormLabel>
+                            {item.options.map((o, i) => {
+                              return (
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox onChange={customize} name={o} />
+                                  }
+                                  key={i}
+                                  label={o}
+                                />
+                              );
+                            })}
+                          </FormGroup>
+                        ) : (
+                          <React.Fragment />
+                        )}
+
+                        <Button
+                          fullWidth
+                          variant="contained"
+                          onClick={() => buy(item.pid)}
+                        >
+                          Place Order
+                        </Button>
+                      </CardContent>
+                    </Collapse>
+                  </Card>
+                </Grid>
+              );
+            })}
+        </Grid>
+      )}
     </Box>
   );
 }
