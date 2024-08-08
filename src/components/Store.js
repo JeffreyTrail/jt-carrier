@@ -21,7 +21,7 @@ import {
 import * as React from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
-function Store({ wallet, setWallet, sid, setNotif, dark }) {
+function Store({ wallet, setWallet, sid, setNotif }) {
   // expand stores the pid of the item option that is currently expanded
   const [expand, setExpand] = React.useState(-1);
   const [options, setOptions] = React.useState([]);

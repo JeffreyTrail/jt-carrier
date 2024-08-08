@@ -44,6 +44,7 @@ import Adv from "./components/Adv";
 import Events from "./components/Events";
 import AdmEvents from "./components/AdmEvents";
 import Store from "./components/Store";
+import AdmStore from "./components/AdmStore";
 import Dash from "./components/Dash";
 
 import ReactGA from "react-ga4";
@@ -446,13 +447,14 @@ function App() {
               ) : (
                 <Events />
               )
+            ) : admin ? (
+              <AdmStore wallet={wallet} />
             ) : (
               <Store
                 wallet={wallet}
                 setWallet={setWallet}
                 sid={sid}
                 setNotif={setNotif}
-                dark={dark}
               />
             )}
           </Box>

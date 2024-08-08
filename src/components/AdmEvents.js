@@ -34,6 +34,30 @@ function AdmEvents() {
       });
   };
 
+  const sendData = (nextAds) => {
+    // updates backend with new ads list
+    // used when editing, adding, moving
+    fetch("https://wings-carrier.herokuapp.com/editevents", {
+      // fetch("http://127.0.0.1:5000/editevents", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        events: nextAds,
+      }),
+    });
+  };
+
+  const remove = () => {
+    const nextAds = [...ads];
+    nextAds.splice(index, 1);
+    setAds(nextAds);
+    setMode("Closed");
+    sendData(nextAds);
+  };
+
   React.useEffect(update, []);
 
   const move = (ind, dir) => {
@@ -44,6 +68,7 @@ function AdmEvents() {
 
     [nextAds[low], nextAds[high]] = [nextAds[high], nextAds[low]];
     setAds(nextAds);
+    sendData(nextAds);
   };
 
   const edit = (index) => {
@@ -71,8 +96,6 @@ function AdmEvents() {
   };
 
   const submit = () => {
-    // https://drive.google.com/file/d/1dLoc4kY-OcHfyrZoNVUQwB7vWq4WWINl/view?usp=drive_link
-    // https://drive.google.com/thumbnail?id=1cw0lZuRZE7GhcdcqjrqDUOxQvtF63MnC
     let copy = current;
     if (copy.img.includes("drive.google.com/file/d")) {
       copy.img =
@@ -82,13 +105,17 @@ function AdmEvents() {
           copy.img.indexOf("/view?")
         );
     }
+
+    let nextAds = [];
     if (mode === "Add") {
-      setAds([copy, ...ads]);
+      nextAds = [copy, ...ads];
     } else {
-      setAds([...ads.splice(0, index), copy, ...ads.splice(index + 1)]);
+      nextAds = [...ads.splice(0, index), copy, ...ads.splice(index + 1)];
     }
+    setAds(nextAds);
     setMode("Closed");
     // send to backend
+    sendData(nextAds);
   };
 
   return (
@@ -204,15 +231,7 @@ function AdmEvents() {
               Update
             </Button>
 
-            <Button
-              color="error"
-              variant="outlined"
-              onClick={() => {
-                setAds([...ads.splice(0, index), ...ads.splice(index + 1)]);
-                setMode("Closed");
-              }}
-              sx={{ right: 0 }}
-            >
+            <Button color="error" variant="outlined" onClick={remove}>
               Delete
             </Button>
           </Box>
