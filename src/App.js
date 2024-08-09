@@ -443,7 +443,7 @@ function App() {
               <Adv />
             ) : tab === 5 ? (
               admin ? (
-                <AdmEvents />
+                <AdmEvents password={wallet} />
               ) : (
                 <Events />
               )

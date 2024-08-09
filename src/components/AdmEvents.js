@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 import * as React from "react";
 
-function AdmEvents() {
+function AdmEvents(password) {
   const [ads, setAds] = React.useState([]);
   const [mode, setMode] = React.useState("Closed");
 
@@ -46,6 +46,7 @@ function AdmEvents() {
       },
       body: JSON.stringify({
         events: nextAds,
+        pass: password,
       }),
     });
   };

@@ -72,7 +72,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif, setAdmin }) {
           getUserData();
 
           // If user is admin
-          setAdmin(nid === "admin");
+          setAdmin(sid === "50122089");
         } else if (data.status === 1) {
           setNotif(["error", "We couldn't find someone with that ID."]);
         } else if (data.status === 2) {
