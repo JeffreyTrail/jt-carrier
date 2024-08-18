@@ -170,9 +170,11 @@ function Stats() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      {/* Automate prize list
       <Typography variant="h6">
         This week's homeroom drawing prize is: {prize}
-      </Typography>
+      </Typography>*/}
 
       <Typography variant="h6" sx={rowStyle}>
         Cutoff for TOP 25%: {top} tickets
@@ -211,7 +213,7 @@ function Stats() {
       </TableContainer>
 
       <Typography variant="h6" sx={rowStyle}>
-        So far this year, we've validated {total} tickets
+        Since Fall 2022, we've validated {total} tickets
       </Typography>
 
       <Tooltip

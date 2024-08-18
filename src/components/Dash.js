@@ -227,7 +227,7 @@ function Dash({ sid, setSid, wallet, setWallet, setNotif, setAdmin }) {
           />
           <Chip
             avatar={<Avatar>{cnt}</Avatar>}
-            label={cnt === 1 ? "Ticket in Tri II" : "Tickets in Tri II"}
+            label={cnt === 1 ? "Ticket in Tri I" : "Tickets in Tri I"}
             variant="outlined"
             sx={largeChip}
           />
