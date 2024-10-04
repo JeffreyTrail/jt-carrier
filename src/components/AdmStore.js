@@ -304,7 +304,7 @@ function Store({ wallet }) {
               onChange={(event) => {
                 setCurrent({
                   ...current,
-                  price: event.target.value,
+                  price: parseInt(event.target.value),
                 });
               }}
             />
