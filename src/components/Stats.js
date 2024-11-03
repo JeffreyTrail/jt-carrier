@@ -171,9 +171,9 @@ function Stats() {
         </Table>
       </TableContainer>
 
-      <Typography variant="h6">
+      {/*<Typography variant="h6">
         This week's homeroom drawing prize is: {prize}
-      </Typography>
+      </Typography>*/}
 
       <Typography variant="h6" sx={rowStyle}>
         Cutoff for TOP 25%: {top} tickets
