@@ -29,7 +29,7 @@ function Stats() {
   const [errmsg, setErrmsg] = React.useState("");
   const [beg, setBeg] = React.useState("---");
   const [end, setEnd] = React.useState("---");
-  const [prize, setPrize] = React.useState("---");
+  // const [prize, setPrize] = React.useState("---");
   const [total, setTotal] = React.useState("---");
   const [hmsrc, setHmsrc] = React.useState([
     { date: "2022-10-10", count: 1 },
