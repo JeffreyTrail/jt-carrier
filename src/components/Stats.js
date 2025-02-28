@@ -78,7 +78,7 @@ function Stats() {
       .then((data) => {
         setBeg(data.beg);
         setEnd(data.end);
-        setPrize(data.prize);
+        // setPrize(data.prize);
       });
 
     fetch("https://wings-carrier.herokuapp.com/stats/total")
